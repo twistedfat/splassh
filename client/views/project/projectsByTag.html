@@ -1,0 +1,30 @@
+<template name="projectsByTag">
+<div class="container">
+    <div class="row">
+      <h3>Projects listed by <span class='label label-default'>{{mainTag}}</span> tag</h3>
+      <hr class="featurette-divider">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>title</th>
+              <th>description</th>
+              <th>Latitude,Longitude</th>
+              <th>created</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each projects}}
+              <tr>
+                <td><a href="/project/{{_id}}">{{title}}</a></td>
+                <td>{{truncate description 100}}</td>
+                <td>{{coordinates.lat}},{{coordinates.lng}}</td>
+                <td>{{formatDate date_created "short"}}</td>
+              </tr>
+            {{/each}}
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,16 @@
+.primary-tag {
+  margin: 15px 3px;
+}
+.primary-tag a:hover {
+  color: blue;
+}
+.tag-tier-tag {
+  background-color: blue;
+}
+.tag-tier-body {
+  background-color: purple;
+}
+.tag-tier-type {
+  background-color: orange;
+}
+

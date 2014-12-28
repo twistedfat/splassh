@@ -1,0 +1,12 @@
+/* Mobile specific styling */
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+  
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+  /* masonry */
+  .item { width: 300px; }
+}

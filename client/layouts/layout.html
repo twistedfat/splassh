@@ -1,0 +1,26 @@
+<template name="layout">
+  {{> yield region='navbar'}}
+  <div class="main">
+    {{> yield}}
+  </div>
+  {{> yield region='footer'}}
+</template>
+
+<template name="nofooter">
+  {{> yield region='navbar'}}
+  {{> alerts}}
+  <div class="main">
+    {{> yield}}
+  </div>
+</template>
+
+<template name="landing">
+  <div class="main">
+    {{> yield}}
+  </div>
+  {{> yield region='footer'}}
+</template>
+
+<template name="none">
+  {{> yield}}
+</template>
