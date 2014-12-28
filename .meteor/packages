@@ -1,0 +1,29 @@
+# Meteor packages used by this project, one per line.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+standard-app-packages
+amplify
+email
+check
+less
+accounts-ui
+accounts-password
+#single-page-login
+spiderable
+aldeed:collection2
+aldeed:autoform
+houston:admin
+meteorhacks:fast-render
+tmeasday:paginated-subscription
+iron:layout
+iron:dynamic-template
+iron:core
+iron:router
+mystor:device-detection
+jparker:gravatar
+mrt:moment
+sacha:spin
+chrismbeckett:toastr
+steeve:single-page-login
