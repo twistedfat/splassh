@@ -1,0 +1,34 @@
+// potentially useful when we move to amazon aws.
+environment = process.env.METEOR_ENV || "development";
+ 
+var settings = {
+  development: {
+    public: {},
+    private: {}
+  },
+  staging: {
+    public: {},
+    private: {}
+  },
+  production: {
+    public: {},
+    private: {}
+  }
+};
+ 
+if (!process.env.METEOR_SETTINGS) {
+  console.log("=> No METEOR_SETTINGS passed in, using locally defined settings.");
+ 
+  if (environment === "production") {
+    Meteor.settings = settings.production;
+  } else if (environment === "staging") {
+    Meteor.settings = settings.staging;
+  } else {
+    Meteor.settings = settings.development;
+  }
+ 
+  // Push a subset of settings to the client.
+  if (Meteor.settings && Meteor.settings.public) {
+    __meteor_runtime_config__.PUBLIC_SETTINGS = Meteor.settings.public;
+  }
+}

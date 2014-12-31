@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "single-page-login": {}
+    },
+    "packages": {
+      "single-page-login": {
+        "git": "https://github.com/EtherPOS/single-page-login.git",
+        "tag": "v0.2.3",
+        "commit": "a71c8a3987dc655609158a073b01beb412676ad1"
+      }
+    }
+  }
+}

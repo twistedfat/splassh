@@ -1,0 +1,21 @@
+<!-- This appears on the front page -->
+<template name="theripple">
+  <div class="ripple">
+	 <div class="container" align="center">
+	 	<h2>Latest Projects</h2><br/>
+      {{#each projects}}
+        <div class="col-sm-6 col-md-3 observation">
+          <div class="thumbnail">
+            <img src="beach1.jpg" alt="{{comment}}">
+            <div class="caption" align="left">
+              <h3><a href="/project/{{_id}}">{{title}}</a></h3>
+              <div class="date text-muted">Created {{formatDate data_created "short"}} - {{author}}</div>
+              <p><a href="/project/{{_id}}" class="btn btn-primary btn-lg">Read</a></p>
+            </div>
+          </div> 
+        </div>
+      {{/each}}
+   <a href="/projectList" class="pull-right">More Projects &raquo;</a>
+  </div>
+</div>
+</template>
