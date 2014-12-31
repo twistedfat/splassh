@@ -8,8 +8,6 @@ amplify
 email
 check
 less
-accounts-ui
-accounts-password
 #single-page-login
 spiderable
 aldeed:collection2
@@ -27,3 +25,10 @@ mrt:moment
 sacha:spin
 chrismbeckett:toastr
 steeve:single-page-login
+accounts-password
+accounts-facebook
+accounts-google
+accounts-github
+accounts-twitter
+accounts-ui
+
