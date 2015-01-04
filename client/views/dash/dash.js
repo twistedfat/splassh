@@ -1,6 +1,10 @@
 // controller for userdash, and any subsequent dashes
 Template.userdash.projects = function() {
-  return Projects.find({ 'owner' : SPLASSH.userName(Meteor.user()) }, { sort : { 'title': 1 }});
+  return Projects.find({ 'owner' : SPLASSH.userName(Meteor.user()) }, { sort : { 'date_created': -1 }});
+};
+
+Template.userdash.comments = function(){
+ return Comments.find({ 'author' : SPLASSH.userName(Meteor.user()) }, { sort : { 'posted' : -1 }});
 };
 
 Template.userdash.userName = function() {

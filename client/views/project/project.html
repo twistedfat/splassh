@@ -32,8 +32,25 @@
                 <div class="row">
                     <div class="col-md-2"><img src="{{avatarUrl}}" class="img-circle" alt="Avatar"/></div>
                	    <div class="col-md-10 comment-data">
-               	    <span class="comment-author"><h3>{{author}}<br/><small> posted {{posted_timeago}}</small></h3></span>
-               	    <span class="comment-body">{{body}}</span>
+		    <span class="comment-body"><h3>{{body}}</h3></span>
+			{{#if currentUser}}
+
+<!--remove-->
+<!-- edit-->
+<div  class="btn-group">
+                   <form role="form" class="form-editcomment">
+        	<input id="project-edit" type="text" required placeholder="Edit your comment" class="form-control input-sm input-block"/>
+		<br/>
+         	<button type="submit" class="btn btn-default btn-sm btn-block">edit</button>
+        </form>
+                 <br/> 
+	<button class="btn btn-danger btn-xs remove" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+		<br/>
+                </div>
+			{{/if}}
+		<br/>
+               	    <span class="comment-author">{{author}}<br/><small> posted {{posted_timeago}}</small></span>
+               	    
                	    </div>
                	</div>
      	    </div>

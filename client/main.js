@@ -1,5 +1,4 @@
 // -- client
-//doesnt do anything - salim
 AmplifiedSession = _.extend({}, Session, {
   keys: _.object(_.map(amplify.store(), function(value, key) {
     return [key, JSON.stringify(value)]

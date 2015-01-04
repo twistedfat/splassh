@@ -100,7 +100,42 @@ Template.project.events({
         $('#project-comment').val(function() {
           return this.defaultValue;
         })
+    },
+
+  'click .remove': function (e,t ) {
+    e.preventDefault();
+    Comments.remove(this._id);
+  },
+
+ 'submit form.form-editcomment': function(e, t) {
+        e.preventDefault();
+        var content = $('#project-edit').val();
+        content = content.trim();
+      
+        if (!Meteor.user()){
+          toastr.warning("Please sign in to leave a comment.");
+          return;
+        }
+        if (!content || content === "") {
+          toastr.warning("Unable to post an empty comment.");
+          return;
+        }
+
+        var comment = {
+          author:  SPLASSH.userName(Meteor.user()),
+          avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
+          body: $('#project-edit').val()
+        };
+
+        //Add comment will automatically set comment.posted to the current time.
+        editComment(comment, this);
+        
+        // clear input field
+        $('#project-edit').val(function() {
+          return this.defaultValue;
+        })
     }
+
 })
 
 // PROJECT TAGS
