@@ -26,5 +26,29 @@ Template.userdash.events({
   },
   'click': function () {
     Session.set("selected_project", this._id);
-  }
+  }, 
+'submit form.form-addalias': function(e, t) {
+        e.preventDefault();
+        var content = $('#alias').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to use empty alias.");
+          return;
+        }
+
+	
+        var alias = $('#alias').val();
+        
+
+        //Add comment will automatically set comment.posted to the current time.
+//something wrong with this, probably a subscribe/publish issue
+        Users.update({_id:Meteor.user().id}, {$set:{"profile.alias":alias}});
+        
+        // clear input field
+        $('#alias').val(function() {
+          return this.defaultValue;
+        })
+    }
+
 });

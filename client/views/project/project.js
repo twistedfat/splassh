@@ -1,7 +1,13 @@
 Template.project.helpers({
    comments: function() {
        return Comments.find({projectId: this._id}, {sort: {posted: -1}});
-   }
+   },
+  isCommentOwner: function(){
+	return this.author === SPLASSH.userName(Meteor.user()) ;
+	},
+  isProjectOwner: function(){
+	return this.owner === SPLASSH.userName(Meteor.user()) ;
+	}
 });
 
 Template.projectsByTag.projects = function() {

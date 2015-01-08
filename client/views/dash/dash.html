@@ -2,7 +2,12 @@
   <div class="container">
       <h1>My Dashboard <br/><small>A list of all projects created by {{userName}}</small></h1>
   </div>
-
+<div class ="container" align ="left" style="width:25%">
+<form role="form" class="form-addalias">
+        	<input id="alias" type="text" autofocus="" required placeholder="Do you prefer using a SPLASSH alias?" class="form-control input-sm" style= /><br/>
+         	<button type="submit" class="btn btn-default btn-sm ">Become another person</button>
+    </form><br/>
+</div>
    <hr class="featurette-divider">
   <div class="container">
       <table class="table table-hover table-striped">
@@ -43,14 +48,14 @@
             <!--th>Description</th-->
             <th>Date Created</th>
             <!--th>Location</th-->
-            <th>   </th>
+            <th></th>
 	    <th> </th>
           </tr>
         </thead>
         <tbody>
           {{#each comments}}
             <tr class="comments {{selected}}">
-              <td><a>{{body}}</a></td>
+              <td><a href="/project/{{projectId}}">{{body}}</a></td>
               <!--td>{{truncate description 100}}</td-->
               <td>{{formatDate posted "short"}}</td>
               <!--td>{{coordinates.lat}},{{coordinates.lng}}</td-->
