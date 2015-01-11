@@ -43,7 +43,7 @@ Template.userdash.events({
 
         //Add comment will automatically set comment.posted to the current time.
 //something wrong with this, probably a subscribe/publish issue
-        Users.update({_id:Meteor.user().id}, {$set:{"profile.alias":alias}});
+        Meteor.users.update({_id:Meteor.userId()}, {$set:{"profile.alias":alias}});
         
         // clear input field
         $('#alias').val(function() {
