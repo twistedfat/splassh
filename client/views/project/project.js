@@ -152,7 +152,7 @@ Template.projectTags.rendered = function() {
 Template.projectTags.tags = function() {
   var project = this, tags = project.tags;
   if (typeof tags !== 'undefined' && tags !== null) {
-    return Tags.find({ 'name' : { $ne : project.tags[0] } }, { _id: -1 }); // everything but the db id
+    return Tags.find({ 'name' : { $ne : project.tags[0] } },  { _id: -1 }, { sort : {tier:-1 , number : 1}}); // everything but the db id
   }
   return;
 }

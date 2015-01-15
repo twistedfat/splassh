@@ -1,6 +1,12 @@
 Template.loadTags.helpers({
     tags: function() {
-        return Tags.find({}, {sort: {name: 1}});
+        return Tags.find({tier:'tag'}, {sort: {number: 1}});
+    }
+});
+
+Template.loadBodies.helpers({
+    bodies: function() {
+        return Tags.find({tier:'body of water'}, {sort: {number: 1}});
     }
 });
 
