@@ -7,7 +7,7 @@ AutoForm.addHooks(['insertContactForm'], {
         if (error) {
           toastr.error(error);
         } else {
-          toastr.info("Thanks! We'll get in touch within 2 business days.");
+          toastr.info("Thanks! We'll be in touch.");
         }
       }/*,
       update: function(error) {
