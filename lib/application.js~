@@ -8,6 +8,7 @@ SPLASSH.userName = function(user) {
   if (typeof user === 'undefined' || user === null)
     return 'none';
   if (user.profile){
+    if (user.profile.alias) return user.profile.alias;
     if (user.profile.name) return user.profile.name;
   }return user.username;
 

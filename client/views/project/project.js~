@@ -115,7 +115,8 @@ Template.project.events({
   'click .edit': function (e,t ) {
     e.preventDefault();
     var ele = document.getElementById("editform");
-	var text = document.getElementById("edit");	
+	var text = document.getElementById("edit");
+	
 	if(ele.style.display == "block") {
     		ele.style.display = "none";		
   	}
