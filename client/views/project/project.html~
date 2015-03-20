@@ -1,7 +1,7 @@
 <template name="project">
   <div id="project">
     <div class="container">
-      <h1>{{title}}</h1>
+      <h1>{{title}} <button type="button" class="btn btn-default btn-xs follow"> Follow </button> </h1> 
       <p class="lead text-muted">created by {{owner}} on {{formatDate date_created "long"}}</p>
     {{description}}<br/>
     </div>
@@ -92,7 +92,7 @@
 <div id = editform style="display: none">
 <br/><br/>
      <form role="form" class="form-editcomment">
-        	<input id="project-edit" type="text" required placeholder="Edit your comment" class="form-control input-sm input-block"/>
+        	<input id="project-edit" type="text" required placeholder="Edit your comment" class="form-control input-sm input-block" value="{{body}}"/>
 <button class="btn btn-default btn-sm btn-block" type="submit">submit edit</button>		
         </form>         
 </div>

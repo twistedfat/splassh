@@ -1,6 +1,12 @@
 /* Primary data collection */
 Projects = new Meteor.Collection("projects");
 
+// Extended configuration
+Projects.initEasySearch(['title', 'description', 'tags'], {
+    'limit' : 20,
+    'use' : 'minimongo'
+});
+
 /* Collection prototype 
  * _id, public, owner
  * info { title, description, tags, coordinates }

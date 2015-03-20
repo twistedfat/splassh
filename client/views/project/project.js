@@ -8,7 +8,9 @@ Template.project.helpers({
   isProjectOwner: function(){
 	return this.owner === SPLASSH.userName(Meteor.user()) ;
 	}
+  
 });
+
 
 Template.projectsByTag.projects = function() {
     var tag = Router.current().params._tag;
@@ -108,6 +110,14 @@ Template.project.events({
         })
     },
 
+  'click .followProject': function (e,t ) {
+    e.preventDefault();
+ var follow = {
+          user:  SPLASSH.userName(Meteor.user()),
+          projectId: this._id
+        };
+    Follows.insert(follow);
+  },
   'click .remove': function (e,t ) {
     e.preventDefault();
     Comments.remove(this._id);

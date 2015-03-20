@@ -13,13 +13,12 @@ Meteor.publish("projects", function() {
 Meteor.publish("comments", function() {
     return Comments.find({});
 });
+
+Meteor.publish("follows", function() {
+    return Follows.find({});
+});
 // in server.js
 Meteor.publish("users", function () {
   return Meteor.users.find({}, {fields: {emails: 1, profile: 1, username: 1}});
 });
 
-//notifications
-
- Meteor.publish("myCommentNotifications", function(projectId){
-
-});

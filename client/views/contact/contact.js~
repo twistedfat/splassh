@@ -1,7 +1,7 @@
 // controller for contact.html
 // using meteor autoform
 
-AutoForm.addHooks(['insertContactForm'], {
+AutoForm.addHooks(['contact'], {
     after: {
       insert: function(error, result) {
         if (error) {

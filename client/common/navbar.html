@@ -28,24 +28,31 @@
                 <li><a href="/team">Team</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="/sponsors">Sponsors</a></li>
+<!--                <li><a href="/mailingList">Mailing List</a></li>-->
               </ul>
+	<li><a href="/searchf">Search</a></li>
           </li> 
           {{#if currentUser}}
           <li><a href="/mydash"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;My Dash</a></li>
           {{/if}}
         </ul>
-        
+    
+
+
         <ul class="nav navbar-nav navbar-right">
           {{#if currentPage '/map'}}
             <li><button type="button" class="geolocate btn btn-primary hidden-xs" data-toggle='tooltip' title='Find your current location. Make sure your device has location enabled. It may take a few seconds.' data-placement='bottom'><span class="glyphicon glyphicon-screenshot"> </span> Find Me</button></li>
           {{/if}}
+
+
+
+
 <li style="padding-right: 8em;"> {{> loginButtons}}</li>
-
+ {{#if currentUser}}
           <li><button type="button" class="btn btn-default hidden-xs" data-toggle="modal" data-target="#addWaterProjectModal"><span class="glyphicon glyphicon-plus"></span> Project </button></li>
- 
+   {{/if}}
  
 
-<li><button type="button" class="btn btn-default hidden-xs" data-toggle="modal" data-target="#signInModal"><span class="glyphicon glyphicon-plus"></span> Login </button></li> 
 	
 	
       

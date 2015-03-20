@@ -6,6 +6,11 @@
 /* Primary data collection */
 Comments = new Meteor.Collection("comments");
 
+Comments.initEasySearch(['author', 'body'], {
+    'limit' : 20,
+    'use' : 'minimongo'
+});
+
 //Allow anything in the database to be modified without a Meteor.call
 Comments.allow({
   insert: function (userId, tag) {

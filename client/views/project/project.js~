@@ -8,6 +8,11 @@ Template.project.helpers({
   isProjectOwner: function(){
 	return this.owner === SPLASSH.userName(Meteor.user()) ;
 	}
+  
+});
+
+
+}
 });
 
 Template.projectsByTag.projects = function() {
@@ -108,6 +113,14 @@ Template.project.events({
         })
     },
 
+  'click .followProject': function (e,t ) {
+    e.preventDefault();
+ var follow = {
+          user:  SPLASSH.userName(Meteor.user()),
+          projectId: this._id
+        };
+    Follows.insert(follow);
+  },
   'click .remove': function (e,t ) {
     e.preventDefault();
     Comments.remove(this._id);
@@ -115,8 +128,7 @@ Template.project.events({
   'click .edit': function (e,t ) {
     e.preventDefault();
     var ele = document.getElementById("editform");
-	var text = document.getElementById("edit");
-	
+	var text = document.getElementById("edit");	
 	if(ele.style.display == "block") {
     		ele.style.display = "none";		
   	}
