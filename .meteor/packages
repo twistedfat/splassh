@@ -5,7 +5,6 @@
 
 standard-app-packages
 amplify
-email
 check
 less
 #single-page-login
@@ -32,4 +31,5 @@ accounts-github
 accounts-twitter
 accounts-ui
 matteodem:easy-search
+email
 

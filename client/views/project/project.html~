@@ -1,16 +1,16 @@
 <template name="project">
   <div id="project">
     <div class="container">
-      <h1>{{title}} <button type="button" class="btn btn-default btn-xs follow"> Follow </button> </h1> 
+      <h1>{{title}} <button type="button" class="btn btn-default btn-xs followProject"> Follow </button> </h1> 
       <p class="lead text-muted">created by {{owner}} on {{formatDate date_created "long"}}</p>
     {{description}}<br/>
     </div>
 
 
- <!-- Carousel
-    ================================================== -->
+ <!--Carousel
+    ================================================== --/>
     <div id="myCarousel" class="carousel slide" data-ride="carousel" align="center">
-      <!-- Indicators -->
+      <!-- Indicators --/>
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -18,14 +18,14 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="/beach1.jpg" alt="First slide">
+          <img src="/beach1.jpg" alt="First slide"  width="460" height="345">
           <div class="container">
             <div class="carousel-caption">
             </div>
           </div>
         </div>
         <div class="item">
-          <img src="/ocean.jpg" alt="Second slide">
+          <img src="http://i.imgur.com/O3mjNTx.png" alt="Second slide"  width="460" height="345">
           <div class="container">
             <div class="carousel-caption">
               <h1>Example header</h1>
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="/starfish.jpg" alt="Third slide">
+          <img src="/starfish.jpg" alt="Third slide"  width="460" height="345">
           <div class="container">
             <div class="carousel-caption">
               <h1></h1>
