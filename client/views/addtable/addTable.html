@@ -1,0 +1,36 @@
+<template name="addTableModal">
+    	<!-- Add Water Project Modal -->
+      <div class="modal fade" id="addTableModal" tabindex="-1" role="dialog" aria-labelledby="addTableModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 class="modal-title" id="addTableModalLabel"> Add a New Data Table</h3>
+            </div>
+            <div class="modal-body">
+             
+
+{{>insertTableForm}}
+
+   
+            </div>
+          </div>
+        </div>
+      </div> <!-- addWaterProjectModal -->
+</template>
+
+<template name="loadMeasurements">
+  <select id="project-tag" class="form-control input-sm" placeholder="Select tag">
+  <option value="Select Measurement">Which?</option>
+  {{#each measurements}}
+    <option value="{{name}}">{{name}}</option>
+  {{/each}}
+  </select><br/>
+</template>
+
+<template name="insertTableForm">
+ 
+{{> quickForm id="updatePushForm" type="update-pushArray" collection=Collections.PeopleWithContacts doc=exampleDoc scope="readings"}}
+  
+            
+</template>

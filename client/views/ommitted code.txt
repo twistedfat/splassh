@@ -41,7 +41,6 @@ Template.addProjectModal.events({
       coordinates: coordinates,
       description: t.find('#project-description').value,
       tags: t.find('#project-tag').value,
-	
     }
     
     //If the user is logged in,
@@ -73,9 +72,7 @@ Template.addProjectModal.events({
             return;
           }
 
-	
-
-          toastr.success('Project added! ','info');
+          toastr.success('Project added!','info');
           $('#addWaterProjectModal').modal('hide');
         });
         

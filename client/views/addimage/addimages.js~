@@ -1,0 +1,24 @@
+Template.addImageModal.helpers({
+	rendered: function() {
+  	$('[data-toggle="tooltip"]').tooltip();
+   	// GAnalytics.pageview();
+	}
+});
+
+Template.addImageModal.events({
+  'submit form': function(e,t) {
+    e.preventDefault();
+
+
+    var dataset = {
+	owner:  SPLASSH.userName(Meteor.user()),
+        avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
+      url: t.find('#image-link').value
+};
+     addDataset(dataset, this);
+     
+    //If the user is logged in,
+   ('#addImageModal').modal('hide');
+        
+  }
+});

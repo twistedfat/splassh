@@ -7,8 +7,16 @@ Template.project.helpers({
 	},
   isProjectOwner: function(){
 	return this.owner === SPLASSH.userName(Meteor.user()) ;
-	}
-  
+	},
+  datasets: function() {
+       return Datasets.find({projectId: this._id, type:"text"});
+   },
+  images: function() {
+       return Datasets.find({projectId: this._id, type:"image"});
+   },
+  isProjectAuthor: function(){
+	return ( this.authors.indexOf(SPLASSH.userName(Meteor.user()))>-1 || this.owner === SPLASSH.userName(Meteor.user()) );
+   },
 });
 
 
@@ -24,11 +32,13 @@ Template.projectsByTag.helpers({
     return Router.current().params._tag;
   }
 });
+//TODO
 
-Template.projectList.projects = function() {
+Template.projectList.helpers({
+	projects : function() {
   return Projects.find({},{ sort: { date_created: -1 }});
 }
-
+});
 Template.projectList.rendered = function() {
   
   var container = document.querySelector('#masonry-container');
@@ -72,6 +82,7 @@ Template.project.created = function() {
         return comment;
     });
 }
+//TODO
 
 Template.project.maintag = function() {
   return (typeof this.tags !== 'undefined') ? this.tags[0] : 'none';
@@ -102,13 +113,177 @@ Template.project.events({
         };
 
         //Add comment will automatically set comment.posted to the current time.
-        addCommentToProject(comment, this);
+        addComment(comment, this);
         
         // clear input field
         $('#project-comment').val(function() {
           return this.defaultValue;
         })
     },
+ 	'submit form.form-addauthor': function(e, t) {
+        e.preventDefault();
+        var content = $('#author').val();
+        content = content.trim();
+      
+        if (!Meteor.user()){
+          toastr.warning("Please sign in to leave a comment.");
+          return;
+        }
+        if (!content || content === "") {
+          toastr.warning("Please enter a username");
+          return;
+        }
+
+
+        //Add comment will automatically set comment.posted to the current time.
+        addAuthor(content, this);
+        
+        // clear input field
+        $('#author').val(function() {
+          return this.defaultValue;
+        })
+    },
+
+	'submit form.form-adddata': function(e, t) {
+ e.preventDefault();
+        var content = $('#field1').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+        var content = $('#field2').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+        var content = $('#field3').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+        var content = $('#field4').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+        var content = $('#field5').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+        var content = $('#value1').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+        var content = $('#value2').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+        var content = $('#value3').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }        
+	var content = $('#value4').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+        var content = $('#value5').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+	var content = $('#equip1').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+	var content = $('#equip2').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+	var content = $('#equip3').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+	var content = $('#equip4').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+	var content = $('#equip5').val();
+        content = content.trim();
+      
+        if (!content || content === "") {
+          toastr.warning("Unable to post: empty field.");
+          return;
+        }
+
+ 	if (!Meteor.user()){
+          toastr.warning("Please sign in");
+          return;
+        }
+        
+	var dataset = {
+	  
+          owner:  SPLASSH.userName(Meteor.user()),
+          avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
+	type:"text",
+        pH: $('#value1').val(),
+	dissolvedOxygen: $('#value2').val(),
+	nitrates : $('#value3').val(),
+	phosphates: $('#value4').val(),
+	temperature: $('#value5').val(),
+	pHEquip: $('#equip1').val(),
+	dissolvedOxygenEquip: $('#equip2').val(),
+	nitratesEquip: $('#equip3').val(),
+	phosphatesEquip: $('#equip4').val(),
+	temperatureEquip: $('#equip5').val()
+        };
+
+        //Add comment will automatically set comment.posted to the current time.
+        addDataset(dataset, this);
+        
+            // clear input field
+        $('#value1').val(function() {
+          return this.defaultValue;
+        })
+
+},
+
 
   'click .followProject': function (e,t ) {
     e.preventDefault();
@@ -124,8 +299,19 @@ Template.project.events({
   },
   'click .edit': function (e,t ) {
     e.preventDefault();
-    var ele = document.getElementById("editform");
+    var ele = document.getElementById("editCommentform");
 	var text = document.getElementById("edit");	
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";		
+  	}
+	else {
+		ele.style.display = "block";		
+	}
+  },
+'click .editData': function (e,t ) {
+    e.preventDefault();
+    var ele = document.getElementById("datasetform");
+	var text = document.getElementById("editData");	
 	if(ele.style.display == "block") {
     		ele.style.display = "none";		
   	}
@@ -162,7 +348,6 @@ Template.project.events({
           return this.defaultValue;
         })
     }
-
+  
+ 
 })
-
-

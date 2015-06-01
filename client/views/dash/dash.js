@@ -55,6 +55,13 @@ Template.userdash.events({
   },
   'click': function () {
     Session.set("selected_project", this._id);
-  }
+  }, 'click .removecom': function (e,t) {
+	e.preventDefault();
+    Comments.remove(this._id);
+},'click .edit': function(e,t){
+	
+},'click .editcom': function(e,t){
+	
+}
 
 });

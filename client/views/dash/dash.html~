@@ -1,6 +1,6 @@
 <template name="userdash">
   <div class="container">
-      <h1>My Dashboard <br/><small>A list of all projects created by {{username}}</small></h1>
+      <h1>My Dashboard <br/><small>A list of all projects created by {{userName}}</small></h1>
   </div>
 
    <hr class="featurette-divider">

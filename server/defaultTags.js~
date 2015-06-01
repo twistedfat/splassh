@@ -165,6 +165,42 @@ Tags.insert({
     excerpt: ' ',
     count: 0
   });
+Tags.insert({
+    tier: 'measurement',
+    name: ' pH '
+  });
+Tags.insert({
+    tier: 'measurement',
+    name: ' Date '
+  });
+Tags.insert({
+    tier: 'measurement',
+    name: ' Depth '
+  });
+Tags.insert({
+    tier: 'measurement',
+    name: ' Temperature '
+  });
+Tags.insert({
+    tier: 'measurement',
+    name: ' Weather '
+  });
+Tags.insert({
+    tier: 'measurement',
+    name: ' Salinity  '
+  });
+Tags.insert({
+    tier: 'measurement',
+    name: ' Dissolved Oxygen  '
+  });
+Tags.insert({
+    tier: 'measurement',
+    name: ' Nitrates  '
+  });
+Tags.insert({
+    tier: 'measurement',
+    name: ' Phosphates  '
+  });
 
   /*
   Tags.insert({

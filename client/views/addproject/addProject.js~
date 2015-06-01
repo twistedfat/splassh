@@ -75,7 +75,7 @@ Template.addProjectModal.events({
 
 	
 
-          toastr.success('Project added! ','info');
+          toastr.success('Project added! lol','info');
           $('#addWaterProjectModal').modal('hide');
         });
         

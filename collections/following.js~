@@ -1,0 +1,27 @@
+/* Primary data collection */
+Follows = new Meteor.Collection("follows");
+
+/* Collection prototype 
+ * _id, public, owner
+ * info { title, description, tags, coordinates }
+ * log { created, updated, deleted, published }
+ * comments { _id, author, posted, body, public }
+ */
+
+Following.allow({
+  insert: function (userId, followId) {
+    return true; // no cowboy inserts -- use createProject method
+  },
+  update: function (userId, project, fields, modifier) {
+    return true;
+  },
+  remove: function (userId, project) {
+    // You can only remove projects that you created and nobody has posted comments to.
+    //return project.owner === userId && commented(project) === 0;
+    return true;
+  }
+});
+
+Meteor.methods({
+  // options should include: title, description, coordinates, public, tags
+});

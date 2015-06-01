@@ -1,3 +1,68 @@
+Schemas = {};
+Template.registerHelper("Schemas", Schemas);
+
+
+Schemas.dataset = new SimpleSchema({
+  TableName: {
+    type: String,
+    index: 1,
+    unique: true
+  },
+  TableDescription: {
+    type: String,
+    optional: true
+  },
+  Notes: {
+    type: String,
+    optional: true
+  },
+  readings: {
+    type: Array,
+    optional: true
+  },
+  'readings.$': {
+    type: Object
+  },
+  'readings.$.Measurement': {
+    type: String
+  },
+  'readings.$.Reading': {
+    type: String
+  },
+  'readings.$.Instrument': {
+    type: String
+  }
+});
+
+var Collections = {};
+
+Template.registerHelper("Collections", Collections);
+
+PeopleWithContacts = Collections.PeopleWithContacts = new Mongo.Collection("PeopleWithContacts");
+PeopleWithContacts.attachSchema(Schemas.PersonWithContacts);
+
+Meteor.publish(null, function () {
+  return PeopleWithContacts.find();
+});
+
+PeopleWithContacts.allow({
+  update: function () {
+    return true;
+  }
+});
+
+Template.updatepush.helpers({
+  exampleDoc: function () {
+    return PeopleWithContacts.findOne();
+  }
+});
+//
+
+Template.loadMeasurements.helpers({
+    measurements: function() {
+        return Tags.find({tier:'measurement'}, {sort: {number: 1}});
+    }
+});
 Template.loadTags.helpers({
     tags: function() {
         return Tags.find({tier:'tag'}, {sort: {number: 1}});
@@ -10,20 +75,48 @@ Template.loadBodies.helpers({
     }
 });
 
-Template.addProjectModal.helpers({
+Template.addTableModal.helpers({
 	rendered: function() {
   	$('[data-toggle="tooltip"]').tooltip();
    	// GAnalytics.pageview();
-	}
+	}, 
+	 addInput: function(divName){
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "Entry " + (counter + 1) + " <br><input type='text' name='myInputs[]'>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}
 });
+/** 
+var counter = 0;
+var limit = 3;
 
-Template.addProjectModal.events({
-  'submit form': function(e,t) {
+Template.addTableModal.events({
+	 'click .addInput': function(e, t) {
+
+        e.preventDefault();
+ 	if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "Entry " + (counter + 1) + " <br><input type='text' name='myInputs[]'>";
+          document.getElementById("dynamicInput").appendChild(newdiv);
+          counter++;
+     }
+	}
+
+ 'submit form': function(e,t) {
     e.preventDefault();
 
     //Get the coordinates
     var coordinates = {};
-    var coordinatesArray = t.find('#project-coordinates').value.split(',');
+    var coordinatesArray = t.find('#table-coordinates').value.split(',');
     if  (coordinatesArray.length != 2) {
         toastr.error('[SE01]', 'Invalid coordinates.');
         return;
@@ -35,13 +128,12 @@ Template.addProjectModal.events({
             return;
         }
     }
-
+ 
     var project = {
-      title: t.find('#project-title').value,
+      title: t.find('#table-title').value,
       coordinates: coordinates,
-      description: t.find('#project-description').value,
-      tags: t.find('#project-tag').value,
-	
+      description: t.find('#table-description').value,
+      tags: t.find('#table-tag').value,
     }
     
     //If the user is logged in,
@@ -73,9 +165,7 @@ Template.addProjectModal.events({
             return;
           }
 
-	
-
-          toastr.success('Project added! ','info');
+          toastr.success('Project added!','info');
           $('#addWaterProjectModal').modal('hide');
         });
         
@@ -95,4 +185,5 @@ Template.addProjectModal.events({
       toastr.warning('Geolocation is not supported by this browser.', '[warning]');
     }
   }
-});
+
+});*/
