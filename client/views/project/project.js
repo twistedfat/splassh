@@ -17,6 +17,9 @@ Template.project.helpers({
   isProjectAuthor: function(){
 	return ( this.authors.indexOf(SPLASSH.userName(Meteor.user()))>-1 || this.owner === SPLASSH.userName(Meteor.user()) );
    },
+maintag : function() {
+  return (typeof this.tags !== 'undefined') ? this.tags[0] : 'none';
+}
 });
 
 Template.projectsByTag.projects = function() {
@@ -82,9 +85,6 @@ Template.project.created = function() {
     });
 }
 
-Template.project.maintag = function() {
-  return (typeof this.tags !== 'undefined') ? this.tags[0] : 'none';
-}
 Template.project.rendered = function() {
   $('#project .primary-tag').tooltip();
 }
@@ -197,18 +197,19 @@ Template.project.events({
 })
 
 // PROJECT TAGS
-Template.projectTags.rendered = function() {
+Template.projectTags.helpers({
+rendered : function() {
   // Applying tooltips
   $('.project-tags button').tooltip();
-}
-Template.projectTags.tags = function() {
+},
+tags : function() {
   var project = this, tags = project.tags;
   if (typeof tags !== 'undefined' && tags !== null) {
     return Tags.find({ 'name' : { $ne : project.tags[0] } },  { _id: -1 }, { sort : {tier:-1 , number : 1}}); // everything but the db id
   }
   return;
-}
-Template.projectTags.tagSelected = function() {
+},
+tagSelected : function() {
   $('.project-tags button').tooltip();
   var me = this;
   var projectId = AmplifiedSession.get('currentProjectId') || null;
@@ -217,7 +218,7 @@ Template.projectTags.tagSelected = function() {
   
   return ( _.indexOf(tags, me.name) !== -1);
 }
-
+});
 Template.projectTags.events({
   'click button': function(e) {
     e.preventDefault();

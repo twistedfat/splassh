@@ -24,14 +24,6 @@
 	
 {{/if}}
 
-{{#if isProjectAuthor}}
-
- <div class="col-md-7">
-
-<ul><button type="button" class="btn btn-default hidden-xs" data-toggle="modal" data-target="#addTableModal"><span class="glyphicon glyphicon-plus" ></span> Data Table</button></ul>
-</div>
-
-{{/if}}
 </div>
 </div>
           <div class="col-md-12">
@@ -39,9 +31,7 @@
             <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
           </div>
           <hr />
-          <div class="col-md-12">
-            {{> projectTags this }}
-          </div>
+
         </div>
       <hr/>
       <div class="col-md-12">
@@ -52,7 +42,10 @@
         {{#each comments}}
             <div class="well well-xs comment">
                 <div class="row">
-                    <div class="col-md-2"><img src="{{avatarUrl}}" class="img-circle" alt="Avatar"/></div>
+                    <div class="col-md-2"><img src="{{avatarUrl}}" class="img-circle" alt="Avatar"/>
+<br/>
+               	    <span class="comment-author">{{author}}<br/><small> posted {{posted_timeago}}</small></span>
+</div>
                	    <div class="col-md-10 comment-data">
 		    <span class="comment-body"><h3>{{body}}</h3></span>
 			{{#if isCommentOwner}}
@@ -61,7 +54,7 @@
 <!-- edit-->
 <div  class="btn-group">
                   <button class="btn btn-default btn-xs edit" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
-+<div id = editCommentform style="display: none">
+<div id = editCommentform style="display: none">
 <br/><br/>
      <form role="form" class="form-editcomment">
         	<input id="project-edit" type="text" required placeholder="Edit your comment" class="form-control input-sm input-block" value="{{body}}"/>
@@ -74,8 +67,7 @@
 		<br/>
                 </div>
 			{{/if}}
-		<br/>
-               	    <span class="comment-author">{{author}}<br/><small> posted {{posted_timeago}}</small></span>
+	
                	    
                	    </div>
                	</div>
