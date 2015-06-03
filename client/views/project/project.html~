@@ -17,7 +17,7 @@
 {{#if isProjectOwner}}
         <div class="col-md-5">
 	<form role="form" class="form-addauthor">
-	<input id="author" type="text" name="author" placeholder="Add Authors here"/><br/>
+	<input id="author" type="text" name="author" placeholder="Add Authorized Authors here"/><br/>
 	<button class="btn btn-default btn-xs" type="submit">Add author</button>	
 	</form>
 	</div>

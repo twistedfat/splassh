@@ -35,7 +35,7 @@ Comments.allow({
 */
 
 // should probably add this to another file in the global scope, such as lib/globals.js or something
-addComment = function(comment, project) {
+addCommentToProject = function(comment, project) {
     //If no time is associated with the comment, add the current time.
     if (typeof comment.posted === 'undefined') {
         var date = new Date();

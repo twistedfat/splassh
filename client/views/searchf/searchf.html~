@@ -1,0 +1,67 @@
+<template name="searchf">
+  <div class="container">
+      <h1>Project Search <br/></h1>
+  </div>
+<!-- <div class="container" id="searchUser">
++<p> Search by User </p> 
++{{> esInput index="users" placeholder="User Search" }}
++
++    <ul>
++        {{#esEach index="users"}}
++            <li>Author: {{author}}  Comment: {{body}}</li>
++        {{/esEach}}
++    </ul>
++
++    {{> esLoadMoreButton index="users"}}
++
++    {{#ifEsHasNoResults index="users"}}
++        <div class="no-results">No results found!</div>
++    {{/ifEsHasNoResults}}
++
++    {{#ifEsIsSearching index="users"}}
++            <div>Loading...</div>
++    {{/ifEsIsSearching}}
++</div> <br>
++-->
+ <div class="container"  id="searchProject">
+<p>Search by Project Title, Description or Tag(s) </p>
+{{> esInput index="projects" placeholder="Project Search" }}
+
+    <ul>
+        {{#esEach index="projects"}}
+            <li>Project Title: <a href="/project/{{_id}}">{{title}}</a> <br> Description: {{description}}<br> Tags: {{tags}}</li>
+	 
+        {{/esEach}}
+    </ul>
+
+    {{> esLoadMoreButton index="projects"}}
+
+    {{#ifEsHasNoResults index="projects"}}
+        <div class="no-results">No results found!</div>
+    {{/ifEsHasNoResults}}
+
+    {{#ifEsIsSearching index="projects"}}
+            <div>Loading...</div>
+    {{/ifEsIsSearching}}
+</div> <br>
+ <div class="container" id="searchComment">
+<p> Search by Comment Author or Body </p> 
+{{> esInput index="comments" placeholder="Comment Search" }}
+
+    <ul>
+        {{#esEach index="comments"}}
+            <li>Comment body: <a href="/project/{{projectId}}">{{body}}</a> <br> Author: {{author}}</li>
+        {{/esEach}}
+    </ul>
+
+    {{> esLoadMoreButton index="comments"}}
+
+    {{#ifEsHasNoResults index="comments"}}
+        <div class="no-results">No results found!</div>
+    {{/ifEsHasNoResults}}
+
+    {{#ifEsIsSearching index="comments"}}
+            <div>Loading...</div>
+    {{/ifEsIsSearching}}
+</div> 
+</template>

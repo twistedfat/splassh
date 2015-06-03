@@ -83,7 +83,7 @@
               
 	      <td></td>
               <td><div class="btn-group">
-                  <button class="btn btn-default btn-xs editcom" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
+                  <button class="btn btn-default btn-xs" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
                   <button class="btn btn-danger btn-xs removecom" type="button"><span class="glyphicon glyphicon-remove"></span></button>
                 </div></td>
             </tr>

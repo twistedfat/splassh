@@ -34,7 +34,7 @@ Template.userdash.events({
 	e.preventDefault();
     Comments.remove(this._id);
 },'click .edit': function(e,t){
-	//TODO
+
 }
 
 });
