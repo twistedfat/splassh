@@ -8,7 +8,8 @@ Router.configure({
     'loginbar': { to : 'loginbar' },
     'footer': { to : 'footer' }
   },
-   waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');}, // per all route?
+  waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('datasets');},
+//per all route?
 });
 
 Router.map(function() {

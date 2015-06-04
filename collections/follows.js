@@ -10,14 +10,12 @@ Follows = new Meteor.Collection("follows");
 
 Follows.allow({
   insert: function (userId, followId) {
-    return true; // no cowboy inserts -- use createProject method
+    return true; 
   },
   update: function (userId, followid, fields, modifier) {
     return true;
   },
   remove: function (userId, followId) {
-    // You can only remove projects that you created and nobody has posted comments to.
-    //return project.owner === userId && commented(project) === 0;
     return true;
   }
 });
@@ -26,7 +24,11 @@ Follows.allow({
 addFollow = function(project) {
     //If no time is associated with the comment, add the current time.
     //Set the comment's foreign key to project.
-    var follow
-    follow.followId = project._id    
-    Follows.insert(follow);
+   var follow = {
+	userId: Meteor.user()._id,
+          owner:  SPLASSH.userName(Meteor.user()),
+          projectId: project._id,
+	  title: project.title  
+       };
+	Follows.insert(follow);
 }

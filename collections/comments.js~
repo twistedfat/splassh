@@ -35,7 +35,7 @@ Comments.allow({
 */
 
 // should probably add this to another file in the global scope, such as lib/globals.js or something
-addCommentToProject = function(comment, project) {
+addComment = function(comment, project) {
     //If no time is associated with the comment, add the current time.
     if (typeof comment.posted === 'undefined') {
         var date = new Date();
@@ -46,7 +46,7 @@ addCommentToProject = function(comment, project) {
     Comments.insert(comment);
 }
 
-editComment = function(comment, project) {
+editComment = function(comment) {
     //If no time is associated with the comment, add the current time.
    
         var date = new Date();
@@ -54,5 +54,6 @@ editComment = function(comment, project) {
     
     //Set the comment's foreign key to project.
   
-    Comments.update( {_id: project._id}, {$set:{body:comment.body, edited:editTime} } );
+    Comments.update( {projectId : comment.projectId}, {$set:{body:comment.body, edited:editTime} } );
 }
+

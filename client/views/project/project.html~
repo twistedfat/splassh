@@ -1,7 +1,13 @@
 <template name="project">
   <div id="project">
     <div class="container">
-      <h1>{{title}} <button type="button" class="btn btn-default btn-xs followProject"> Follow </button> </h1> 
+{{#if isFollowed}}
+{{#each follows}}
+<h1>{{title}} <button type="button" class="btn btn-default btn-xs unfollowProject"> Unfollow </button> </h1> 
+{{/each}}
+{{else}}
+<h1>{{title}} <button type="button" class="btn btn-default btn-xs followProject"> Follow </button> </h1> 
+{{/if}}
       <p class="lead text-muted">created by {{owner}} on {{formatDate date_created "long"}}</p>
     {{description}}<br/>
     </div>
@@ -43,7 +49,7 @@
             <div class="well well-xs comment">
                 <div class="row">
                     <div class="col-md-2"><img src="{{avatarUrl}}" class="img-circle" alt="Avatar"/>
-
+<br/>
                	    <span class="comment-author">{{author}}<br/><small> posted {{posted_timeago}}</small></span>
 </div>
                	    <div class="col-md-10 comment-data">

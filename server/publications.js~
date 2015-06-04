@@ -15,7 +15,7 @@ Meteor.publish("comments", function() {
 });
 
 Meteor.publish("follows", function() {
-    return Follows.find({});
+    return Follows.find({'userId' : this.userId });
 });
 Meteor.publish("datasets", function() {
     return Datasets.find({});

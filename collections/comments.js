@@ -46,7 +46,7 @@ addComment = function(comment, project) {
     Comments.insert(comment);
 }
 
-editComment = function(comment, project) {
+editComment = function(comment) {
     //If no time is associated with the comment, add the current time.
    
         var date = new Date();
@@ -54,5 +54,6 @@ editComment = function(comment, project) {
     
     //Set the comment's foreign key to project.
   
-    Comments.update( {_id: project._id}, {$set:{body:comment.body, edited:editTime} } );
+    Comments.update( {_id : comment._id}, {$set:{body:comment.body, edited:editTime} } );
 }
+

@@ -2,6 +2,9 @@ Template.project.helpers({
    comments: function() {
        return Comments.find({projectId: this._id}, {sort: {posted: -1}});
    },
+    follows : function(){
+        return Follows.find({$and: [{'userId' : Meteor.user()._id}, {projectId: this._id }] }, { sort : { 'posted' : -1 }});
+   },
   isCommentOwner: function(){
 	return this.author === SPLASSH.userName(Meteor.user()) ;
 	},
@@ -19,6 +22,16 @@ Template.project.helpers({
    },
 maintag : function() {
   return (typeof this.tags !== 'undefined') ? this.tags[0] : 'none';
+},
+isFollowed: function(){
+	return (Follows.findOne({ $and: [{'userId' : Meteor.user()._id}, {projectId: this._id }]}));
+//Follows.find({projectId: this._id}, {_id: 1}).limit(1)
+	},
+
+//Returns time in a format like: 4 minutes ago.
+//NOTE: The context (this) is a comment model.
+posted_timeago : function() {
+    return moment(this.posted).fromNow();
 }
 });
 
@@ -63,13 +76,6 @@ Template.projectList.rendered = function() {
   });
   */
 }
-
-//Returns time in a format like: 4 minutes ago.
-//NOTE: The context (this) is a comment model.
-Template.project.posted_timeago = function() {
-    return moment(this.posted).fromNow();
-}
-
 Template.project.created = function() {
     // Sort comments in descending order by date posted. It also convert posted
     // to a string so that it will look write in the template.
@@ -90,6 +96,10 @@ Template.project.rendered = function() {
 }
 
 Template.project.events({
+
+  'click': function () {
+        Session.set('selected', this._id);
+  },
     'submit form.form-addcomment': function(e, t) {
         e.preventDefault();
         var content = $('#project-comment').val();
@@ -147,12 +157,12 @@ Template.project.events({
   },
   'click .followProject': function (e,t ) {
     e.preventDefault();
- var follow = {
-          user:  SPLASSH.userName(Meteor.user()),
-          projectId: this._id
-       };
-    Follows.insert(follow);
-  },
+	addFollow(this);
+},
+  'click .unfollowProject': function (e,t ) {
+    e.preventDefault();
+	Follows.remove({$and:[{userId: Meteor.userId() }, {projectId: this._id} ]});
+},
   'click .edit': function (e,t ) {
     e.preventDefault();
     var ele = document.getElementById("editCommentform");
@@ -180,13 +190,15 @@ Template.project.events({
         }
 
         var comment = {
+	  _id: Session.get('selected'),
           author:  SPLASSH.userName(Meteor.user()),
           avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
-          body: $('#project-edit').val()
+          body: $('#project-edit').val(),
+	  projectId : this._id
         };
 
         //Add comment will automatically set comment.posted to the current time.
-        editComment(comment, this);
+        editComment(comment);
         
         // clear input field
         $('#project-edit').val(function() {
@@ -201,14 +213,14 @@ Template.projectTags.helpers({
 rendered : function() {
   // Applying tooltips
   $('.project-tags button').tooltip();
-}
+},
 tags : function() {
   var project = this, tags = project.tags;
   if (typeof tags !== 'undefined' && tags !== null) {
     return Tags.find({ 'name' : { $ne : project.tags[0] } },  { _id: -1 }, { sort : {tier:-1 , number : 1}}); // everything but the db id
   }
   return;
-}
+},
 tagSelected : function() {
   $('.project-tags button').tooltip();
   var me = this;

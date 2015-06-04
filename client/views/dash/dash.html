@@ -15,13 +15,13 @@
         <tbody>
           {{#each follows}}
             <tr class="follow {{selected}}">
-              <td><a href="/project/{{projectId}}">Project</a></td>
+              <td><a href="/project/{{projectId}}">{{title}}</a></td>
               <!--td>{{truncate description 100}}</td-->
    
               <!--td>{{coordinates.lat}},{{coordinates.lng}}</td-->
               <td><div class="btn-group">
-                  <button class="btn btn-default btn-xs" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
-                  <button class="btn btn-danger btn-xs remove" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+           
+                  <button class="btn btn-danger btn-xs removeFollow" type="button"><span class="glyphicon glyphicon-remove"></span></button>
                 </div></td>
             </tr>
           {{/each}}
@@ -51,8 +51,8 @@
               <td><button type="button" class="btn btn-success btn-xs tag-name">{{maintag}}</button></td>
               <!--td>{{coordinates.lat}},{{coordinates.lng}}</td-->
               <td><div class="btn-group">
-                  <button class="btn btn-default btn-xs edit" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
-                  <button class="btn btn-danger btn-xs remove" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+                  <button class="btn btn-default btn-xs editProject" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
+                  <button class="btn btn-danger btn-xs removeProject" type="button"><span class="glyphicon glyphicon-remove"></span></button>
                 </div></td>
             </tr>
           {{/each}}
@@ -83,13 +83,19 @@
               
 	      <td></td>
               <td><div class="btn-group">
-                  <button class="btn btn-default btn-xs editcom" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
-                  <button class="btn btn-danger btn-xs removecom" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+                  <button class="btn btn-default btn-xs editComment" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
+<div id = editCommentform style="display: none">
+<br/>
+     <form role="form" class="editcomment">
+        	<input id="comment-edit" type="text" required placeholder="Edit your comment" class="form-control input-sm input-block" value="{{body}}"/>
+<button class="btn btn-default btn-sm btn-block" type="submit">submit edit</button>		
+        </form>         
+</div>
+                  <button class="btn btn-danger btn-xs removeComment" type="button"><span class="glyphicon glyphicon-remove"></span></button>
                 </div></td>
             </tr>
           {{/each}}
           </tbody>
       </table>
   </div>
-
 </template>
