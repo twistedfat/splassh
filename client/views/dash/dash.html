@@ -51,7 +51,7 @@
               <td><button type="button" class="btn btn-success btn-xs tag-name">{{maintag}}</button></td>
               <!--td>{{coordinates.lat}},{{coordinates.lng}}</td-->
               <td><div class="btn-group">
-                  <button class="btn btn-default btn-xs editProject" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
+<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal" ><span class="glyphicon glyphicon-pencil"> </span></button>
                   <button class="btn btn-danger btn-xs removeProject" type="button"><span class="glyphicon glyphicon-remove"></span></button>
                 </div></td>
             </tr>
@@ -98,4 +98,5 @@
           </tbody>
       </table>
   </div>
+ {{> editProjectModal }}
 </template>

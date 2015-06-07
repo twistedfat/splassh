@@ -35,7 +35,8 @@ Meteor.methods({
       title: String,
       description: String,
       coordinates: Object,
-      tags: String
+      tags: String,
+	water: String
     });
     
     var tagArray = [];
@@ -54,6 +55,7 @@ Meteor.methods({
       title: options.title,
       description: options.description,
       tags: tagArray,
+      water: options.water,
       owner: SPLASSH.userName(Meteor.user()),
        avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
      date_created: new Date().getTime(),
@@ -68,6 +70,18 @@ Meteor.methods({
   return id;
   },
 });
+
+editProject= function(project) {
+    //If no time is associated with the comment, add the current time. 
+        var date = new Date();
+        editTime= date.getTime();
+    
+    //Set the comment's foreign key to project.
+  
+    Projects.update( {_id : project._id}, {$set:{title: project.title, coordinates:project.coordinates, description:project.description, tags: 		project.tags, water: project.water, edited:editTime} } );
+
+	//UPDATE THE TAGS COUNT
+}
 
 addAuthor = function(author, project) {
    

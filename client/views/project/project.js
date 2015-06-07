@@ -32,6 +32,10 @@ isFollowed: function(){
 //NOTE: The context (this) is a comment model.
 posted_timeago : function() {
     return moment(this.posted).fromNow();
+},
+setSessionProjectId: function(){
+	Session.set('projectId',this._id);
+    return Session.get('projectId');
 }
 });
 
@@ -99,6 +103,9 @@ Template.project.events({
 
   'click': function () {
         Session.set('selected', this._id);
+  },
+ 'click .editProject': function () {
+        Session.set('projectId', this._id);
   },
     'submit form.form-addcomment': function(e, t) {
         e.preventDefault();

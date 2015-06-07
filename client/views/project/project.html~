@@ -1,12 +1,17 @@
 <template name="project">
-  <div id="project">
+  <div id="project {{setSessionProjectId}}">
     <div class="container">
+
 {{#if isFollowed}}
 {{#each follows}}
 <h1>{{title}} <button type="button" class="btn btn-default btn-xs unfollowProject"> Unfollow </button> </h1> 
 {{/each}}
 {{else}}
 <h1>{{title}} <button type="button" class="btn btn-default btn-xs followProject"> Follow </button> </h1> 
+{{/if}}
+<br/>
+{{#if isProjectOwner}}
+<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal" ><span class="glyphicon glyphicon-pencil"> </span></button>
 {{/if}}
       <p class="lead text-muted">created by {{owner}} on {{formatDate date_created "long"}}</p>
     {{description}}<br/>
@@ -83,7 +88,7 @@
       </div> <!-- /row-->
     </div> <!-- /container -->
   </div><!-- /project -->
-
+ {{> editProjectModal }}
 </template>
 
 <template name="projectTags">

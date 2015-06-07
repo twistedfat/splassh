@@ -36,11 +36,25 @@ Template.addProjectModal.events({
         }
     }
 
+	var tags = t.find('#project-category').value;
+        tags = tags.trim();      
+        if (!tags || tags === "Select Tag") {
+          toastr.warning("Cannnot post without a category tag");
+          return;
+        }
+	var water = t.find('#project-water').value,
+        water = water.trim();
+        if (!water || water === "Select Tag") {
+          toastr.warning("Cannnot post without a water body tag");
+          return;
+        }
+
     var project = {
       title: t.find('#project-title').value,
       coordinates: coordinates,
       description: t.find('#project-description').value,
-      tags: t.find('#project-tag').value,
+      tags: tags,
+      water: water,
     }
     
     //If the user is logged in,
