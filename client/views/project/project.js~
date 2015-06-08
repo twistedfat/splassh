@@ -104,7 +104,7 @@ Template.project.events({
   'click': function () {
         Session.set('selected', this._id);
   },
- 'click'.editProject: function () {
+ 'click .editProject': function () {
         Session.set('projectId', this._id);
   },
     'submit form.form-addcomment': function(e, t) {

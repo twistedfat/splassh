@@ -78,7 +78,7 @@ editProject= function(project) {
     
     //Set the comment's foreign key to project.
   
-    Projects.update( {_id : project._id}, {$set:{title:project.title, coordinates:project.coordinates, description:project.description, tags: 		project.tags, water: project.water, edited:editTime} } );
+    Projects.update( {_id : project._id}, {$set:{title: project.title, coordinates:project.coordinates, description:project.description, tags: 		project.tags, water: project.water, edited:editTime} } );
 
 	//UPDATE THE TAGS COUNT
 }

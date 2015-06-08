@@ -9,7 +9,7 @@ Template.project.helpers({
 	return this.author === SPLASSH.userName(Meteor.user()) ;
 	},
   isProjectOwner: function(){
-	return this.owner === SPLASSH.userName(Meteor.user()) ;
+	return this.ownerId === Meteor.user()._id ;
 	},
   datasets: function() {
        return Datasets.find({projectId: this._id, type:"text"});
