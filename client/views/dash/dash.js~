@@ -36,7 +36,8 @@ Template.userdash.events({
 	e.preventDefault();
     Comments.remove(this._id);
 },'click .editProject': function(e,t){
-	//TODO
+	e.preventDefault();
+	Session.set('projectId', this._id);
 }, 'click .removeFollow': function (e,t) {
 	e.preventDefault();
     Follows.remove(this._id);

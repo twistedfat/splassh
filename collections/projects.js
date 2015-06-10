@@ -8,7 +8,7 @@ Projects = new Meteor.Collection("projects");
  * comments { _id, author, posted, body, public }
  */
 // Extended configuration
-Projects.initEasySearch(['title', 'description', 'tags'], {
+Projects.initEasySearch(['title', 'owner', 'description', 'tags'], {
     'limit' : 20,
     'use' : 'minimongo'
 });
@@ -60,7 +60,8 @@ Meteor.methods({
 	ownerId: Meteor.user()._id,
        avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
      date_created: new Date().getTime(),
-	authors:SPLASSH.userName(Meteor.user())
+	authors:SPLASSH.userName(Meteor.user()),
+	authorIds:Meteor.user()._id
    });
     
   if (id) {
@@ -93,7 +94,7 @@ addAuthor = function(author, project) {
   
     Projects.update( {_id: project._id}, {$set:{ edited:editTime} } );
 
-    Projects.update( {_id: project._id}, {$push:{ authors:author} } );
-	
+    Projects.update( {_id: project._id}, {$push:{ authors:author.string} } );
+    Projects.update( {_id: project._id}, {$push:{ authorIDs:author.id} } );
 }
 

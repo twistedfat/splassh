@@ -85,7 +85,8 @@ Template.addProjectModal.events({
             toastr.error('[SE03]: ' + error);
             return;
           }
-
+	 // clear input field
+        
           toastr.success('Project added!','info');
           $('#addWaterProjectModal').modal('hide');
         });

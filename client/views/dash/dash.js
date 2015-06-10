@@ -1,11 +1,11 @@
 // controller for userdash, and any subsequent dashes
 Template.userdash.helpers({
 projects : function() {
-  return Projects.find({ 'owner' : SPLASSH.userName(Meteor.user()) }, { sort : { 'date_created': -1 }});
+  return Projects.find({ 'ownerId' : Meteor.user()._id }, { sort : { 'date_created': -1 }});
 },
 
 comments : function(){
- return Comments.find({ 'author' : SPLASSH.userName(Meteor.user()) }, { sort : { 'posted' : -1 }});
+ return Comments.find({ 'authorId' : Meteor.user()._id }, { sort : { 'posted' : -1 }});
 },
 
 follows : function(){

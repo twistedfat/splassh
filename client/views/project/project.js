@@ -1,12 +1,12 @@
 Template.project.helpers({
    comments: function() {
-       return Comments.find({projectId: this._id}, {sort: {posted: -1}});
+       return Comments.find({projectId: this._id}, {sort: {posted: 1}});
    },
     follows : function(){
         return Follows.find({$and: [{'userId' : Meteor.user()._id}, {projectId: this._id }] }, { sort : { 'posted' : -1 }});
    },
   isCommentOwner: function(){
-	return this.author === SPLASSH.userName(Meteor.user()) ;
+	return this.authorId === Meteor.user()._id ;
 	},
   isProjectOwner: function(){
 	return this.ownerId === Meteor.user()._id ;
@@ -18,7 +18,7 @@ Template.project.helpers({
        return Datasets.find({projectId: this._id, type:"image"});
    },
   isProjectAuthor: function(){
-	return ( this.authors.indexOf(SPLASSH.userName(Meteor.user()))>-1 || this.owner === SPLASSH.userName(Meteor.user()) );
+	return ( this.authorIds.indexOf( Meteor.user()._id)>-1 );
    },
 maintag : function() {
   return (typeof this.tags !== 'undefined') ? this.tags[0] : 'none';
@@ -123,6 +123,7 @@ Template.project.events({
 
         var comment = {
           author:  SPLASSH.userName(Meteor.user()),
+	  authorId: Meteor.user()._id,
           avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
           body: $('#project-comment').val()
         };
@@ -149,9 +150,12 @@ Template.project.events({
           return;
         }
 
-
+	var author = {
+name: content,
+id: Meteor.user()._id
+};
         //Add comment will automatically set comment.posted to the current time.
-        addAuthor(content, this);
+        addAuthor(author, this);
         
         // clear input field
         $('#author').val(function() {

@@ -25,7 +25,7 @@ addFollow = function(project) {
     //If no time is associated with the comment, add the current time.
     //Set the comment's foreign key to project.
    var follow = {
-	userId: Meteor.user()._id,
+	  userId: Meteor.user()._id,
           owner:  SPLASSH.userName(Meteor.user()),
           projectId: project._id,
 	  title: project.title  
