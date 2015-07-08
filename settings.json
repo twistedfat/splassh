@@ -1,0 +1,12 @@
+{
+
+  "anyStoreBucket": "salim.meteor.com",
+  "accessKeyId": "AKIAJAED57PIMBZBFE7A",
+  "secretAccessKey": "06+SSCL1bBgJiUB1Di3yrnvORxeQAxYsbJl4Vs1w",
+  "public": {
+    "awsBucketUrl": "https://my-meteor-example.s3.amazonaws.com",
+    "environment": "staging"
+  },
+  "googleApiKey": "AABBCCddEEff12123131"
+}
+
