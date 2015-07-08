@@ -1,3 +1,4 @@
+
 Template.project.helpers({
    comments: function() {
        return Comments.find({projectId: this._id}, {sort: {posted: 1}});
@@ -27,6 +28,9 @@ isFollowed: function(){
 	return (Follows.findOne({ $and: [{'userId' : Meteor.user()._id}, {projectId: this._id }]}));
 //Follows.find({projectId: this._id}, {_id: 1}).limit(1)
 	},
+images: function () {
+    return Collects.Images.find(); // Where Images is an FS.Collection instance
+  },
 
 //Returns time in a format like: 4 minutes ago.
 //NOTE: The context (this) is a comment model.
@@ -99,8 +103,15 @@ Template.project.rendered = function() {
   $('#project .primary-tag').tooltip();
 }
 
-Template.project.events({
 
+Template.project.events({
+ 'change input.images': function(event, template) {
+    FS.Utility.eachFile(event, function(file) {
+      Collects.Images.insert(file, function (err, fileObj) {
+        // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+      });
+    });
+  },
   'click': function () {
         Session.set('selected', this._id);
   },

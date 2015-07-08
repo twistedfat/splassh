@@ -33,3 +33,6 @@ accounts-twitter
 accounts-ui
 matteodem:easy-search
 
+cfs:standard-packages
+cfs:s3
+cfs:gridfs

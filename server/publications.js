@@ -24,4 +24,7 @@ Meteor.publish("datasets", function() {
 Meteor.publish("users", function () {
   return Meteor.users.find({}, {fields: {emails: 1, profile: 1, username: 1}});
 });
+Meteor.publish("images", function() {
+	return Collects.Images.find();
+});
 

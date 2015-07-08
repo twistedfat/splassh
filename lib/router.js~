@@ -8,7 +8,7 @@ Router.configure({
     'loginbar': { to : 'loginbar' },
     'footer': { to : 'footer' }
   },
-  waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('datasets');},
+  waitOn: function() {  Meteor.subscribe('Images'); Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('datasets');},
 //per all route?
 });
 
@@ -32,7 +32,7 @@ Router.map(function() {
   this.route('project', {
     path : '/project/:_id',
     onRun : function() { AmplifiedSession.set('currentProjectId', this.params._id); },
-    waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('comments'); },
+    waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('comments');  Meteor.subscribe('follows');},
     data: function() { 
       return Projects.findOne(this.params._id);
     }

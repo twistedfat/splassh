@@ -27,14 +27,18 @@
 <div class="container">	
 {{#if isProjectOwner}}
         <div class="col-md-5">
-	<form role="form" class="form-addauthor">
-	<input id="author" type="text" name="author" placeholder="Add Authors here"/><br/>
-	<button class="btn btn-default btn-xs" type="submit">Add author</button>	
-	</form>
+	 <div class="well imageDropArea">
+    <input type="file" multiple class="images">
+ 	 </div>
 	</div>
-	
-{{/if}}
 
+{{/if}}
+  <div class="col-md-5">
+	{{#each images}}
+    <a href="{{this.url}}" target="_blank" class="pull-left"> {{this.name}}</a>
+<br>
+	{{/each}}
+  </div>
 </div>
 </div>
           <div class="col-md-12">
@@ -103,3 +107,26 @@
     {{/each}}
   </div> <!-- button group -->
 </template> 
+
+<template name="uploadedImage">
+  <div class="media well pull-left">
+    <a href="{{this.url}}" target="_blank" class="pull-left"><img src="{{this.url store='thumbs'}}" alt="" class="img-rounded"></a>
+    <div class="media-body">
+      <h4 class="media-heading">{{this.name}}</h4>
+      <p><em>Original size: {{this.formattedSize}}<br>Thumbnail size: {{this.formattedSize store="thumbs"}}<br>Type: {{this.type store="images"}}</em></p>
+      {{#if this.isUploaded}}
+      {{#if this.hasStored 'images'}}
+      {{#with this.url download=true}}
+      <a href="{{this}}" class="btn btn-default btn-xs" role="button">Download</a>
+      {{/with}}
+      {{else}}
+      Storing...
+      {{/if}}
+      {{else}}
+      Uploading: {{this.uploadProgress}}%
+      <p>{{> FS.UploadProgressBar}}</p>
+      {{/if}}
+      {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+    </div>
+  </div>
+</template>

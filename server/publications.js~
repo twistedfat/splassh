@@ -15,7 +15,7 @@ Meteor.publish("comments", function() {
 });
 
 Meteor.publish("follows", function() {
-    return Follows.find({'userId' : this.userId });
+    return Follows.find({});
 });
 Meteor.publish("datasets", function() {
     return Datasets.find({});
@@ -23,5 +23,8 @@ Meteor.publish("datasets", function() {
 // in server.js
 Meteor.publish("users", function () {
   return Meteor.users.find({}, {fields: {emails: 1, profile: 1, username: 1}});
+});
+Meteor.publish("images", function() {
+	return Collects.Images.find({});
 });
 
