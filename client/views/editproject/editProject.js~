@@ -74,6 +74,8 @@ Template.editProjectModal.events({
       water: water,
     }
 	editProject(project);
+          toastr.success('Project updated!','info');
+          $('#editWaterProjectModal').modal('hide');
 /*    
     //If the user is logged in,
     if (Meteor.user()) {

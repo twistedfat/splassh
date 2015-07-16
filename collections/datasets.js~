@@ -1,6 +1,94 @@
 /* Primary data collection */
 Datasets = new Meteor.Collection("datasets");
 
+var firstdraft = new SimpleSchema({
+  title: {
+    type: String,
+    label: "Parameter",
+	autoform: {
+      type: "select",
+      options: function () {
+        return [
+		  {label: "pH", value: "pH"},
+          {label: "Dissolved Oxyen", value: "Dissolved Oxyen"},
+          {label: "Nitrates", value: "Nitrates"},
+          {label: "Phosphates", value: "Phosphates"},
+          {label: "Temperature", value: "Temperature"}
+        ];
+      }
+    }
+  },
+  data: {
+    type: Array,
+  },
+  'data.$': {
+    type: Object
+  },
+  'data.$.value': {
+    type: String
+  },
+  'data.$.unit': {
+    type: String,
+	optional: true
+  },
+  'data.$.date': {
+    type: String,
+	optional: true,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+	}
+  },
+  author: {
+    type: String,
+    label: "Author Info (student, professor, organization, etc)",
+	optional:true,
+	autoform: {
+      type: "select",
+      options: function () {
+        return [
+		  {label: "citizen scientist", value: "citizen scientist"},
+          {label: "elementary school student", value: "elementary student"},
+          {label: "middle school student", value: "middle school student"},
+          {label: "high school student", value: "high school student"},
+          {label: "college student", value: "college student"},
+          {label: "graduate student", value: "graduate student"},
+		  {label: "professional", value: "professional"},
+	      {label: "organization", value: "organization"}
+        ];
+      }
+    }
+  },
+  equipment: {
+    type: String,
+    label: "Equipment + Calibration/Specficiations",
+    min: 0,
+	optional:true
+  },
+  collected: {
+    type: Date,
+    label: "Was this collected at (about) the same time?",
+    optional: true,
+    autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+	}
+  },
+  notes: {
+    type: String,
+    label: "Additional Notes",
+    optional: true,
+    max: 1000,
+	 autoform: {
+         rows: 3
+	}
+  }
+});
+
+
+Datasets.attachSchema(firstdraft);
 Datasets.allow({
     insert: function (userId, dataset) {
       return true;

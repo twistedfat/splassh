@@ -8,7 +8,7 @@ Router.configure({
     'loginbar': { to : 'loginbar' },
     'footer': { to : 'footer' }
   },
-  waitOn: function() {  Meteor.subscribe('Images'); Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('datasets');},
+  waitOn: function() {  Meteor.subscribe('images'); Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('datasets');},
 //per all route?
 });
 
@@ -58,6 +58,10 @@ this.route('mailingList', {
   });
   this.route('searchf', {
     path: '/searchf'
+  });
+
+  this.route('dataEntry', {
+    path: '/dataEntry'
   });
   //this.route('singlePageLogin', { path: '/login' });
   //this.route('singlePageSignUp', { path: '/signup'});
