@@ -38,6 +38,5 @@ cfs:s3
 cfs:gridfs
 rajit:bootstrap3-datepicker
 tsega:bootstrap3-datetimepicker@=3.1.3_3
-twbs:bootstrap
 mrt:moment-timezone
 aldeed:autoform-bs-datetimepicker
