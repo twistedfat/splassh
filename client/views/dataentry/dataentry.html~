@@ -1,0 +1,105 @@
+<template name="dataEntry">
+ 
+	{{> parameters}}  
+</template>
+
+<template name="insertChemical">
+  {{> quickForm collection="Datasets" id="insertChemical" schema=Schemas.Chemical type="insert"}}
+</template>
+<template name="insertNutrients">
+  {{> quickForm collection="Datasets" id="insertNutrients" schema=Schemas.Nutrients type="insert"}}
+</template>
+<template name="insertPhysical">
+  {{> quickForm collection="Datasets" id="insertPhysical" schema=Schemas.Physical type="insert"}}
+</template>
+<template name="insertContaminants">
+  {{> quickForm collection="Datasets" id="insertContaminants" schema=Schemas.Contaminants type="insert"}}
+</template>
+<template name="insertBiological">
+  {{> quickForm collection="Datasets" id="insertBiological" schema=Schemas.Biological type="insert"}}
+</template>
+<template name="insertCustom">
+  {{> quickForm collection="Datasets" id="insertCustom" schema=Schemas.Custom type="insert"}}
+</template>
+
+<template name="parameters">
+<div class="container">
+ <div class="col-md-9">
+  <h2>Parameters</h2>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Chemical</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+		{{> insertChemical}}
+		</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Nutrients</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertNutrients}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Physical</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertPhysical}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Contaminants</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertContaminants}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Biological</a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertBiological}}
+		</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Custom</a>
+        </h4>
+      </div>
+      <div id="collapse6" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertCustom}}
+		</div>
+      </div>
+    </div>
+  </div> 
+</div>
+</div>
+</template>
