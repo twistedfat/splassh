@@ -38,12 +38,12 @@ photos: {
     type: String,
 	optional: true
   },
-  'photos.$.photos': {
+  'photos.$.photo': {
     type: String,
 	optional: true,
 	autoform: {
       afFieldInput: {
-        type: "file"
+        type: "files"
       }
 	}
   }
