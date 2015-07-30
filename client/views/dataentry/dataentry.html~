@@ -1,16 +1,26 @@
 <template name="dataEntry">
+
+
+<h2> S3 Image Upload Demo </h2>
+
+        <div class="col-md-5">
+	 <div class="well imageDropArea">
+    <input type="file" multiple class="images">
+ 	 </div>
+	</div>
  
 	{{> parameters}}  
+
 </template>
 
-<template name="insertChemical">
-  {{> quickForm collection="Datasets" id="insertChemical" schema=Schemas.Chemical type="insert"}}
+<template name="insertSite">
+  {{> quickForm collection="Datasets" id="insertSite" schema=Schemas.Site type="insert"}}
 </template>
-<template name="insertNutrients">
-  {{> quickForm collection="Datasets" id="insertNutrients" schema=Schemas.Nutrients type="insert"}}
+<template name="insertWeather">
+  {{> quickForm collection="Datasets" id="insertWeather" schema=Schemas.Weather type="insert"}}
 </template>
-<template name="insertPhysical">
-  {{> quickForm collection="Datasets" id="insertPhysical" schema=Schemas.Physical type="insert"}}
+<template name="insertObservations">
+  {{> quickForm collection="Datasets" id="insertObservations" schema=Schemas.Observations type="insert"}}
 </template>
 <template name="insertContaminants">
   {{> quickForm collection="Datasets" id="insertContaminants" schema=Schemas.Contaminants type="insert"}}
@@ -21,57 +31,59 @@
 <template name="insertCustom">
   {{> quickForm collection="Datasets" id="insertCustom" schema=Schemas.Custom type="insert"}}
 </template>
+<template name="insertPhotos">
+  {{> quickForm collection=images id="insertPhotos" schema=Schemas.Photos type="insert"}}
+</template>
 
 <template name="parameters">
 <div class="container">
- <div class="col-md-9">
   <h2>Parameters</h2>
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Chemical</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Site Information</a>
         </h4>
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
-		{{> insertChemical}}
+		{{> insertSite}}
 		</div>
       </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Nutrients</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Weather Conditions</a>
         </h4>
       </div>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
-		{{> insertNutrients}}
+		{{> insertWeather}}
 		</div>
       </div>
     </div>
 <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Physical</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Observations</a>
         </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">
-		{{> insertPhysical}}
+		{{> insertObservations}}
 		</div>
       </div>
     </div>
 <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Contaminants</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Photos</a>
         </h4>
       </div>
       <div id="collapse4" class="panel-collapse collapse">
         <div class="panel-body">
-		{{> insertContaminants}}
+		{{> insertPhotos}}
 		</div>
       </div>
     </div>
@@ -100,6 +112,5 @@
       </div>
     </div>
   </div> 
-</div>
 </div>
 </template>

@@ -20,7 +20,223 @@ Schemas.ContactForm = new SimpleSchema({
   }
 });
 
-Schemas.Chemical = new SimpleSchema({
+Schemas.Photos = new SimpleSchema({
+
+//probably not
+//but maybe :D
+
+photos: {
+    type: Array,
+  },
+  'photos.$': {
+    type: Object
+  },
+  'photos.$.title': {
+    type: String
+  },
+  'photos.$.comment': {
+    type: String,
+	optional: true
+  },
+  'photos.$.photo': {
+    type: String,
+	optional: true,
+	autoform: {
+      afFieldInput: {
+        type: "file"
+      }
+	}
+  }
+
+});
+
+Schemas.Water = new SimpleSchema({
+   Flow: {
+    type: String,
+	optional:true,
+    autoform: {
+    type: "select-checkbox",
+      options: function () {
+        return [
+          {label: "Dry", value: "Dry"},
+          {label: "Stagnant/Still", value: "Stagnant/Still"}
+        ];
+      }
+    }
+  },
+Level: {
+    type: String,
+	optional:true,
+    autoform: {
+    type: "select-checkbox",
+      options: function () {
+        return [
+          {label: "Low", value: "Low"},
+          {label: "Normal", value: "Normal"},
+          {label: "High", value: "High"},
+          {label: "Flood", value: "Flood"}
+        ];
+      }
+    }
+  },
+Clarity: {
+    type: String,
+	optional:true,
+    autoform: {
+    type: "select-checkbox",
+      options: function () {
+        return [
+          {label: "Clear/Transparent", value: "Clear/Transparent"},
+          {label: "Cloudy/Somewhat Turbid", value: "Cloudy/Somewhat Turbid"},
+          {label: "Opaque/Turbid", value: "Opaque/Turbid"}
+			//other
+        ];
+      }
+    }
+  },
+
+Color: {
+    type: String,
+	optional:true,
+    autoform: {
+    type: "select-checkbox",
+      options: function () {
+        return [
+          {label: "No Color", value: "No Color"},
+          {label: "Brown/Muddy", value: "Brown/Muddy"},
+          {label: "Green", value: "Green"},
+          {label: "Milky/White", value: "Milky/White"},
+          {label: "Tannic", value: "Tannic"}
+			//other			
+        ];
+      }
+    }
+  },
+Surface: {
+    type: String,
+	optional:true,
+    autoform: {
+    type: "select-checkbox",
+      options: function () {
+        return [
+          {label: "Clear", value: "Clear"},
+          {label: "Oily Sheen", value: "Oily Sheen"},
+          {label: "Algae", value: "Algae"},
+          {label: "Foam", value: "Foam"},
+          {label: "Greater than 3\" high", value: "Greater than 3\" high"},
+          {label: "Pure White", value: "Pure White"}
+		//other
+        ];
+      }
+    }
+  },
+Odor: {
+    type: String,
+	optional:true,
+    autoform: {
+    type: "select-checkbox",
+      options: function () {
+        return [
+          {label: "Natural/None", value: "Natural/None"},
+          {label: "Gasoline", value: "Gasoline"},
+          {label: "Sewage", value: "Sewage"},
+          {label: "Rotten Egg", value: "Rotten Egg"},
+          {label: "Fishy", value: "Fishy"},
+          {label: "Chlorine", value: "Chlorine"}
+		//other
+        ];
+      }
+    }
+  },
+Trash: {
+    type: String,
+	optional:true,
+    autoform: {
+    type: "select-checkbox",
+      options: function () {
+        return [
+          {label: "None", value: "None"},
+          {label: "Yes, I did a cleanup", value: "Yes, I did a cleanup"},
+          {label: "This site needs an organized cleanup", value: "This site needs an organized cleanup"}
+        ];
+      }
+    }
+  }
+});
+
+Schemas.Site = new SimpleSchema({
+  Group: {
+    type: String,
+    label: "Group name",
+    max: 50
+  },
+  GroupID: {
+    type: String,
+	max:50
+  },
+  SiteID: {
+    type: String,
+	max:50
+  },
+  Stream:{
+	type:String,
+	label:"Stream name",
+	max:50
+  },
+   Monitors:{
+	type:String, 
+	max:50
+	},
+	Participants:{
+	type:Number, 
+	label:"Number of Participants"
+	},
+	EventDate:{
+	type:String,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+    }
+	},
+	Duration:{
+	type:Number,
+	label:"Time spent sampling in hours"
+	}
+});
+
+Schemas.Weather  = new SimpleSchema({
+  Conditions: {
+    type: String,
+	optional:true,
+    autoform: {
+    type: "select-checkbox",
+      options: function () {
+        return [
+          {label: "Heavy Rain", value: "Heavy Rain"},
+          {label: "Steady Rain", value: "Steady Rain"},
+          {label: "Intermittent Rain", value: "Intermittent Rain"},
+          {label: "Overcast", value: "Overcast"},
+          {label: "Partly Cloudy", value: "Partly Cloudy"},
+          {label: "Clear/Sunny", value: "Clear/Sunny"}
+        ];
+      }
+    }
+  },
+  rain: {
+    type: Number,
+    label: "Amount in Inches",
+	optional:true
+  },
+  duration: {
+    type: Number,
+    label: "Over how many hours?",
+    optional:true
+  }
+});
+
+
+Schemas.LeChemical = new SimpleSchema({
   title: {
     type: String,
     label: "Chemical",

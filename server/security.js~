@@ -9,14 +9,14 @@ function trueFunc(userId) {
 function falseFunc() {return false;}
 
 
-Collections.Images.allow({
+Collects.Images.allow({
   insert: trueFunc,
   update: trueFunc,
   remove: trueFunc,
   download: trueFunc
 });
 
-Collections.Images.deny({
+Collects.Images.deny({
   insert: falseFunc,
   update: falseFunc,
   remove: falseFunc,

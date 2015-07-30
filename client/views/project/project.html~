@@ -31,9 +31,12 @@
 {{#if isProjectOwner}}
         <div class="col-md-5">
 	 <div class="well imageDropArea">
-    <input type="file" multiple class="images">
+    {{> quickForm collection="Datasets" id="insertPhotos" schema=Schemas.Photos type="insert"}}
  	 </div>
 	</div>
+
+	
+
 
 {{/if}}
 <div class="col-md-5">
@@ -110,6 +113,3 @@
     {{/each}}
   </div> <!-- button group -->
 </template> 
-<template name="insertDatasetForm">
-  {{> quickForm collection="Datasets" id="insertBookForm" schema=Schemas.ContactForm type="insert"}}
-</template>
