@@ -4,7 +4,7 @@ Template.project.helpers({
   }
 })
 
-Template.dataentry.events({
+Template.dataEntry.events({
  'change input.images': function(event, template) {
     FS.Utility.eachFile(event, function(file) {
       Collects.Images.insert(file, function (err, fileObj) {

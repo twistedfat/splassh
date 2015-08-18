@@ -63,6 +63,9 @@ this.route('mailingList', {
   this.route('dataEntry', {
     path: '/dataEntry'
   });
+ this.route('images', {
+    path: '/images'
+  });
   //this.route('singlePageLogin', { path: '/login' });
   //this.route('singlePageSignUp', { path: '/signup'});
   //this.route('singlePageForgotPassword', { path: '/forgot-password' });
