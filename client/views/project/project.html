@@ -24,29 +24,6 @@
           {{> projectmap this}}
           </div>
 
- <div class="row">	
-<div class="container">	
-
-<h2> S3 Image Upload Demo </h2>
-{{#if isProjectOwner}}
-        <div class="col-md-5">
-	 <div class="well imageDropArea">
-    <input type="file" multiple class="images">
- 	 </div>
-	</div>
-  <div class="col-md-5">	
-	 {{> quickForm collection="Datasets" id="insertPhotos" schema=Schemas.Photos type="insert"}}
-	</div>
-{{/if}}
-<div class="col-md-5">
-	{{#each images}}
-    <a href="{{this.url}}" target="_blank" class="pull-left"> {{this.name}}</a>
-<br>
-	{{/each}}
-  </div>
-<br>
-</div>
-</div>
 
           <div class="col-md-12">
             <span class="label label-info">Primary Tag</span>

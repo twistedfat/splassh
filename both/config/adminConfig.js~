@@ -2,3 +2,13 @@
 /*Accounts.ui.config({
   passwordSignupFields: 'USERNAME_AND_EMAIL'
 });*/
+
+AdminConfig = {
+adminEmails: ['sdabdoub6@gmail.com'],
+collections:
+{
+Projects: {},
+Comments: {},
+Tags:{}
+}
+} 

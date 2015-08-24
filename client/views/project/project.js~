@@ -1,3 +1,4 @@
+
 Template.project.helpers({
    comments: function() {
        return Comments.find({projectId: this._id}, {sort: {posted: 1}});
@@ -27,6 +28,9 @@ isFollowed: function(){
 	return (Follows.findOne({ $and: [{'userId' : Meteor.user()._id}, {projectId: this._id }]}));
 //Follows.find({projectId: this._id}, {_id: 1}).limit(1)
 	},
+images: function () {
+    return Collects.Images.find(); // Where Images is an FS.Collection instance
+  },
 
 //Returns time in a format like: 4 minutes ago.
 //NOTE: The context (this) is a comment model.

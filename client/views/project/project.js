@@ -105,13 +105,6 @@ Template.project.rendered = function() {
 
 
 Template.project.events({
- 'change input.images': function(event, template) {
-    FS.Utility.eachFile(event, function(file) {
-      Collects.Images.insert(file, function (err, fileObj) {
-        // Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
-      });
-    });
-  },
   'click': function () {
         Session.set('selected', this._id);
   },

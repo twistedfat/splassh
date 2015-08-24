@@ -12,7 +12,6 @@ less
 spiderable
 aldeed:collection2
 aldeed:autoform
-houston:admin
 meteorhacks:fast-render
 tmeasday:paginated-subscription
 iron:layout
@@ -45,3 +44,7 @@ cfs:filesystem
 cfs:ui
 meteor-platform
 mrt:numeral
+yogiben:admin
+dburles:collection-helpers
+alanning:roles
+fortawesome:fontawesome
