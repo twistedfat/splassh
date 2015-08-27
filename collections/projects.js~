@@ -8,7 +8,7 @@ Projects = new Meteor.Collection("projects");
  * comments { _id, author, posted, body, public }
  */
 // Extended configuration
-Projects.initEasySearch(['title', 'description', 'tags'], {
+Projects.initEasySearch(['title', 'owner', 'description', 'tags'], {
     'limit' : 20,
     'use' : 'minimongo'
 });

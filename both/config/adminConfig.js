@@ -4,7 +4,7 @@
 });*/
 
 AdminConfig = {
-adminEmails: ['sdabdoub6@gmail.com', 'lisagunnadams@gmail.com'],
+adminEmails: ['sdabdoub6@gmail.com', 'lisagunnadams@gmail.com', 'salim@salim.com'],
 collections:
 {
 Projects: {},

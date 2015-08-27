@@ -43,4 +43,4 @@ Tags.allow({
   }
 });
 
-Tags.attachSchema(Schemas.Tags);
+Tags.attachSchema(Schemas.Tags)

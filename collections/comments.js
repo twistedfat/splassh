@@ -6,6 +6,7 @@
 /* Primary data collection */
 Comments = new Meteor.Collection("comments");
 
+
 Comments.initEasySearch(['author', 'body'], {
    'limit' : 20,
     'use' : 'minimongo'
@@ -57,3 +58,4 @@ editComment = function(comment) {
     Comments.update( {_id : comment._id}, {$set:{body:comment.body, edited:editTime} } );
 }
 
+Comments.attachSchema(Schemas.Comments);

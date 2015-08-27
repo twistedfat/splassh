@@ -4,70 +4,60 @@
 if (Tags.find().count() === 0) {
 Tags.insert({
     tier: 'tag',
-    number: 1,
     name: ' Pollution & Public Health ',
     excerpt: 'contamination of water from bacteria, microorganisms, garbage, sewage, toxins, metals, chemicals, pharmaceuticals, pesticides, petroleum products, fertilizers, and industrial waste',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 2,
     name: ' Fish Kills, Algae Blooms, & Dead Zones ',
     excerpt: 'excessive nutrient runoff (fertilizers and wastewater) that is responsible for stimulating algae growth and blooms (AKA Harmful Algae Blooms), which indirectly results in a decrease in oxygen levels in the water, causing fish to suffocate and die. ',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 3,
     name: ' Fisheries & Aquaculture ',
     excerpt: 'commercial and recreational fish and shellfish information such as bycatch reduction techniques, sustainable fishing and seafood choices, catch limits (quotas), size and seasonal restrictions, fish and shellfish public health advisories, stock assessments, migratory information, tagging studies and water quality effects of fish farming (aquaculture) ',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 4,
     name: ' Recreation ',
     excerpt: 'sports and activities involving water such as fishing, boating, water skiing, wakeboarding, paddle boarding, scuba diving, snorkeling, surfing, and swimming',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 5,
     name: ' Aquatic Life and Ecosystems ',
     excerpt: 'organisms found living near or in the water such as algae, microorganisms, protozoans, plants, fungus, invertebrates and vertebrates (fish, sharks, rays, skates, amphibians, reptiles, mammals and birds) and their interactions with each other and the physical environment',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 6,
     name: ' Technology & Innovation ',
     excerpt: 'technological advances involving irrigation, desalination, seawater water intrusion, fouling, and other innovative technologies that address water use, efficiency, delivery and treatment',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 7,
     name: ' Development & Habitat destruction ',
     excerpt: 'land and water degradation during development of housing, commercial and industrial properties that result in erosion, affecting water quality, and aquatic life',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 8,
     name: ' Rerouted Waterways ',
     excerpt: 'Interruption of normal water flow from dams, which affects aquatic life, potential for flooding, the natural process of sediment deposition, and temperature fluctuation of released or blocked water  ',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 9,
     name: ' Storms, Devastation, & Climate Change ',
     excerpt: 'events associated with flooding, hurricanes, wave surges, tsunamis, sinkholes, droughts, blizzards, and hard freezes as well as studies of sea level rise, ocean acidification, and glacier melts ',
     count: 0
   });
 Tags.insert({
     tier: 'tag',
-    number: 10,
     name: ' Water Monitoring ',
     excerpt: 'biological (i.e., chlorophyll or fecal coliform studies), chemical (i.e., pH, dissolved oxygen, carbon dioxide, conductivity, and salinity levels), and physical (i.e., temperature, turbidity, depth, and flow) characteristics of water',
     count: 0
@@ -76,95 +66,83 @@ Tags.insert({
 
 Tags.insert({
     tier: 'body of water',
-    number: 1,
     name: ' Pond ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 2,
     name: ' Rivers ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 3,
     name: ' Lakes ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 4,
     name: ' Reservoirs ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 5, 
     name: ' Streams ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 6,
     name: ' Wetlands (freshwater) ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 7,
     name: ' Tidal Creeks ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 8,
     name: ' Estuaries ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 9,
     name: ' Marshes (coastal) ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 10,
     name: ' Beaches ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 11,
     name: ' Reef ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 12,
     name: ' Coastline ',
     excerpt: ' ',
     count: 0
   });
 Tags.insert({
     tier: 'body of water',
-    number: 13,
     name: ' Open Ocean ',
     excerpt: ' ',
     count: 0
   });
+//measurements
 Tags.insert({
     tier: 'measurement',
     name: ' pH '
