@@ -2,19 +2,67 @@ Schemas = {};
 
 Meteor.isClient && Template.registerHelper("Schemas", Schemas);
 
-Schemas.Comments = new SimpleSchema({
-
-  author: {
+Schemas.Projects = new SimpleSchema({
+	owner: {
+    type: String,
+	label: "Author"
+  },
+  ownerId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
     autoform: {
       options: function() {
         return _.map(Meteor.users.find().fetch(), function(user) {
           return {
-            label: user.emails[0].address,
+            label: user.username,
             value: user._id
           };
         });
+      }
+    }
+  },
+	date_created: {
+    type: Date,
+    autoValue: function() {
+      if (this.isInsert) {
+        return new Date();
+      }
+    }
+  },
+	body: {
+	type: String,
+	max: 1000,
+	autoform:{
+		rows:3
+	}
+	}
+});
+
+Schemas.Comments = new SimpleSchema({
+
+ projectId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
+  },
+  authorId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    autoform: {
+      options: function() {
+        return _.map(Meteor.users.find().fetch(), function(user) {
+          return {
+            label: user.username,
+            value: user._id
+          };
+        });
+      }
+    }
+  },
+	posted: {
+    type: Date,
+    autoValue: function() {
+      if (this.isInsert) {
+        return new Date();
       }
     }
   },
@@ -97,7 +145,7 @@ photos: {
 
 });
 
-Schemas.Water = new SimpleSchema({
+Schemas.WaterObservations = new SimpleSchema({
    Flow: {
     type: String,
 	optional:true,
@@ -283,6 +331,222 @@ Schemas.Weather  = new SimpleSchema({
 });
 
 
+Schemas.Chemical  = new SimpleSchema({
+  ConductivityMeterCalibration: {
+    type: Object,
+	optional:true
+	},
+   'ConductivityMeterCalibration.date': {
+    type: String,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+	}
+  },
+	'ConductivityMeterCalibration.Standard':{
+	type:String,
+	label:"Standard Value"
+},
+'ConductivityMeterCalibration.Initial':{
+	type:String,
+	label:"Initial Meter Reading"
+},
+'ConductivityMeterCalibration.Adjusted':{
+	type:String,
+	label:"Meter Adjusted to"
+},
+	Reagents:{
+	type:Object, 
+	optional: true
+	},
+	'Reagents.AnyReagentsExpired?':{
+	type:String,
+	autoform: {
+      afFieldInput: {
+        type: "boolean-radios"
+      }
+    }
+	},
+	'Reagents.Expired':{
+	type:Array
+	},
+	'Reagents.Expired.$':{
+	type:String,
+	label:"List Expired Reagents"
+	},
+
+	CoreTests: {
+    type: Object,
+	optional:true
+	},
+   'CoreTests.AirTemp': {
+    type: Object
+  },
+	 'CoreTests.AirTemp.Tests':{
+	type:Array
+	},
+	 'CoreTests.AirTemp.Tests.$':{
+	type:Number,
+	decimal:true
+	},
+	 'CoreTests.AirTemp.units':{
+	type:String,
+	defaultValue:"C"
+	},
+ 'CoreTests.WaterTemp': {
+    type: Object
+  },
+	 'CoreTests.WaterTemp.Tests':{
+	type:Array
+	},
+	 'CoreTests.WaterTemp.Tests.$':{
+	type:Number,
+	decimal:true
+	},
+	 'CoreTests.WaterTemp.units':{
+	type:String,
+	defaultValue:"C"
+	},
+'CoreTests.pH': {
+    type: Object
+  },
+	 'CoreTests.pH.Tests':{
+	type:Array
+	},
+	 'CoreTests.pH.Tests.$':{
+	type:Number,
+	decimal:true,
+	label:"+/-0.25"
+	},
+	 'CoreTests.pH.units':{
+	type:String,
+	defaultValue:"Standard units"
+	},
+'CoreTests.DissolvedOxygen': {
+    type: Object
+  },
+	 'CoreTests.DissolvedOxygen.Tests':{
+	type:Array
+	},
+	 'CoreTests.DissolvedOxygen.Tests.$':{
+	type:Number,
+	decimal:true,
+	label:"+/-0.6"
+	},
+	 'CoreTests.DissolvedOxygen.units':{
+	type:String,
+	autoform: {
+      type: "select",
+      options: function () {
+        return [
+          {label: "mg/L", value: "mg/L"},
+          {label: "ppm", value: "ppm"}
+        ];
+      }
+    }
+	},
+'CoreTests.Conductivity': {
+    type: Object
+  },
+	 'CoreTests.Conductivity.Tests':{
+	type:Array
+	},
+	 'CoreTests.Conductivity.Tests.$':{
+	type:Number
+	},
+	 'CoreTests.Conductivity.units':{
+	type:String,
+	defaultValue:"uS/cm"
+	},
+OtherTests: {
+    type: Array,
+	optional:true
+  },
+'OtherTests.$':{
+	type:Object
+},
+	'OtherTests.$.Name':{
+	type:String
+	},
+	 'OtherTests.$.Tests':{
+	type:Array
+	},
+	 'OtherTests.$.Tests.$':{
+	type:Number,
+	decimal:true
+	},
+	 'OtherTests.$.units':{
+	type:String
+	}
+
+});
+
+Schemas.Bacterial  = new SimpleSchema({
+	 Plates:{
+		type:Array,
+		label:"# of Colonies on each plate (including one blank plate)"
+	},
+	'Plates.$':{
+		type:Number,
+		label:"Colonies"
+	},
+	AverageColonies:{
+		type:Object
+	},
+	'AverageColonies.value':{
+		type:Number,
+		decimal:true
+	},
+	'AverageColonies.units':{
+		type:String,
+		defaultValue:"cfu/100mL"
+	},
+	HoldingTime:{
+	type:Object
+	},
+	'HoldingTime.Total':{
+	type:Number, 
+	decimal:true,
+	label:"Total (in hours)"
+	},
+	'HoldingTime.Start':{
+	type: String,
+	optional: true,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+	}
+	},
+	'HoldingTime.Stop':{
+	type: String,
+	optional: true,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+	}
+	},
+	Temp:{
+	type:Object
+	},
+	'Temp.min':{
+	type:Number,
+	decimal:true
+	},
+	'Temp.max':{
+	type:Number,
+	decimal:true
+	},
+	'Temp.Units':{
+	type:String,
+	defaultValue:"C"
+	}
+	
+	
+});
+
 Schemas.LeChemical = new SimpleSchema({
   title: {
     type: String,
@@ -311,7 +575,7 @@ Schemas.LeChemical = new SimpleSchema({
   'data.$.value': {
     type: String
   },
-  'data.$.unit': {
+  'data.$.units': {
     type: String,
 	optional: true,
 	autoform: {
@@ -390,7 +654,7 @@ Schemas.Nutrients = new SimpleSchema({
   'data.$.value': {
     type: String
   },
-  'data.$.unit': {
+  'data.$.units': {
     type: String,
 	optional: true
   },
@@ -431,7 +695,7 @@ Schemas.Physical = new SimpleSchema({
   'data.$.value': {
     type: String
   },
-  'data.$.unit': {
+  'data.$.units': {
     type: String,
 	optional: true
   },
@@ -472,7 +736,7 @@ Schemas.Contaminants = new SimpleSchema({
   'data.$.value': {
     type: String
   },
-  'data.$.unit': {
+  'data.$.units': {
     type: String,
 	optional: true
   },
@@ -520,7 +784,7 @@ Schemas.Biological = new SimpleSchema({
   'data.$.value': {
     type: String
   },
-  'data.$.unit': {
+  'data.$.units': {
     type: String,
 	optional: true
   },
@@ -539,7 +803,7 @@ Schemas.Biological = new SimpleSchema({
 Schemas.Custom = new SimpleSchema({
   title: {
     type: String,
-    label: "Custom",
+    label: "Name:",
 	max:100
   },
   data: {
@@ -551,7 +815,7 @@ Schemas.Custom = new SimpleSchema({
   'data.$.value': {
     type: String
   },
-  'data.$.unit': {
+  'data.$.units': {
     type: String,
 	optional: true
   },
@@ -592,7 +856,7 @@ Schemas.firstdraft = new SimpleSchema({
   'data.$.value': {
     type: String
   },
-  'data.$.unit': {
+  'data.$.units': {
     type: String,
 	optional: true
   },

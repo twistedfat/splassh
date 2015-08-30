@@ -1,13 +1,4 @@
 <template name="dataEntry">
-
-
-<h2> S3 Image Upload Demo </h2>
-
-        <div class="col-md-5">
-	 <div class="well imageDropArea">
-    <input type="file" multiple class="images">
- 	 </div>
-	</div>
  
 	{{> parameters}}  
 
@@ -19,14 +10,20 @@
 <template name="insertWeather">
   {{> quickForm collection="Datasets" id="insertWeather" schema=Schemas.Weather type="insert"}}
 </template>
-<template name="insertObservations">
-  {{> quickForm collection="Datasets" id="insertObservations" schema=Schemas.Observations type="insert"}}
+<template name="insertWaterObservations">
+  {{> quickForm collection="Datasets" id="insertWaterObservations" schema=Schemas.WaterObservations type="insert"}}
 </template>
 <template name="insertContaminants">
   {{> quickForm collection="Datasets" id="insertContaminants" schema=Schemas.Contaminants type="insert"}}
 </template>
 <template name="insertBiological">
   {{> quickForm collection="Datasets" id="insertBiological" schema=Schemas.Biological type="insert"}}
+</template>
+<template name="insertChemical">
+  {{> quickForm collection="Datasets" id="insertChemical" schema=Schemas.Chemical type="insert"}}
+</template>
+<template name="insertBacterial">
+  {{> quickForm collection="Datasets" id="insertBacterial" schema=Schemas.Bacterial type="insert"}}
 </template>
 <template name="insertCustom">
   {{> quickForm collection="Datasets" id="insertCustom" schema=Schemas.Custom type="insert"}}
@@ -37,7 +34,7 @@
 
 <template name="parameters">
 <div class="container">
-  <h2>Parameters</h2>
+  <h2>Project Information</h2>
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -66,12 +63,12 @@
 <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Observations</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Water Observations</a>
         </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">
-		{{> insertObservations}}
+		{{> insertWaterObservations}}
 		</div>
       </div>
     </div>
@@ -99,13 +96,40 @@
 		</div>
       </div>
     </div>
-    <div class="panel panel-default">
+<div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Custom</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Chemical</a>
         </h4>
       </div>
       <div id="collapse6" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertChemical}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Bacterial</a>
+        </h4>
+      </div>
+      <div id="collapse7" class="panel-collapse collapse">
+        <div class="panel-body">
+		<p>3M Petrifilm Method: Escherichia coli</p>
+<br>
+<p> Run three (3) plates/tests for each site, plus one (1) blank plate. Process within 6-24hrs, incubate at 35°C ±1° and read at 24 ± 1 h</p>
+		{{> insertBacterial}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">Custom</a>
+        </h4>
+      </div>
+      <div id="collapse8" class="panel-collapse collapse">
         <div class="panel-body">
 		{{> insertCustom}}
 		</div>
