@@ -1,9 +1,13 @@
 <template name="dataEntry">
  
-	{{> parameters}}  
+	{{> insertProject}}  
 
+	{{> parameters}} 
 </template>
 
+<template name="insertProject">
+  {{> quickForm collection="Projects" id="insertProject" schema=Schemas.Projects type="insert"}}
+</template>
 <template name="insertSite">
   {{> quickForm collection="Datasets" id="insertSite" schema=Schemas.Site type="insert"}}
 </template>

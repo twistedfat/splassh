@@ -3,10 +3,6 @@ Schemas = {};
 Meteor.isClient && Template.registerHelper("Schemas", Schemas);
 
 Schemas.Projects = new SimpleSchema({
-	owner: {
-    type: String,
-	label: "Author"
-  },
   ownerId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
@@ -29,13 +25,24 @@ Schemas.Projects = new SimpleSchema({
       }
     }
   },
-	body: {
-	type: String,
-	max: 1000,
-	autoform:{
-		rows:3
-	}
-	}
+	authorIds: {
+	type:Array,
+	optional:true
+	},
+	'authorIds.$':{
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    autoform: {
+      options: function() {
+        return _.map(Meteor.users.find().fetch(), function(user) {
+          return {
+            label: user.username,
+            value: user._id
+          };
+        });
+      }
+    }
+  },
 });
 
 Schemas.Comments = new SimpleSchema({

@@ -19,6 +19,7 @@ Schemas.Projects = new SimpleSchema({
   },
 	date_created: {
     type: Date,
+	optional:true,
     autoValue: function() {
       if (this.isInsert) {
         return new Date();
