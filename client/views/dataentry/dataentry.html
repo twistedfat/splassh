@@ -1,10 +1,10 @@
 <template name="dataEntry">
- 
-	{{> insertProject}}  
 
 	{{> parameters}} 
 </template>
-
+<template name="insertComment">
+  {{> quickForm collection="Comments" id="insertComment" schema=Schemas.Comments type="insert"}}
+</template>
 <template name="insertProject">
   {{> quickForm collection="Projects" id="insertProject" schema=Schemas.Projects type="insert"}}
 </template>
@@ -84,7 +84,7 @@
       </div>
       <div id="collapse4" class="panel-collapse collapse">
         <div class="panel-body">
-		{{> insertPhotos}}
+		{{> images}}
 		</div>
       </div>
     </div>
@@ -130,10 +130,36 @@
 <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">Custom</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">Project</a>
         </h4>
       </div>
       <div id="collapse8" class="panel-collapse collapse">
+        <div class="panel-body">
+		
+		{{> insertProject}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">Comment</a>
+        </h4>
+      </div>
+      <div id="collapse9" class="panel-collapse collapse">
+        <div class="panel-body">
+		
+		{{> insertComment}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse10">Custom</a>
+        </h4>
+      </div>
+      <div id="collapse10" class="panel-collapse collapse">
         <div class="panel-body">
 		{{> insertCustom}}
 		</div>

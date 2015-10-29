@@ -97,3 +97,4 @@ addAuthor = function(author, project) {
     Projects.update( {_id: project._id}, {$push:{ authors:author.string} } );
     Projects.update( {_id: project._id}, {$push:{ authorIDs:author.id} } );
 }
+Projects.attachSchema(Schemas.Projects);

@@ -8,7 +8,7 @@
         <a class="btn btn-primary btn-lg" href="/projectList">Browse the Projects</a>&nbsp;
         <a class="btn btn-primary btn-lg" href="/map"><span class="glyphicon glyphicon-globe"> </span> Live Map</a>&nbsp;
         <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addWaterProjectModal"><span class="glyphicon glyphicon-plus"> </span> Add Project</button><br/>
-        <a class="btn btn-primary btn-lg" href="https://experiment.com/projects/what-s-the-condition-of-your-lake-river-or-coastline-support-splassh-and-find-out" target="_blank"><span class="glyphicon glyphicon-gift"> </span> Help fund us on experiment.com</a>&nbsp;
+       <a class="btn btn-primary btn-lg" href="/contact" ><span class="glyphicon glyphicon-gift"> </span> Help support SPLASSH!</a>&nbsp;
     </div>
 </div>
 
@@ -47,6 +47,13 @@
 
         <div class="container">
         <h2>What People are Saying</h2><br/>
+<div class ="row">
+<blockquote>
+          <p>"Twenty years ago, my husband and I founded the Chattahoochee Riverkeeper out of a great love for the river, which sustains people and wildlife. And engaging children as environmental stewards has been the foundation of my work as chairperson of Captain Planet Foundation. So Dr. Lisa Adams' SPLASSH program is of great interest to me because it combines two areas about which I am passionately concerned. SPLASSH is a great tool for watershed stewardship and provides the opportunity for volunteer groups and classes to create their own citizen science projects or contribute data to scientific research. It is so empowering for kids to do authentic science and to be part of an effort that is larger than themselves. We all can do so much individually, but together we can even achieve more. That’s one of Captain lanet’s slogans: 'Let our powers combine.' "
+</p>
+          <footer><cite title="Laura Turner Seydel"><strong>Laura Turner Seydel</strong>, Chairperson, Captain Planet Foundation & Co-Founder, Chattahoochee Riverkeeper</cite></footer>
+        </blockquote>
+	</div>
         <div class="row">
         <div class="col-md-6">
         <blockquote>

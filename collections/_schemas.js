@@ -3,6 +3,10 @@ Schemas = {};
 Meteor.isClient && Template.registerHelper("Schemas", Schemas);
 
 Schemas.Projects = new SimpleSchema({
+	title:{
+	type:String,
+	max:60
+	},
   ownerId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
@@ -19,8 +23,8 @@ Schemas.Projects = new SimpleSchema({
   },
 	date_created: {
     type: Date,
-	optional:true,
-    autoValue: function() {
+    label: 'Date',
+    autoValue: function () {
       if (this.isInsert) {
         return new Date();
       }
@@ -50,7 +54,17 @@ Schemas.Comments = new SimpleSchema({
 
  projectId: {
     type: String,
-    regEx: SimpleSchema.RegEx.Id
+    regEx: SimpleSchema.RegEx.Id,
+	autoform: {
+      options: function() {
+        return _.map(Projects.find().fetch(), function(project) {
+          return {
+            label: project.title,
+            value: project._id
+          };
+        });
+      }
+    }
   },
   authorId: {
     type: String,
@@ -68,7 +82,8 @@ Schemas.Comments = new SimpleSchema({
   },
 	posted: {
     type: Date,
-    autoValue: function() {
+    label: 'Date',
+    autoValue: function () {
       if (this.isInsert) {
         return new Date();
       }
@@ -154,26 +169,15 @@ photos: {
 });
 
 Schemas.WaterObservations = new SimpleSchema({
-   Flow: {
-    type: String,
+   FlowOrWaterLevel: {
+    type: [String],
 	optional:true,
     autoform: {
     type: "select-checkbox",
       options: function () {
         return [
           {label: "Dry", value: "Dry"},
-          {label: "Stagnant/Still", value: "Stagnant/Still"}
-        ];
-      }
-    }
-  },
-Level: {
-    type: String,
-	optional:true,
-    autoform: {
-    type: "select-checkbox",
-      options: function () {
-        return [
+          {label: "Stagnant/Still", value: "Stagnant/Still"},
           {label: "Low", value: "Low"},
           {label: "Normal", value: "Normal"},
           {label: "High", value: "High"},
@@ -183,7 +187,7 @@ Level: {
     }
   },
 Clarity: {
-    type: String,
+    type: [String],
 	optional:true,
     autoform: {
     type: "select-checkbox",
@@ -202,7 +206,7 @@ Color: {
     type: String,
 	optional:true,
     autoform: {
-    type: "select-checkbox",
+    type: "select",
       options: function () {
         return [
           {label: "No Color", value: "No Color"},
@@ -216,7 +220,7 @@ Color: {
     }
   },
 Surface: {
-    type: String,
+    type: [String],
 	optional:true,
     autoform: {
     type: "select-checkbox",
@@ -234,7 +238,7 @@ Surface: {
     }
   },
 Odor: {
-    type: String,
+    type: [String],
 	optional:true,
     autoform: {
     type: "select-checkbox",
@@ -255,7 +259,7 @@ Trash: {
     type: String,
 	optional:true,
     autoform: {
-    type: "select-checkbox",
+    type: "select",
       options: function () {
         return [
           {label: "None", value: "None"},
@@ -310,7 +314,7 @@ Schemas.Site = new SimpleSchema({
 
 Schemas.Weather  = new SimpleSchema({
   Conditions: {
-    type: String,
+    type: [String],
 	optional:true,
     autoform: {
     type: "select-checkbox",
