@@ -123,6 +123,7 @@ Template.project.events({
 
         var comment = {
           author:  SPLASSH.userName(Meteor.user()),
+		  authorId: Meteor.user()._id,
           avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
           body: $('#project-comment').val()
         };
