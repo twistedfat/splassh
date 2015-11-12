@@ -31,8 +31,8 @@ Router.map(function() {
   });
   this.route('project', {
     path : '/project/:_id',
-    onRun : function() { AmplifiedSession.set('currentProjectId', this.params._id); },
-    waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('comments'); },
+    onRun : function() {  },
+    waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('comments');  Meteor.subscribe('follows');},
     data: function() { 
       return Projects.findOne(this.params._id);
     }
@@ -58,6 +58,9 @@ this.route('mailingList', {
   });
   this.route('searchf', {
     path: '/searchf'
+  });
+ this.route('images', {
+    path: '/images'
   });
   //this.route('singlePageLogin', { path: '/login' });
   //this.route('singlePageSignUp', { path: '/signup'});

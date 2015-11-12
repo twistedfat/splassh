@@ -34,6 +34,9 @@
 	<li><a href="/searchf">Search</a></li>
           {{#if currentUser}}
           <li><a href="/mydash"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;My Dash</a></li>
+
+<li><a href="/images">Images</a></li>
+
           {{/if}}
         </ul>
         
@@ -45,13 +48,7 @@
  {{#if currentUser}}
           <li><button type="button" class="btn btn-default hidden-xs" data-toggle="modal" data-target="#addWaterProjectModal"><span class="glyphicon glyphicon-plus"></span> Project </button></li>
    {{/if}}
- 
-
-<li><button type="button" class="btn btn-default hidden-xs" data-toggle="modal" data-target="#signInModal"><span class="glyphicon glyphicon-plus"></span> Login </button></li> 
-	
-	
-      
-	</ul>
+ 	</ul>
 		  </div><!--/.nav-collapse -->
     </div>
   </nav>

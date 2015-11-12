@@ -5,14 +5,19 @@ MAPBOX_ID = "splassh.ihf1lp30";
 SPLASSH = {};
 
 SPLASSH.userName = function(user) {
-return user.username;
+
+ if (user.profile.name) {
+return user.profile.name
+}else  return user.username;
+
+/*
   if (typeof user === 'undefined' || user === null)
     return 'none';
  if (user.username) return user.username;
   if (user.profile){
-    if (user.profile.name) return user.profile.name;
+   
   }
-
+*/
 };
 
 SPLASSH.userEmail = function (user) {

@@ -9,7 +9,6 @@
 	{{> tag}}
     {{/each}}
   </div> <!-- button group -->
- <div class="container bodybox"><br/>
 <h1>Bodies of Water<br/></h1>
  <hr class="featurette-divider">
   <div class="container">
@@ -17,5 +16,4 @@
 	{{> tag}}
     {{/each}}
   </div> <!-- button group -->
-  </div>
 </template>

@@ -57,10 +57,10 @@ Meteor.methods({
       tags: tagArray,
       water: options.water,
       owner: SPLASSH.userName(Meteor.user()),
-	ownerId: Meteor.user()._id,
-       avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
-     date_created: new Date().getTime(),
-	authors:SPLASSH.userName(Meteor.user())
+	  ownerId: Meteor.user()._id,
+      avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
+      date_created: new Date().getTime(),
+	  authors:SPLASSH.userName(Meteor.user())
    });
     
   if (id) {

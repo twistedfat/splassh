@@ -12,7 +12,6 @@ less
 spiderable
 aldeed:collection2
 aldeed:autoform
-houston:admin
 meteorhacks:fast-render
 tmeasday:paginated-subscription
 iron:layout
@@ -33,3 +32,12 @@ accounts-twitter
 accounts-ui
 matteodem:easy-search
 
+u2622:persistent-session
+cfs:standard-packages
+cfs:s3
+standard-minifiers
+cfs:gridfs
+cfs:filesystem
+cfs:ui
+cfs:autoform
+mrt:numeral

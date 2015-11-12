@@ -25,3 +25,13 @@ Meteor.publish("users", function () {
   return Meteor.users.find({}, {fields: {emails: 1, profile: 1, username: 1}});
 });
 
+//cfs example
+Meteor.publish("images", function() {
+  return Collections.Images.find();
+});
+
+
+Meteor.publish("files", function() {
+  return Collections.Files.find();
+});
+
