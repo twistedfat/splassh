@@ -1,5 +1,5 @@
 <template name="images">
-
+ <div class="container"><br/>
   <h2>Image Files</h2>
   <div class="well imageDropArea">
     <input type="file" multiple class="images">
@@ -9,6 +9,7 @@
     {{> uploadedImage}}
     {{/each}}
   </div>
+</div>
 </template>
 
 <template name="uploadedImage">

@@ -39,16 +39,15 @@ setSessionProjectId: function(){
 }
 });
 
-Template.projectsByTag.projects = function() {
-    var tag = Router.current().params._tag;
-    var arr = [];
-    arr.push(tag);
-   return Projects.find({ tags : { $in : arr } }, {sort: { date_created: -1} });
-}
-
 Template.projectsByTag.helpers({
   mainTag : function() {
     return Router.current().params._tag;
+  },
+  projects : function() {
+	var tag = Router.current().params._tag;
+    var arr = [];
+    arr.push(tag);
+   return Projects.find({ tags : { $in : arr } }, {sort: { date_created: -1} });
   }
 });
 

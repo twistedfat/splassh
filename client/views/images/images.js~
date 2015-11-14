@@ -3,7 +3,7 @@ function getHandler(dropped) {
     metadata: function (fileObj) {
       return {
         ownerId: Meteor.userId(),
-        projectId: ,
+		projectId: Session.get('currentProjectId'),
         dropped: dropped
       };
     },
