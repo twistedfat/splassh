@@ -23,23 +23,26 @@
           <div class="col-md-12">
           {{> projectmap this}}
           </div>
-		 <div class="col-md-12">
-          <li><a href="/images">Add Image</a></li>
-          </div>
- <div class="row">	
-<div class="container">	
-{{#if isProjectOwner}}
-        <div class="col-md-5">
-	<form role="form" class="form-addauthor">
-	<input id="author" type="text" name="author" placeholder="Add Authors here"/><br/>
-	<button class="btn btn-default btn-xs" type="submit">Add author</button>	
-	</form>
-	</div>
+		</div>
+		<div class="col-md-5">
+          	<div class="col-md-12">
+			<div class="container">
+           		<li><a href="/images">Add Image</a></li>
+         	 </div>
+         	 </div>          
+ 		<div class="col-md-12">	
+		<div class="container">	
+			{{#if isProjectOwner}}
+				
+				<form role="form" class="form-addauthor">
+				<input id="author" type="text" name="author" placeholder="Add Authors here"/><br/>
+				<button class="btn btn-default btn-xs" type="submit">Add author</button>	
+				</form>
 	
-{{/if}}
-
-</div>
-</div>
+			{{/if}}
+		</div>
+		</div>
+		</div>
           <div class="col-md-12">
             <span class="label label-info">Primary Tag</span>
             <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
@@ -87,7 +90,6 @@
                	</div>
      	    </div>
      	{{/each}}
-      </div>
       </div> <!-- /row-->
     </div> <!-- /container -->
   </div><!-- /project -->
