@@ -26,8 +26,26 @@ Meteor.startup(function () {
 
 });
 
-Template.images.helpers({
-	uploadedImages: function() {
+Template.viewImages.helpers({
+	imagesByProject: function() {
+  return Collections.Images.find({projectId: Session.get('currentProjectId')});
+},
+	allImages: function() {
   return Collections.Images.find();
+},
+	myImages: function() {
+  return Collections.Images.find({ownerId: Meteor.userId()});
+}
+});
+
+Template.images.helpers({
+	imagesByProject: function() {
+  return Collections.Images.find({projectId: Session.get('currentProjectId')});
+},
+	allImages: function() {
+  return Collections.Images.find();
+},
+	myImages: function() {
+  return Collections.Images.find({ownerId: Meteor.userId()});
 }
 });

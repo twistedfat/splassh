@@ -39,15 +39,16 @@ setSessionProjectId: function(){
 }
 });
 
+
 Template.projectsByTag.helpers({
   mainTag : function() {
     return Router.current().params._tag;
   },
   projects : function() {
 	var tag = Router.current().params._tag;
-    var arr = [];
-    arr.push(tag);
-   return Projects.find({ tags : { $in : arr } }, {sort: { date_created: -1} });
+   //var arr = [];
+    //arr.push(tag);
+   return Projects.find({ tags : tag }, {sort: { date_created: -1} });
   }
 });
 
@@ -181,6 +182,11 @@ Follows.remove(this._id);
 		ele.style.display = "block";		
 	}
   },
+'click .toImages': function (e,t ) {
+    e.preventDefault();
+	Session.setAuth( 'currentProjectId', this._id); 
+	Router.go('/images');
+},
 
  'submit form.form-editcomment': function(e, t) {
         e.preventDefault();

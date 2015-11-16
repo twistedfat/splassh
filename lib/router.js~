@@ -39,9 +39,11 @@ Router.map(function() {
     
   });
   this.route('tagsList', {
-    path : '/tags'
+    path : '/tags',
+	waitOn: function() { Meteor.subscribe('tags'); }
   });
   this.route('projectsByTag', {
+//needs to be fuxed
     path : '/projects/tag/:_tag',
 	waitOn: function() { Meteor.subscribe('projects'); }
   });
@@ -62,7 +64,9 @@ this.route('mailingList', {
     path: '/searchf'
   });
  this.route('images', {
-    path: '/images'
+    path: '/images',
+	waitOn: function() { Meteor.subscribe('images');},
+	
   });
   //this.route('singlePageLogin', { path: '/login' });
   //this.route('singlePageSignUp', { path: '/signup'});
