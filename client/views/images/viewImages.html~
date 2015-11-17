@@ -5,13 +5,13 @@
 
   <div class="imageArea clearfix">
     {{#each allImages}}
-    {{> uploadedImage}}
+    {{> theuploadedImage}}
     {{/each}}
   </div>
 </div>
 </template>
 
-<template name="uploadedImage">
+<template name="theuploadedImage">
   <div class="media well pull-left">
     <a href="{{this.url}}" target="_blank" class="pull-left"><img src="{{this.url store='thumbs'}}" alt="" class="img-rounded"></a>
     <div class="media-body">
