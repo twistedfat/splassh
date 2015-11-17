@@ -1,0 +1,19 @@
+<template name="tagsList">
+  <div class="container tagbox"><br/>
+  <h1>Tags<br/><small>
+  Terms used to describe and categorize the water projects.</small></h1>
+  </div>
+  <hr class="featurette-divider">
+  <div class="container">
+    {{#each tags}}
+	{{> tag}}
+    {{/each}}
+  </div> <!-- button group -->
+<h1>Bodies of Water<br/></h1>
+ <hr class="featurette-divider">
+  <div class="container">
+    {{#each bodies}}
+	{{> tag}}
+    {{/each}}
+  </div> <!-- button group -->
+</template>

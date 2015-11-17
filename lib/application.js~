@@ -6,10 +6,10 @@ SPLASSH = {};
 
 SPLASSH.userName = function(user) {
 
- if (user.profile.name) {
-return user.profile.name
-}else  return user.username;
+return Meteor.user().username || Meteor.user().profile.name;
+
 };
+
 
 
 SPLASSH.userEmail = function (user) {
