@@ -1,0 +1,170 @@
+<template name="dataEntry">
+
+	{{> parameters}} 
+</template>
+<template name="insertComment">
+  {{> quickForm collection="Comments" id="insertComment" schema=Schemas.Comments type="insert"}}
+</template>
+<template name="insertProject">
+  {{> quickForm collection="Projects" id="insertProject" schema=Schemas.Projects type="insert"}}
+</template>
+<template name="insertSite">
+  {{> quickForm collection="Datasets" id="insertSite" schema=Schemas.Site type="insert"}}
+</template>
+<template name="insertWeather">
+  {{> quickForm collection="Datasets" id="insertWeather" schema=Schemas.Weather type="insert"}}
+</template>
+<template name="insertWaterObservations">
+  {{> quickForm collection="Datasets" id="insertWaterObservations" schema=Schemas.WaterObservations type="insert"}}
+</template>
+<template name="insertContaminants">
+  {{> quickForm collection="Datasets" id="insertContaminants" schema=Schemas.Contaminants type="insert"}}
+</template>
+<template name="insertBiological">
+  {{> quickForm collection="Datasets" id="insertBiological" schema=Schemas.Biological type="insert"}}
+</template>
+<template name="insertChemical">
+  {{> quickForm collection="Datasets" id="insertChemical" schema=Schemas.Chemical type="insert"}}
+</template>
+<template name="insertBacterial">
+  {{> quickForm collection="Datasets" id="insertBacterial" schema=Schemas.Bacterial type="insert"}}
+</template>
+<template name="insertCustom">
+  {{> quickForm collection="Datasets" id="insertCustom" schema=Schemas.Custom type="insert"}}
+</template>
+<template name="insertPhotos">
+  {{> quickForm collection=images id="insertPhotos" schema=Schemas.Photos type="insert"}}
+</template>
+
+<template name="parameters">
+<div class="container">
+  <h2>Project Information</h2>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Site Information</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+		{{> insertSite}}
+		</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Weather Conditions</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertWeather}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Water Observations</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertWaterObservations}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Photos</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> images}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Biological</a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertBiological}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Chemical</a>
+        </h4>
+      </div>
+      <div id="collapse6" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertChemical}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Bacterial</a>
+        </h4>
+      </div>
+      <div id="collapse7" class="panel-collapse collapse">
+        <div class="panel-body">
+		<p>3M Petrifilm Method: Escherichia coli</p>
+<br>
+<p> Run three (3) plates/tests for each site, plus one (1) blank plate. Process within 6-24hrs, incubate at 35°C ±1° and read at 24 ± 1 h</p>
+		{{> insertBacterial}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">Project</a>
+        </h4>
+      </div>
+      <div id="collapse8" class="panel-collapse collapse">
+        <div class="panel-body">
+		
+		{{> insertProject}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">Comment</a>
+        </h4>
+      </div>
+      <div id="collapse9" class="panel-collapse collapse">
+        <div class="panel-body">
+		
+		{{> insertComment}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse10">Custom</a>
+        </h4>
+      </div>
+      <div id="collapse10" class="panel-collapse collapse">
+        <div class="panel-body">
+		{{> insertCustom}}
+		</div>
+      </div>
+    </div>
+  </div> 
+</div>
+</template>
