@@ -68,6 +68,22 @@ this.route('mailingList', {
 	waitOn: function() { Meteor.subscribe('images');},
 	
   });
+ this.route('viewImages', {
+    path: '/viewImages',
+	waitOn: function() { Meteor.subscribe('images');},
+	
+  });
+this.route('dataEntry', {
+    path: '/dataEntry',
+	waitOn: function() {Meteor.subscribe('datasets');},
+  });
+this.route('viewData', {
+    path: '/viewData',
+	waitOn: function() {Meteor.subscribe('datasets');},
+  });
+this.route('donate', {
+    path: '/donate'
+  });
   //this.route('singlePageLogin', { path: '/login' });
   //this.route('singlePageSignUp', { path: '/signup'});
   //this.route('singlePageForgotPassword', { path: '/forgot-password' });

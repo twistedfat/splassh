@@ -8,17 +8,6 @@ SPLASSH.userName = function(user) {
 
 return Meteor.user().username || Meteor.user().profile.name;
 
-<<<<<<< HEAD
-=======
-/*
-  if (typeof user === 'undefined' || user === null)
-    return 'none';
- if (user.username) return user.username;
-  if (user.profile){
-   
-  }
-*/
->>>>>>> master
 };
 
 SPLASSH.userEmail = function (user) {
@@ -28,9 +17,7 @@ SPLASSH.userEmail = function (user) {
 };
 
 // Config accounts-ui meteor package
-Accounts.config({
-  sendVerificationEmail: true
-});
+Accounts.config({  sendVerificationEmail: true });
 
 SinglePageLogin.config({
   loginTitle: 'Login to SPLASSH',
@@ -44,3 +31,20 @@ SinglePageLogin.config({
   forceLogin: false
 });
 
+AutoForm.hooks({  insertSiteInfo: projectIdHook });
+
+var projectIdHook = {
+  before: {
+    // Replace `formType` with the form `type` attribute to which this hook applies
+    formType: function(doc) {
+      // Potentially alter the doc
+      doc.projectId = Session.get('currentProjectId');
+	  return doc;
+      // Then return it or pass it to this.result()
+      //return doc; (synchronous)
+      //return false; (synchronous, cancel)
+      //this.result(doc); (asynchronous)
+      //this.result(false); (asynchronous, cancel)
+    }
+  }
+};

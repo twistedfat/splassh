@@ -1,6 +1,38 @@
 <template name="dataEntry">
 
-	{{> parameters}} 
+	
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Site Information</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+		{{> insertSiteInfo}}
+		</div>
+      </div>
+    </div>
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Custom</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+	
+		</div>
+      </div>
+    </div>
+  </div> 
+
+
+
+</template>
+<template name="insertSiteInfo">
+  {{> quickForm collection="Datasets" id="insertSiteInfo" schema=Schemas.SiteInfo type="insert"}}
 </template>
 <template name="insertComment">
   {{> quickForm collection="Comments" id="insertComment" schema=Schemas.Comments type="insert"}}
@@ -12,7 +44,7 @@
   {{> quickForm collection="Datasets" id="insertSite" schema=Schemas.Site type="insert"}}
 </template>
 <template name="insertWeather">
-  {{> quickForm collection="Datasets" id="insertWeather" schema=Schemas.Weather type="insert"}}
+{{> quickForm collection="Datasets" id="insertWeather" schema=Schemas.Weather type="insert"}}
 </template>
 <template name="insertWaterObservations">
   {{> quickForm collection="Datasets" id="insertWaterObservations" schema=Schemas.WaterObservations type="insert"}}

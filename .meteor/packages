@@ -42,3 +42,5 @@ cfs:ui
 cfs:autoform
 mrt:numeral
 nimble:restivus
+aldeed:simple-schema
+aldeed:autoform-bs-datetimepicker

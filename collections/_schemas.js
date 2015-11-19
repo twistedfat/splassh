@@ -2,6 +2,55 @@ Schemas = {};
 
 Meteor.isClient && Template.registerHelper("Schemas", Schemas);
 
+Schemas.SiteInfo = new SimpleSchema({
+GroupName:{
+	type: String, 
+	label: "Group name",
+	max:50
+},
+NameOfBodyOfWater:{
+	type: String, 
+	label:"Body of water name",
+	max:50
+},
+createdby:{
+	type:String,
+	autoValue: function(){
+        if (this.isInsert) {
+          return this.userId;
+        } else {
+          this.unset();
+        }
+    },
+	autoform: { 	omit: true 	}
+},
+created: {
+    type: Date,
+    autoValue: function () {
+        if (this.isInsert) {
+          return new Date;
+        } else {
+          this.unset();
+        }
+    },
+	autoform: { 	omit: true 	}
+},
+ projectId:{
+	type:String,
+	autoValue: function() {
+      if (this.isInsert) {
+		var str = "123"
+        return str;
+      } else if (this.isUpsert) {
+        return {$setOnInsert: "1234"};
+      } else {
+        this.unset();  // Prevent user from supplying their own value
+      }
+    },
+	autoform: { 	omit: true 	}
+  }
+});
+
 Schemas.Projects = new SimpleSchema({
 	title:{
 	type:String,
@@ -137,6 +186,7 @@ Schemas.ContactForm = new SimpleSchema({
     max: 1000
   }
 });
+
 
 Schemas.Photos = new SimpleSchema({
 
@@ -342,6 +392,7 @@ Schemas.Weather  = new SimpleSchema({
   }
 });
 
+	
 
 Schemas.Chemical  = new SimpleSchema({
   ConductivityMeterCalibration: {

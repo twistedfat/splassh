@@ -183,12 +183,16 @@ Follows.remove(this._id);
 		ele.style.display = "block";		
 	}
   },
-'click .images': function (e,t ) {
+'click .toImages': function (e,t ) {
     e.preventDefault();
 	Session.setAuth( 'currentProjectId', this._id); 
 	Router.go('/images');
 },
-
+'click .toData': function (e,t ) {
+    e.preventDefault();
+	Session.setAuth( 'currentProjectId', this._id); 
+	Router.go('/dataentry');
+},
  'submit form.form-editcomment': function(e, t) {
         e.preventDefault();
         var content = $('#project-edit').val();

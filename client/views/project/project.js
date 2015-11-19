@@ -188,7 +188,11 @@ Follows.remove(this._id);
 	Session.setAuth( 'currentProjectId', this._id); 
 	Router.go('/images');
 },
-
+'click .toData': function (e,t ) {
+    e.preventDefault();
+	Session.setAuth( 'currentProjectId', this._id); 
+	Router.go('/dataentry');
+},
  'submit form.form-editcomment': function(e, t) {
         e.preventDefault();
         var content = $('#project-edit').val();

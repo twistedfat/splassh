@@ -1,0 +1,61 @@
+<template name="viewData">
+
+	<div class="container">
+		<h2>View Datasets</h2>
+		{{#each allDatasets}}
+			{{> siteInfo}}
+		{{/each}}
+	</div>
+
+</template>
+
+<template name="siteInfo">
+
+	<div class="container">
+		<h2>View Site Info</h2>
+<table class="table table-bordered table-condensed">
+<thead>
+<tr>
+    <td>Group Name</td>
+    <td>Name Of Body Of Water</td>
+    <td>Project</td>
+  </tr>
+</thead>
+<tbody>
+<tr>
+<td>{{this.GroupName}}</td>
+<td>{{this.NameOfBodyOfWater}}</td>
+<td><a href="/project/{{this.projectId}}">{{this.projectId}}</a></td>
+</tr>
+</tbody>
+</table>
+	
+</div>
+
+</template>
+<template name="weather">
+
+	<div class="container">
+		<h2>View Weather</h2>
+<table class="table table-bordered table-condensed">
+<thead>
+<tr>
+    <td>Conditions</td>
+    <td>Rain (in inches)</td>
+    <td>Duration (in hours)</td>
+  </tr>
+</thead>
+<tbody>
+<tr>
+<td>{{this.Conditions}}</td>
+<td>{{this.rain}}</td>
+<td>{{this.duration }}</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>Conditions: {{this.Conditions}}<br>rain: {{this.rain}}<br>duration: {{this.duration }}<br></em></p>
+	
+</div>
+
+</template>

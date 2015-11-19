@@ -35,7 +35,8 @@
           {{#if currentUser}}
           <li><a href="/mydash"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;My Dash</a></li>
         {{/if}}
- <li><a href="/viewImages">View Images</a></li>
+<li><a href="/viewData">Data Entry</a></li>
+ <li><a href="/viewImages">All Images</a></li>
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
