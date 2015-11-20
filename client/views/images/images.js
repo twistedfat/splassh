@@ -2,8 +2,8 @@ function getHandler(dropped) {
   return FS.EventHandlers.insertFiles(Collections.Images, {
     metadata: function (fileObj) {
       return {
-        owner: Meteor.userId(),
-        foo: "bar",
+        ownerId: Meteor.userId(),
+        projectId:  AmplifiedSession.get('currentProjectId'),
         dropped: dropped
       };
     },

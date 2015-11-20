@@ -9,13 +9,11 @@
 	{{> tag}}
     {{/each}}
   </div> <!-- button group -->
-  <div class="container tagbox"><br/>
 <h1>Bodies of Water<br/></h1>
  <hr class="featurette-divider">
   <div class="container">
     {{#each bodies}}
 	{{> tag}}
     {{/each}}
-</div> 
   </div> <!-- button group -->
 </template>
