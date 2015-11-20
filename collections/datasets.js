@@ -37,3 +37,6 @@ editDataset = function(dataset, project) {
   
     Datasets.update( {_id: project._id}, {$set:{edited:editTime} } );
 }
+
+Datasets.attachSchema(Schemas.SiteInfo);
+

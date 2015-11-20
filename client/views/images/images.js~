@@ -26,7 +26,7 @@ Meteor.startup(function () {
 
 });
 
-Template.images.helpers({
+Template.viewImages.helpers({
 	imagesByProject: function() {
   return Collections.Images.find({projectId: Session.get('currentProjectId')});
 },
@@ -36,4 +36,19 @@ Template.images.helpers({
 	myImages: function() {
   return Collections.Images.find({ownerId: Meteor.userId()});
 }
+});
+
+Template.images.helpers({
+	imagesByProject: function() {
+  return Collections.Images.find({projectId: Session.get('currentProjectId')});
+},
+	allImages: function() {
+  return Collections.Images.find();
+},
+	myImages: function() {
+  return Collections.Images.find({ownerId: Meteor.userId()});
+},
+isProjectOwner: function () {
+		return Meteor.userId() == Projects.findOne({_id:Session.get('currentProjectId')}).ownerId;
+	}
 });

@@ -47,5 +47,8 @@ Template.images.helpers({
 },
 	myImages: function() {
   return Collections.Images.find({ownerId: Meteor.userId()});
-}
+},
+isProjectOwner: function () {
+		return Meteor.userId() == Projects.findOne({_id:Session.get('currentProjectId')}).ownerId;
+	}
 });

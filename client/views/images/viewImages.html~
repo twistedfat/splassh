@@ -16,7 +16,7 @@
     <a href="{{this.url}}" target="_blank" class="pull-left"><img src="{{this.url store='thumbs'}}" alt="" class="img-rounded"></a>
     <div class="media-body">
       <h4 class="media-heading">{{this.name}}</h4>
-      <p><em>Original size: {{this.formattedSize}}<br>Thumbnail size: {{this.formattedSize store="thumbs"}}<br>Type: {{this.type store="images"}}</em></p>
+      <p><em>Original size: {{this.formattedSize}}<br>Thumbnail size: {{this.formattedSize store="thumbs"}}<br>Type: {{this.type store="images"}}<br>ProjectId: <a href="/project/{{this.projectId}}">{{this.projectId}}</a><br></em></p>
       {{#if this.isUploaded}}
       {{#if this.hasStored 'images'}}
       {{#with this.url download=true}}

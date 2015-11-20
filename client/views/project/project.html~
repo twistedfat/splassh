@@ -29,6 +29,7 @@
 			<div class="container">
 {{#if isProjectOwner}}
 				 <button type="button" class="btn btn-default btn-xs toImages"> Images</button> 
+ <button type="button" class="btn btn-default btn-xs toData"> Data</button> 
 {{/if}}
          	 </div>
          	 </div>          

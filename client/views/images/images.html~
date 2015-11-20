@@ -1,11 +1,16 @@
 <template name="images">
  <div class="container"><br/>
   <h2>Image Files</h2>
+
+{{#if isProjectOwner}}
   <div class="well imageDropArea">
 	<p>Add more images here</p>
     <input type="file" multiple class="images">
   </div>
+{{/if}}
+
   <div class="imageArea clearfix">
+	<p>More images from this project..</p>
     {{#each imagesByProject}}
     {{> uploadedImage}}
     {{/each}}
@@ -18,7 +23,7 @@
     <a href="{{this.url}}" target="_blank" class="pull-left"><img src="{{this.url store='thumbs'}}" alt="" class="img-rounded"></a>
     <div class="media-body">
       <h4 class="media-heading">{{this.name}}</h4>
-      <p><em>Original size: {{this.formattedSize}}<br>Thumbnail size: {{this.formattedSize store="thumbs"}}<br>Type: {{this.type store="images"}}</em></p>
+      <p><em>Original size: {{this.formattedSize}}<br>Thumbnail size: {{this.formattedSize store="thumbs"}}<br>Type: {{this.type store="images"}}<br>ProjectId: <a href="/project/{{this.projectId}}">{{projectName this.projectId}}</a><br></em></p>
       {{#if this.isUploaded}}
       {{#if this.hasStored 'images'}}
       {{#with this.url download=true}}

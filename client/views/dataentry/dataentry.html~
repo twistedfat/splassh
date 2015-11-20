@@ -1,11 +1,10 @@
 <template name="dataEntry">
-
-	
+{{#if isProjectOwner}}
 <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Site Information</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Add Site Information</a>
         </h4>
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
@@ -14,23 +13,13 @@
 		</div>
       </div>
     </div>
-<div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Custom</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">
-	
-		</div>
-      </div>
-    </div>
   </div> 
+{{/if}}
 
-
+{{> viewData}}
 
 </template>
+
 <template name="insertSiteInfo">
   {{> quickForm collection="Datasets" id="insertSiteInfo" schema=Schemas.SiteInfo type="insert"}}
 </template>
