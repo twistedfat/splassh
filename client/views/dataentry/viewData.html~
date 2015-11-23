@@ -1,12 +1,10 @@
 <template name="viewData">
-
 	<div class="container">
 		<h2>View Datasets</h2>
-		{{#each allDatasets}}
+		{{#each siteInfoDatasets}}
 			{{> siteInfo}}
 		{{/each}}
 	</div>
-
 </template>
 
 <template name="siteInfo">

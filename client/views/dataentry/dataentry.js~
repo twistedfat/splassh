@@ -1,19 +1,25 @@
 Template.viewData.helpers({
-	datasetbyProject: function() {
-  		return Datasets.find({projectId: Session.get('currentProjectId')});
-},
-	allDatasets: function() {
- 		return Datasets.find();
-},
-	myDatasets: function() {
-  		return Datasets.find({ownerId: Meteor.userId()});
-},
 	testData:function(){
 		return Datasets.find({_id:"wpwDKopM7ybfiFWpQ" });
 },
 	projectId: function () {
     	return Session.get('currentProjectId');
-  	}
+},
+	sites: function(){
+		return Sites.find();
+},
+	currentProjectSites: function(){
+		return Sites.find({projectId:  Session.get('currentProjectId')});
+},
+	monitors: function(){
+		return Monitors.find();
+},
+	currentProjectMonitors: function(){
+		return Monitors.find({projectId:  Session.get('currentProjectId')});
+},
+	weathers:function(){
+		return Weathers.find();
+},
 });
 
 Template.dataEntry.helpers({
@@ -29,7 +35,7 @@ Template.registerHelper("projectName", function(param1){
 	return (Projects.findOne({_id: param1})).title;
 });
 
-var projectIdHook = {
+var hooksObject = {
 	before: {
     // Replace `formType` with the form `type` attribute to which this hook applies
 		insert: function(doc) {
@@ -44,6 +50,6 @@ var projectIdHook = {
     }
   }
 };
-AutoForm.hooks({'insertSiteInfo': projectIdHook });
+//AutoForm.hooks({  insertSiteInfo: projectIdHook });
 // Or pass `null` to run the hook for all forms in the app (global hook)
-//AutoForm.addHooks(null, projectIdHook);
+AutoForm.addHooks(null, hooksObject);

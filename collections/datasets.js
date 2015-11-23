@@ -39,4 +39,4 @@ editDataset = function(dataset, project) {
 }
 
 Datasets.attachSchema(Schemas.SiteInfo);
-
+Datasets.attachSchema(Schemas.Monitors);

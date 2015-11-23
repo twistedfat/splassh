@@ -1,19 +1,28 @@
 Template.viewData.helpers({
-	datasetbyProject: function() {
-  		return Datasets.find({projectId: Session.get('currentProjectId')});
-},
-	allDatasets: function() {
- 		return Datasets.find();
-},
-	myDatasets: function() {
-  		return Datasets.find({ownerId: Meteor.userId()});
-},
 	testData:function(){
 		return Datasets.find({_id:"wpwDKopM7ybfiFWpQ" });
 },
 	projectId: function () {
     	return Session.get('currentProjectId');
-  	}
+},
+	sites: function(){
+		return Sites.find();
+},
+	currentProjectSites: function(){
+		return Sites.find({projectId:  Session.get('currentProjectId')});
+},
+	monitors: function(){
+		return Monitors.find();
+},
+	currentProjectMonitors: function(){
+		return Monitors.find({projectId:  Session.get('currentProjectId')});
+},
+	weathers:function(){
+		return Weathers.find();
+},
+	chemicals: function() {
+		return Chemicals.find();
+}
 });
 
 Template.dataEntry.helpers({

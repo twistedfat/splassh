@@ -9,35 +9,124 @@
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
-		{{> insertSiteInfo}}
+		{{> insertSite}}
 		</div>
       </div>
     </div>
+	<div class="panel panel-default">
+		  <div class="panel-heading">
+			<h4 class="panel-title">
+			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Monitors/Probes/Sensors</a>
+			</h4>
+		  </div>
+		  <div id="collapse2" class="panel-collapse collapse">
+			<div class="panel-body">
+			{{> insertMonitors}}
+			</div>
+		  </div>
+		</div>
+	<div class="panel panel-default">
+		  <div class="panel-heading">
+			<h4 class="panel-title">
+			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Weather Conditions</a>
+			</h4>
+		  </div>
+		  <div id="collapse3" class="panel-collapse collapse">
+			<div class="panel-body">
+			{{> insertWeather}}
+		  </div>
+		</div>
   </div> 
+<div class="panel panel-default">
+		  <div class="panel-heading">
+			<h4 class="panel-title">
+			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Chemicals</a>
+			</h4>
+		  </div>
+		  <div id="collapse4" class="panel-collapse collapse">
+			<div class="panel-body">
+			{{> insertChemicals}}
+		  </div>
+		</div>
+  </div> 
+<div class="panel panel-default">
+		  <div class="panel-heading">
+			<h4 class="panel-title">
+			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Biological</a>
+			</h4>
+		  </div>
+		  <div id="collapse5" class="panel-collapse collapse">
+			<div class="panel-body">
+			{{> insertBiologicals}}
+		  </div>
+		</div>
+  </div> 
+<div class="panel panel-default">
+		  <div class="panel-heading">
+			<h4 class="panel-title">
+			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Physical</a>
+			</h4>
+		  </div>
+		  <div id="collapse6" class="panel-collapse collapse">
+			<div class="panel-body">
+			{{> insertPhysicals}}
+		  </div>
+		</div>
+  </div> 
+<div class="panel panel-default">
+		  <div class="panel-heading">
+			<h4 class="panel-title">
+			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Water Observations</a>
+			</h4>
+		  </div>
+		  <div id="collapse7" class="panel-collapse collapse">
+			<div class="panel-body">
+			{{> insertWaterObservations}}
+		  </div>
+		</div>
+  </div> 
+</div>
 {{/if}}
 
 {{> viewData}}
 
 </template>
 
-<template name="insertSiteInfo">
-  {{> quickForm collection="Datasets" id="insertSiteInfo" schema=Schemas.SiteInfo type="insert"}}
-</template>
 <template name="insertComment">
   {{> quickForm collection="Comments" id="insertComment" schema=Schemas.Comments type="insert"}}
 </template>
 <template name="insertProject">
   {{> quickForm collection="Projects" id="insertProject" schema=Schemas.Projects type="insert"}}
 </template>
+
 <template name="insertSite">
-  {{> quickForm collection="Datasets" id="insertSite" schema=Schemas.Site type="insert"}}
+	{{> quickForm collection="Sites" id="insertSite" type="insert"}}
 </template>
+
+<template name="insertMonitors">
+	{{> quickForm collection="Monitors" id="insertMonitor" type="insert"}}
+</template>
+
+<template name="insertBiologicals">
+	{{> quickForm collection="Biologicals" id="insertBiological" type="insert"}}
+</template>
+
+<template name="insertPhysicals">
+	{{> quickForm collection="Physicals" id="insertPhysicals" type="insert"}}
+</template>
+
 <template name="insertWeather">
-{{> quickForm collection="Datasets" id="insertWeather" schema=Schemas.Weather type="insert"}}
+{{> quickForm collection="Weathers" id="insertWeather" type="insert"}}
+</template>
+<template name="insertChemicals">
+{{> quickForm collection="Chemicals" id="insertChemical" type="insert"}}
 </template>
 <template name="insertWaterObservations">
-  {{> quickForm collection="Datasets" id="insertWaterObservations" schema=Schemas.WaterObservations type="insert"}}
+  {{> quickForm collection="Waters" id="insertWaterObservations"  type="insert"}}
 </template>
+
+
+
 <template name="insertContaminants">
   {{> quickForm collection="Datasets" id="insertContaminants" schema=Schemas.Contaminants type="insert"}}
 </template>

@@ -2,7 +2,17 @@ Schemas = {};
 
 Meteor.isClient && Template.registerHelper("Schemas", Schemas);
 
-Schemas.SiteInfo = new SimpleSchema({
+Schemas.Site = new SimpleSchema({
+/*
+	EventDate:{
+		type:String,
+		autoform: {
+		  afFieldInput: {
+		    type: "bootstrap-datetimepicker"
+		  }
+		}
+}
+*/
 	GroupName:{
 		type: String, 
 		label: "Group name",
@@ -12,6 +22,14 @@ Schemas.SiteInfo = new SimpleSchema({
 		type: String, 
 		label:"Body of water name",
 		max:50
+},
+	Participants:{
+	type:Number, 
+	label:"Number of Participants"
+},
+	Duration:{
+		type:Number,
+		label:"Time spent sampling (in hours)"
 },
 	createdAt: {
 		type: Date,
@@ -36,48 +54,58 @@ Schemas.SiteInfo = new SimpleSchema({
 		  }
 		},
 		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
 }
+	
 });
 
-Schemas.Site = new SimpleSchema({
-  Group: {
-    type: String,
-    label: "Group name",
-    max: 50
-  },
-  GroupID: {
-    type: String,
-	max:50
-  },
-  SiteID: {
-    type: String,
-	max:50
-  },
-  Stream:{
-	type:String,
-	label:"Stream name",
-	max:50
-  },
-   Monitors:{
-	type:String, 
-	max:50
+Schemas.Monitors = new SimpleSchema({
+	Monitors:{
+		type: Array
 	},
-	Participants:{
-	type:Number, 
-	label:"Number of Participants"
-	},
-	EventDate:{
-	type:String,
-	autoform: {
-      afFieldInput: {
-        type: "bootstrap-datetimepicker"
-      }
-    }
-	},
-	Duration:{
-	type:Number,
-	label:"Time spent sampling in hours"
-	}
+	'Monitors.$':{
+		type:Object
+},
+	'Monitors.$.Name':{
+		type:String,
+		label:"Monitor/Probe/Sensor Name"
+},
+	'Monitors.$.Description':{
+		type:String,
+		max:50, 
+		optional:true
+},
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return new Date;
+		  } else if (this.isUpsert) {
+		    return {$setOnInsert: new Date};
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	ownerId:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return this.userId;
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
+}
 });
 
 Schemas.Weather  = new SimpleSchema({
@@ -100,237 +128,270 @@ Schemas.Weather  = new SimpleSchema({
   },
   rain: {
     type: Number,
-    label: "Amount in Inches",
+    label: "Amount (in inches)",
 	optional:true
   },
   duration: {
     type: Number,
-    label: "Over how many hours?",
+    label: "Duration (in hours)",
     optional:true
-  }
+  },
+	ambientTemperature:{
+		type:Number, 
+		label: "Ambient Temperature (in F)",
+		optional:true
+},
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return new Date;
+		  } else if (this.isUpsert) {
+		    return {$setOnInsert: new Date};
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	ownerId:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return this.userId;
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
+}
 });
 
-Schemas.Chemical  = new SimpleSchema({
-  ConductivityMeterCalibration: {
-    type: Object,
-	optional:true
+Schemas.Chemicals = new SimpleSchema({
+	Chemical:{
+		type: Array
 	},
-   'ConductivityMeterCalibration.date': {
-    type: String,
-	autoform: {
-      afFieldInput: {
-        type: "bootstrap-datetimepicker"
-      }
-	}
-  },
-	'ConductivityMeterCalibration.Standard':{
-	type:String,
-	label:"Standard Value"
+	'Chemical.$':{
+		type:Object
 },
-'ConductivityMeterCalibration.Initial':{
-	type:String,
-	label:"Initial Meter Reading"
-},
-'ConductivityMeterCalibration.Adjusted':{
-	type:String,
-	label:"Meter Adjusted to"
-},
-	Reagents:{
-	type:Object, 
-	optional: true
-	},
-	'Reagents.AnyReagentsExpired?':{
-	type:String,
-	autoform: {
-      afFieldInput: {
-        type: "boolean-radios"
-      }
+	'Chemical.$.Name':{
+		type:String,
+		autoform: {
+		  options: {
+		    Nitrogen: "Nitrogen",
+		    Nitrites: "Nitrites",
+		    Nitrates: "Nitrates",
+			Ammonia: "Ammonia",
+		    Phosphorous: "Phosphorous",
+		    Phosphates: "Phosphates",
+		    Alkalinity: "Alkalinity",
+			CarbonDioxide: "Carbon Dioxide",
+			DissolvedOxygen: "Dissolved Oxygen",
+			Salinity: "Salinity"
+		  }
     }
+},
+	'Chemical.$.Value':{
+		type:String,
+		max:50
+},
+	'Chemical.$.Unit':{
+		type:String,
+		max:10
+},
+//TODO: ADD Chemical.DATE
+	Instrument:{
+		type: Array,
+		optional:true
 	},
-	'Reagents.Expired':{
-	type:Array
-	},
-	'Reagents.Expired.$':{
-	type:String,
-	label:"List Expired Reagents"
-	},
+	'Instrument.$':{
+		type:Object
+},
+	'Instrument.$.Name':{
+		type:String,
+},
+	'Instrument.$.Technique':{
+		type:String,
+		max:500
+},
+	'Instrument.$.Calibration':{
+		type:String,
+		max:100
+},
+	'Instrument.$.Information':{
+		type:String,
+		label:"Additional Info",
+		max:100,
+		optional:true
+},
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return new Date;
+		  } else if (this.isUpsert) {
+		    return {$setOnInsert: new Date};
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	ownerId:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return this.userId;
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
+}
+});
 
-	CoreTests: {
-    type: Object,
-	optional:true
-	},
-   'CoreTests.AirTemp': {
+
+Schemas.Biologicals = new SimpleSchema({
+  data: {
+    type: Array,
+  },
+  'data.$': {
     type: Object
   },
-	 'CoreTests.AirTemp.Tests':{
-	type:Array
-	},
-	 'CoreTests.AirTemp.Tests.$':{
-	type:Number,
-	decimal:true
-	},
-	 'CoreTests.AirTemp.units':{
-	type:String,
-	defaultValue:"C"
-	},
- 'CoreTests.WaterTemp': {
-    type: Object
-  },
-	 'CoreTests.WaterTemp.Tests':{
-	type:Array
-	},
-	 'CoreTests.WaterTemp.Tests.$':{
-	type:Number,
-	decimal:true
-	},
-	 'CoreTests.WaterTemp.units':{
-	type:String,
-	defaultValue:"C"
-	},
-'CoreTests.pH': {
-    type: Object
-  },
-	 'CoreTests.pH.Tests':{
-	type:Array
-	},
-	 'CoreTests.pH.Tests.$':{
-	type:Number,
-	decimal:true,
-	label:"+/-0.25"
-	},
-	 'CoreTests.pH.units':{
-	type:String,
-	defaultValue:"Standard units"
-	},
-'CoreTests.DissolvedOxygen': {
-    type: Object
-  },
-	 'CoreTests.DissolvedOxygen.Tests':{
-	type:Array
-	},
-	 'CoreTests.DissolvedOxygen.Tests.$':{
-	type:Number,
-	decimal:true,
-	label:"+/-0.6"
-	},
-	 'CoreTests.DissolvedOxygen.units':{
-	type:String,
+	'data.$.organism': {
+    type: String,
 	autoform: {
       type: "select",
       options: function () {
         return [
-          {label: "mg/L", value: "mg/L"},
-          {label: "ppm", value: "ppm"}
+		  {label: "Fecal Coliform", value: "Fecal Coliform"},
+		  {label: "Bacteria (not Fecal Coliform)", value: "Bacteria"},
+		  {label: "Algae", value: "Algae"},
+          {label: "Blue Green Algae", value: "Blue Green Algae"},
+		  {label: "Phytoplankton", value: "Phytoplankton"},
+          {label: "Zooplankton", value: "Zooplankton"},		  
+		  {label: "Plants", value: "Plants"},
+          {label: "Inverts", value: "Inverts"},
+		  {label: "Fish", value: "Fish"},
+          {label: "Amphibians", value: "Amphibians"},
+		  {label: "Reptiles", value: "Reptiles"},
+          {label: "Birds", value: "Birds"},
+		  {label: "Mammals", value: "Mammals"}
         ];
       }
     }
-	},
-'CoreTests.Conductivity': {
+  },
+  'data.$.value': {
+    type: String
+  },
+  'data.$.units': {
+    type: String,
+	optional: true
+  },//TODO: DATE
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return new Date;
+		  } else if (this.isUpsert) {
+		    return {$setOnInsert: new Date};
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	ownerId:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return this.userId;
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
+}
+});
+
+
+Schemas.Physical = new SimpleSchema({
+  data: {
+    type: Array,
+  },
+  'data.$': {
     type: Object
   },
-	 'CoreTests.Conductivity.Tests':{
-	type:Array
-	},
-	 'CoreTests.Conductivity.Tests.$':{
-	type:Number
-	},
-	 'CoreTests.Conductivity.units':{
-	type:String,
-	defaultValue:"uS/cm"
-	},
-OtherTests: {
-    type: Array,
-	optional:true
+	'data.$.attribute': {
+    type: String,
+	autoform: {
+      type: "select",
+      options: function () {
+        return [
+		  {label: "Temperature", value: "Temperature"},
+          {label: "Clarity", value: "Clarity"},
+		  {label: "Flow", value: "Flow"},
+          {label: "Turbidity", value: "Turbidity"},
+		  {label: "Conductivity", value: "Conductivity"}
+        ];
+      }
+    }
   },
-'OtherTests.$':{
-	type:Object
+  'data.$.value': {
+    type: String
+  },
+  'data.$.units': {
+    type: String,
+	optional: true
+  },//TODO: DATE
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return new Date;
+		  } else if (this.isUpsert) {
+		    return {$setOnInsert: new Date};
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
 },
-	'OtherTests.$.Name':{
-	type:String
-	},
-	 'OtherTests.$.Tests':{
-	type:Array
-	},
-	 'OtherTests.$.Tests.$':{
-	type:Number,
-	decimal:true
-	},
-	 'OtherTests.$.units':{
-	type:String
-	}
-
+	ownerId:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return this.userId;
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
+}
 });
-
-Schemas.Bacterial  = new SimpleSchema({
-	 Plates:{
-		type:Array,
-		label:"# of Colonies on each plate (including one blank plate)"
-	},
-	'Plates.$':{
-		type:Number,
-		label:"Colonies"
-	},
-	AverageColonies:{
-		type:Object
-	},
-	'AverageColonies.value':{
-		type:Number,
-		decimal:true
-	},
-	'AverageColonies.units':{
-		type:String,
-		defaultValue:"cfu/100mL"
-	},
-	HoldingTime:{
-	type:Object
-	},
-	'HoldingTime.Total':{
-	type:Number, 
-	decimal:true,
-	label:"Total (in hours)"
-	},
-	'HoldingTime.Start':{
-	type: String,
-	optional: true,
-	autoform: {
-      afFieldInput: {
-        type: "bootstrap-datetimepicker"
-      }
-	}
-	},
-	'HoldingTime.Stop':{
-	type: String,
-	optional: true,
-	autoform: {
-      afFieldInput: {
-        type: "bootstrap-datetimepicker"
-      }
-	}
-	},
-	Temp:{
-	type:Object
-	},
-	'Temp.min':{
-	type:Number,
-	decimal:true
-	},
-	'Temp.max':{
-	type:Number,
-	decimal:true
-	},
-	'Temp.Units':{
-	type:String,
-	defaultValue:"C"
-	}
-});
-
 
 Schemas.WaterObservations = new SimpleSchema({
    FlowOrWaterLevel: {
     type: [String],
 	optional:true,
     autoform: {
-    type: "select-checkbox",
+    type: "select",
       options: function () {
         return [
           {label: "Dry", value: "Dry"},
@@ -347,7 +408,7 @@ Clarity: {
     type: [String],
 	optional:true,
     autoform: {
-    type: "select-checkbox",
+    type: "select",
       options: function () {
         return [
           {label: "Clear/Transparent", value: "Clear/Transparent"},
@@ -380,15 +441,13 @@ Surface: {
     type: [String],
 	optional:true,
     autoform: {
-    type: "select-checkbox",
+    type: "select",
       options: function () {
         return [
           {label: "Clear", value: "Clear"},
           {label: "Oily Sheen", value: "Oily Sheen"},
           {label: "Algae", value: "Algae"},
-          {label: "Foam", value: "Foam"},
-          {label: "Greater than 3\" high", value: "Greater than 3\" high"},
-          {label: "Pure White", value: "Pure White"}
+          {label: "Foam", value: "Foam"}
 		//other
         ];
       }
@@ -398,7 +457,7 @@ Odor: {
     type: [String],
 	optional:true,
     autoform: {
-    type: "select-checkbox",
+    type: "select",
       options: function () {
         return [
           {label: "Natural/None", value: "Natural/None"},
@@ -425,110 +484,35 @@ Trash: {
         ];
       }
     }
-  }
-});
-
-Schemas.WaterObservations = new SimpleSchema({
-   FlowOrWaterLevel: {
-    type: [String],
-	optional:true,
-    autoform: {
-    type: "select-checkbox",
-      options: function () {
-        return [
-          {label: "Dry", value: "Dry"},
-          {label: "Stagnant/Still", value: "Stagnant/Still"},
-          {label: "Low", value: "Low"},
-          {label: "Normal", value: "Normal"},
-          {label: "High", value: "High"},
-          {label: "Flood", value: "Flood"}
-        ];
-      }
-    }
   },
-Clarity: {
-    type: [String],
-	optional:true,
-    autoform: {
-    type: "select-checkbox",
-      options: function () {
-        return [
-          {label: "Clear/Transparent", value: "Clear/Transparent"},
-          {label: "Cloudy/Somewhat Turbid", value: "Cloudy/Somewhat Turbid"},
-          {label: "Opaque/Turbid", value: "Opaque/Turbid"}
-			//other
-        ];
-      }
-    }
-  },
-
-Color: {
-    type: String,
-	optional:true,
-    autoform: {
-    type: "select",
-      options: function () {
-        return [
-          {label: "No Color", value: "No Color"},
-          {label: "Brown/Muddy", value: "Brown/Muddy"},
-          {label: "Green", value: "Green"},
-          {label: "Milky/White", value: "Milky/White"},
-          {label: "Tannic", value: "Tannic"}
-			//other			
-        ];
-      }
-    }
-  },
-Surface: {
-    type: [String],
-	optional:true,
-    autoform: {
-    type: "select-checkbox",
-      options: function () {
-        return [
-          {label: "Clear", value: "Clear"},
-          {label: "Oily Sheen", value: "Oily Sheen"},
-          {label: "Algae", value: "Algae"},
-          {label: "Foam", value: "Foam"},
-          {label: "Greater than 3\" high", value: "Greater than 3\" high"},
-          {label: "Pure White", value: "Pure White"}
-		//other
-        ];
-      }
-    }
-  },
-Odor: {
-    type: [String],
-	optional:true,
-    autoform: {
-    type: "select-checkbox",
-      options: function () {
-        return [
-          {label: "Natural/None", value: "Natural/None"},
-          {label: "Gasoline", value: "Gasoline"},
-          {label: "Sewage", value: "Sewage"},
-          {label: "Rotten Egg", value: "Rotten Egg"},
-          {label: "Fishy", value: "Fishy"},
-          {label: "Chlorine", value: "Chlorine"}
-		//other
-        ];
-      }
-    }
-  },
-Trash: {
-    type: String,
-	optional:true,
-    autoform: {
-    type: "select",
-      options: function () {
-        return [
-          {label: "None", value: "None"},
-          {label: "Yes, I did a cleanup", value: "Yes, I did a cleanup"},
-          {label: "This site needs an organized cleanup", value: "This site needs an organized cleanup"}
-        ];
-      }
-    }
-  }
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return new Date;
+		  } else if (this.isUpsert) {
+		    return {$setOnInsert: new Date};
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	ownerId:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return this.userId;
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
+}
 });
 
 Schemas.Projects = new SimpleSchema({
@@ -820,46 +804,6 @@ Schemas.Nutrients = new SimpleSchema({
   }
 });
 
-Schemas.Physical = new SimpleSchema({
-  title: {
-    type: String,
-    label: "Physical",
-	autoform: {
-      type: "select",
-      options: function () {
-        return [
-		  {label: "Temperature", value: "Temperature"},
-          {label: "Clarity", value: "Clarity"},
-		  {label: "Flow", value: "Flow"},
-          {label: "Area", value: "Area"},
-		  {label: "Depth", value: "Depth"}
-        ];
-      }
-    }
-  },
-  data: {
-    type: Array,
-  },
-  'data.$': {
-    type: Object
-  },
-  'data.$.value': {
-    type: String
-  },
-  'data.$.units': {
-    type: String,
-	optional: true
-  },
-  'data.$.date': {
-    type: String,
-	optional: true,
-	autoform: {
-      afFieldInput: {
-        type: "bootstrap-datetimepicker"
-      }
-	}
-  }
-});
 
 Schemas.Contaminants = new SimpleSchema({
   title: {
@@ -901,55 +845,6 @@ Schemas.Contaminants = new SimpleSchema({
 	}
   }
 });
-
-Schemas.Biological = new SimpleSchema({
-  title: {
-    type: String,
-    label: "Biological",
-	autoform: {
-      type: "select",
-      options: function () {
-        return [
-		  {label: "Bacteria", value: "Bacteria"},
-          {label: "Blue Green Algae", value: "Blue Green Algae"},
-		  {label: "Phytoplankton", value: "Phytoplankton"},
-          {label: "Zooplankton", value: "Zooplankton"},
-		  {label: "Algae", value: "Algae"},
-		  {label: "Plants", value: "Plants"},
-          {label: "Inverts", value: "Inverts"},
-		  {label: "Fish", value: "Fish"},
-          {label: "Amphibians", value: "Amphibians"},
-		  {label: "Reptiles", value: "Reptiles"},
-          {label: "Birds", value: "Birds"},
-		  {label: "Mammals", value: "Mammals"}
-        ];
-      }
-    }
-  },
-  data: {
-    type: Array,
-  },
-  'data.$': {
-    type: Object
-  },
-  'data.$.value': {
-    type: String
-  },
-  'data.$.units': {
-    type: String,
-	optional: true
-  },
-  'data.$.date': {
-    type: String,
-	optional: true,
-	autoform: {
-      afFieldInput: {
-        type: "bootstrap-datetimepicker"
-      }
-	}
-  }
-});
-
 
 Schemas.Custom = new SimpleSchema({
   title: {
@@ -1066,3 +961,260 @@ Schemas.firstdraft = new SimpleSchema({
 	}
   }
 });
+
+
+Schemas.LesChemicals  = new SimpleSchema({
+  ConductivityMeterCalibration: {
+    type: Object,
+	optional:true
+	},
+   'ConductivityMeterCalibration.date': {
+    type: String,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+	}
+  },
+	'ConductivityMeterCalibration.Standard':{
+	type:String,
+	label:"Standard Value"
+},
+'ConductivityMeterCalibration.Initial':{
+	type:String,
+	label:"Initial Meter Reading"
+},
+'ConductivityMeterCalibration.Adjusted':{
+	type:String,
+	label:"Meter Adjusted to"
+},
+	Reagents:{
+	type:Object, 
+	optional: true
+	},
+	'Reagents.AnyReagentsExpired?':{
+	type:String,
+	autoform: {
+      afFieldInput: {
+        type: "boolean-radios"
+      }
+    }
+	},
+	'Reagents.Expired':{
+	type:Array
+	},
+	'Reagents.Expired.$':{
+	type:String,
+	label:"List Expired Reagents"
+	},
+
+	CoreTests: {
+    type: Object,
+	optional:true
+	},
+   'CoreTests.AirTemp': {
+    type: Object
+  },
+	 'CoreTests.AirTemp.Tests':{
+	type:Array
+	},
+	 'CoreTests.AirTemp.Tests.$':{
+	type:Number,
+	decimal:true
+	},
+	 'CoreTests.AirTemp.units':{
+	type:String,
+	defaultValue:"C"
+	},
+ 'CoreTests.WaterTemp': {
+    type: Object
+  },
+	 'CoreTests.WaterTemp.Tests':{
+	type:Array
+	},
+	 'CoreTests.WaterTemp.Tests.$':{
+	type:Number,
+	decimal:true
+	},
+	 'CoreTests.WaterTemp.units':{
+	type:String,
+	defaultValue:"C"
+	},
+'CoreTests.pH': {
+    type: Object
+  },
+	 'CoreTests.pH.Tests':{
+	type:Array
+	},
+	 'CoreTests.pH.Tests.$':{
+	type:Number,
+	decimal:true,
+	label:"+/-0.25"
+	},
+	 'CoreTests.pH.units':{
+	type:String,
+	defaultValue:"Standard units"
+	},
+'CoreTests.DissolvedOxygen': {
+    type: Object
+  },
+	 'CoreTests.DissolvedOxygen.Tests':{
+	type:Array
+	},
+	 'CoreTests.DissolvedOxygen.Tests.$':{
+	type:Number,
+	decimal:true,
+	label:"+/-0.6"
+	},
+	 'CoreTests.DissolvedOxygen.units':{
+	type:String,
+	autoform: {
+      type: "select",
+      options: function () {
+        return [
+          {label: "mg/L", value: "mg/L"},
+          {label: "ppm", value: "ppm"}
+        ];
+      }
+    }
+	},
+'CoreTests.Conductivity': {
+    type: Object
+  },
+	 'CoreTests.Conductivity.Tests':{
+	type:Array
+	},
+	 'CoreTests.Conductivity.Tests.$':{
+	type:Number
+	},
+	 'CoreTests.Conductivity.units':{
+	type:String,
+	defaultValue:"uS/cm"
+	},
+OtherTests: {
+    type: Array,
+	optional:true
+  },
+'OtherTests.$':{
+	type:Object
+},
+	'OtherTests.$.Name':{
+	type:String
+	},
+	 'OtherTests.$.Tests':{
+	type:Array
+	},
+	 'OtherTests.$.Tests.$':{
+	type:Number,
+	decimal:true
+	},
+	 'OtherTests.$.units':{
+	type:String
+	}
+
+});
+
+Schemas.LeSite = new SimpleSchema({
+  Group: {
+    type: String,
+    label: "Group name",
+    max: 50
+  },
+  GroupID: {
+    type: String,
+	max:50
+  },
+  SiteID: {
+    type: String,
+	max:50
+  },
+  Stream:{
+	type:String,
+	label:"Stream name",
+	max:50
+  },
+   Monitors:{
+	type:String, 
+	max:50
+	},
+	Participants:{
+	type:Number, 
+	label:"Number of Participants"
+	},
+	EventDate:{
+	type:String,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+    }
+	},
+	Duration:{
+	type:Number,
+	label:"Time spent sampling in hours"
+	}
+});
+
+Schemas.Bacterial  = new SimpleSchema({
+	 Plates:{
+		type:Array,
+		label:"# of Colonies on each plate (including one blank plate)"
+	},
+	'Plates.$':{
+		type:Number,
+		label:"Colonies"
+	},
+	AverageColonies:{
+		type:Object
+	},
+	'AverageColonies.value':{
+		type:Number,
+		decimal:true
+	},
+	'AverageColonies.units':{
+		type:String,
+		defaultValue:"cfu/100mL"
+	},
+	HoldingTime:{
+	type:Object
+	},
+	'HoldingTime.Total':{
+	type:Number, 
+	decimal:true,
+	label:"Total (in hours)"
+	},
+	'HoldingTime.Start':{
+	type: String,
+	optional: true,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+	}
+	},
+	'HoldingTime.Stop':{
+	type: String,
+	optional: true,
+	autoform: {
+      afFieldInput: {
+        type: "bootstrap-datetimepicker"
+      }
+	}
+	},
+	Temp:{
+	type:Object
+	},
+	'Temp.min':{
+	type:Number,
+	decimal:true
+	},
+	'Temp.max':{
+	type:Number,
+	decimal:true
+	},
+	'Temp.Units':{
+	type:String,
+	defaultValue:"C"
+	}
+});
+
