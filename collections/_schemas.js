@@ -191,7 +191,11 @@ Schemas.Chemicals = new SimpleSchema({
 		    Alkalinity: "Alkalinity",
 			CarbonDioxide: "Carbon Dioxide",
 			DissolvedOxygen: "Dissolved Oxygen",
-			Salinity: "Salinity"
+			BiologicalOxygenDemand: "Biological Oxygen Demand",
+			Salinity: "Salinity",
+			ChlorophyllA: "Chlorophyll A",
+			pH: "pH",
+			Conductivity: "Conductivity"
 		  }
     }
 },
@@ -204,25 +208,25 @@ Schemas.Chemicals = new SimpleSchema({
 		max:10
 },
 //TODO: ADD Chemical.DATE
-	Instrument:{
+	SampleMetadata:{
 		type: Array,
 		optional:true
 	},
-	'Instrument.$':{
+	'SampleMetadata.$':{
 		type:Object
 },
-	'Instrument.$.Name':{
+	'SampleMetadata.$.Instrument':{
 		type:String,
 },
-	'Instrument.$.Technique':{
+	'SampleMetadata.$.Technique':{
 		type:String,
 		max:500
 },
-	'Instrument.$.Calibration':{
+	'SampleMetadata.$.Calibration':{
 		type:String,
 		max:100
 },
-	'Instrument.$.Information':{
+	'SampleMetadata.$.Information':{
 		type:String,
 		label:"Additional Info",
 		max:100,
@@ -272,14 +276,14 @@ Schemas.Biologicals = new SimpleSchema({
       type: "select",
       options: function () {
         return [
-		  {label: "Fecal Coliform", value: "Fecal Coliform"},
-		  {label: "Bacteria (not Fecal Coliform)", value: "Bacteria"},
-		  {label: "Algae", value: "Algae"},
-          {label: "Blue Green Algae", value: "Blue Green Algae"},
+		  {label: "Fecal coliform Bacteria", value: "Fecal coliform Bacteria"},
+		  {label: "Non-fecal coliform bacteria", value: "Non-fecal coliform bacteria"},
 		  {label: "Phytoplankton", value: "Phytoplankton"},
           {label: "Zooplankton", value: "Zooplankton"},		  
+		  {label: "Algae", value: "Algae"},
+          {label: "Blue Green Algae", value: "Blue Green Algae"},
 		  {label: "Plants", value: "Plants"},
-          {label: "Inverts", value: "Inverts"},
+          {label: "Invertebrates", value: "Invertebrates"},
 		  {label: "Fish", value: "Fish"},
           {label: "Amphibians", value: "Amphibians"},
 		  {label: "Reptiles", value: "Reptiles"},
@@ -295,26 +299,27 @@ Schemas.Biologicals = new SimpleSchema({
   'data.$.units': {
     type: String,
 	optional: true
-  },//TODO: DATE
-	Instrument:{
+  },
+//TODO: ADD Chemical.DATE
+	SampleMetadata:{
 		type: Array,
 		optional:true
 	},
-	'Instrument.$':{
+	'SampleMetadata.$':{
 		type:Object
 },
-	'Instrument.$.Name':{
+	'SampleMetadata.$.Instrument':{
 		type:String,
 },
-	'Instrument.$.Technique':{
+	'SampleMetadata.$.Technique':{
 		type:String,
 		max:500
 },
-	'Instrument.$.Calibration':{
+	'SampleMetadata.$.Calibration':{
 		type:String,
 		max:100
 },
-	'Instrument.$.Information':{
+	'SampleMetadata.$.Information':{
 		type:String,
 		label:"Additional Info",
 		max:100,
@@ -368,7 +373,10 @@ Schemas.Physical = new SimpleSchema({
           {label: "Clarity", value: "Clarity"},
 		  {label: "Flow", value: "Flow"},
           {label: "Turbidity", value: "Turbidity"},
-		  {label: "Conductivity", value: "Conductivity"}
+		  {label: "Conductivity", value: "Conductivity"},
+		  {label: "Depth", value: "Depth"},
+		  {label: "Area", value: "Area"},
+		  {label: "Total Suspended Solids", value: "Total Suspended Solids"}
         ];
       }
     }
@@ -379,26 +387,27 @@ Schemas.Physical = new SimpleSchema({
   'data.$.units': {
     type: String,
 	optional: true
-  },//TODO: DATE
-	Instrument:{
+  },
+//TODO: ADD Chemical.DATE
+	SampleMetadata:{
 		type: Array,
 		optional:true
 	},
-	'Instrument.$':{
+	'SampleMetadata.$':{
 		type:Object
 },
-	'Instrument.$.Name':{
+	'SampleMetadata.$.Instrument':{
 		type:String,
 },
-	'Instrument.$.Technique':{
+	'SampleMetadata.$.Technique':{
 		type:String,
 		max:500
 },
-	'Instrument.$.Calibration':{
+	'SampleMetadata.$.Calibration':{
 		type:String,
 		max:100
 },
-	'Instrument.$.Information':{
+	'SampleMetadata.$.Information':{
 		type:String,
 		label:"Additional Info",
 		max:100,

@@ -34,4 +34,6 @@ Meteor.publish("images", function() {
 Meteor.publish("files", function() {
   return Collections.Files.find();
 });
-
+Meteor.publish("sites", function() {
+    return Sites.find({});
+});

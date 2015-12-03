@@ -204,25 +204,25 @@ Schemas.Chemicals = new SimpleSchema({
 		max:10
 },
 //TODO: ADD Chemical.DATE
-	Instrument:{
+	SampleMetadata:{
 		type: Array,
 		optional:true
 	},
-	'Instrument.$':{
+	'SampleMetadata.$':{
 		type:Object
 },
-	'Instrument.$.Name':{
+	'SampleMetadata.$.Instrument':{
 		type:String,
 },
-	'Instrument.$.Technique':{
+	'SampleMetadata.$.Technique':{
 		type:String,
 		max:500
 },
-	'Instrument.$.Calibration':{
+	'SampleMetadata.$.Calibration':{
 		type:String,
 		max:100
 },
-	'Instrument.$.Information':{
+	'SampleMetadata.$.Information':{
 		type:String,
 		label:"Additional Info",
 		max:100,
@@ -295,7 +295,32 @@ Schemas.Biologicals = new SimpleSchema({
   'data.$.units': {
     type: String,
 	optional: true
-  },//TODO: DATE
+  },
+//TODO: ADD Chemical.DATE
+	SampleMetadata:{
+		type: Array,
+		optional:true
+	},
+	'SampleMetadata.$':{
+		type:Object
+},
+	'SampleMetadata.$.Instrument':{
+		type:String,
+},
+	'SampleMetadata.$.Technique':{
+		type:String,
+		max:500
+},
+	'SampleMetadata.$.Calibration':{
+		type:String,
+		max:100
+},
+	'SampleMetadata.$.Information':{
+		type:String,
+		label:"Additional Info",
+		max:100,
+		optional:true
+},
 	createdAt: {
 		type: Date,
 		autoValue: function() {
@@ -344,7 +369,10 @@ Schemas.Physical = new SimpleSchema({
           {label: "Clarity", value: "Clarity"},
 		  {label: "Flow", value: "Flow"},
           {label: "Turbidity", value: "Turbidity"},
-		  {label: "Conductivity", value: "Conductivity"}
+		  {label: "Conductivity", value: "Conductivity"},
+		  {label: "Depth", value: "Depth"},
+		  {label: "Area", value: "Area"},
+		  {label: "Total Suspended Solids", value: "Total Suspended Solids"}
         ];
       }
     }
@@ -355,7 +383,32 @@ Schemas.Physical = new SimpleSchema({
   'data.$.units': {
     type: String,
 	optional: true
-  },//TODO: DATE
+  },
+//TODO: ADD Chemical.DATE
+	SampleMetadata:{
+		type: Array,
+		optional:true
+	},
+	'SampleMetadata.$':{
+		type:Object
+},
+	'SampleMetadata.$.Instrument':{
+		type:String,
+},
+	'SampleMetadata.$.Technique':{
+		type:String,
+		max:500
+},
+	'SampleMetadata.$.Calibration':{
+		type:String,
+		max:100
+},
+	'SampleMetadata.$.Information':{
+		type:String,
+		label:"Additional Info",
+		max:100,
+		optional:true
+},
 	createdAt: {
 		type: Date,
 		autoValue: function() {

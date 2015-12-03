@@ -63,12 +63,12 @@ this.route('mailingList', {
   this.route('searchf', {
     path: '/searchf'
   });
- this.route('images', {
+this.route('images', {
     path: '/images',
 	waitOn: function() { Meteor.subscribe('images');},
 	
   });
- this.route('viewImages', {
+this.route('viewImages', {
     path: '/viewImages',
 	waitOn: function() { Meteor.subscribe('images');},
 	

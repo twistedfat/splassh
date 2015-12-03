@@ -1,7 +1,7 @@
 <template name="viewData">
 	<div class="container">
 		<h2>View Datasets</h2>
-		{{#each siteInfoDatasets}}
+		{{#each sites}}
 			{{> siteInfo}}
 		{{/each}}
 	</div>
