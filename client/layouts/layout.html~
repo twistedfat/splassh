@@ -24,3 +24,13 @@
 <template name="none">
   {{> yield}}
 </template>
+
+<template name="projectLayout">
+  {{> yield region='navbar'}}
+  <div class="main">
+    {{> yield region = 'projspace1'}}
+    {{> yield region = 'projspace2'}}
+    {{> yield region = 'projspace3'}}
+  </div>
+  {{> yield region='footer'}}
+</template>
