@@ -10,15 +10,20 @@
             <div class="modal-body">
               <form role="form" class="form-addwaterproject">
                 <input id="project-title" type="text" autofocus="" required placeholder="water project name" class="form-control input-lg"><br/>
-                <div class="input-group">
-                <input id="project-coordinates" type="text" class="form-control input-lg" required placeholder="Latitude, Longitude (e.g. 34.1, 84.5)">
-                <span class="input-group-btn">
-                  <button id="geolocate-button" class="btn btn-default btn-lg" data-toggle="tooltip" title="Click to autofill location." type="button"><span class="glyphicon glyphicon-map-marker"> </span></button>
-                </span>
-                </div><!-- /input-group --><br/>
                 <textarea id="project-description" required placeholder="description" class="form-control input-lg"></textarea><br/>
+				
+				<div class="input-group">
+					  <span class="input-group-btn">
+						<button id="map-button" class="btn btn-default btn-lg" data-toggle="tooltip" title="Click to choose location on the map" type="button"><span class="glyphicon glyphicon-globe"></span></button>
+                	</span>
+		            <input id="project-coordinates" type="text" class="form-control input-lg" required placeholder="Latitude, Longitude (e.g. 34.1, 84.5)">
+					<span class="input-group-btn">
+		            	<button id="geolocate-button" class="btn btn-default btn-lg" data-toggle="tooltip" title="Click to use current location." type="button"><span class="glyphicon glyphicon-map-marker"> </span></button>
+					</span>
+                </div><!-- /input-group --><br/>
+               
+				{{>loadBodies}}
                 {{> loadTags}}
-		{{>loadBodies}}
                 <button type="submit" class="btn btn-default btn-lg btn-block">submit</button>
               </form>
             </div>
@@ -29,7 +34,7 @@
 
 <template name="loadTags">
   <select id="project-category" class="form-control input-lg" placeholder="Select tag">
-  <option value="Select Tag">Which category?</option>
+  <option value="Select Tag">Add Tag(s)</option>
   {{#each tags}}
     <option value="{{name}}">{{name}}</option>
   {{/each}}
@@ -38,7 +43,7 @@
 
 <template name="loadBodies">
   <select id="project-water" class="form-control input-lg" placeholder="Select tag">
-  <option value="Select Tag">Which type of body of water?</option>
+  <option value="Select Tag">Select body of water</option>
   {{#each bodies}}
     <option value="{{name}}">{{name}}</option>
   {{/each}}

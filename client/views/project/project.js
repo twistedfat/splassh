@@ -1,6 +1,6 @@
 Template.project.helpers({
    comments: function() {
-       return Comments.find({projectId: this._id}, {sort: {posted: -1}});
+       return Comments.find({projectId: this._id}, {sort: {posted: 1}});
    },
     follows : function(){
         return Follows.find({$and: [{'userId' : Meteor.user()._id}, {projectId: this._id }] }, { sort : { 'posted' : -1 }});
@@ -18,7 +18,7 @@ Template.project.helpers({
        return Datasets.find({projectId: this._id, type:"image"});
    },
   isProjectAuthor: function(){
-	return ( this.authors.indexOf(SPLASSH.userName(Meteor.user()))>-1 || this.owner === SPLASSH.userName(Meteor.user()) );
+	return this.authors.indexOf(SPLASSH.userName(Meteor.user()))>-1 ;
    },
 maintag : function() {
   return (typeof this.tags !== 'undefined') ? this.tags[0] : 'none';
@@ -36,9 +36,30 @@ posted_timeago : function() {
 setSessionProjectId: function(){
 	Session.set('projectId',this._id);
     return Session.get('projectId');
+},
+	noCover: function(){
+	return this.cover == "no";
+},
+	coverImage:function(){
+	return Collections.Images.find({_id:this.cover});
 }
 });
 
+
+Template.allProjects.helpers({
+	projects : function() {
+  return Projects.find({},{ sort: { date_created: -1 }});
+},
+	latestProjects : function() {
+	return Projects.find({},{sort: { modified: -1}})
+},
+	PollutionProjects: function() {
+	return Projects.find({tags: "Pollution & Public Health"},{sort: { date_created: -1}})
+},
+	FishKillsProjects: function() {
+	return Projects.find({tags: "Fish Kills, Algae Blooms, & Dead Zones"},{sort: { date_created: -1}})
+},
+});
 
 Template.projectsByTag.helpers({
   mainTag : function() {
@@ -99,7 +120,39 @@ Template.project.rendered = function() {
   $('#project .primary-tag').tooltip();
 }
 
+var coverHandler = function(event, template) {
+    
+	var coverId = "no";
+	FS.Utility.eachFile(event, function(file) {
+      var newFile = new FS.File(file);
+      newFile.metadata = {
+		ownerId: Meteor.userId(),
+		projectId: Session.get('currentProjectId')
+		};	
+	  
+      cover = Collections.Images.insert(newFile, function (err, fileObj) {
+        //If !err, we have inserted new doc with ID fileObj._id, and
+        //kicked off the data upload using HTTP
+		 if(!err){
+			console.log("Inserted",cover);
+		}
+      });
+		//remove the following line and replace with error handling in case cover is bad data ^
+	  coverId = cover._id;
+
+	  console.log("coverId",cover._id);
+	  Session.set('coverId', cover._id);
+    });
+
+	setCover(coverId,this);
+	console.log("coverId1",coverId);
+
+  };
+
 Template.project.events({
+  'dropped .imageArea':coverHandler,
+    'dropped .imageDropArea': coverHandler,
+    'change input.images': coverHandler,
 
   'click': function () {
         Session.set('selected', this._id);
@@ -129,7 +182,7 @@ Template.project.events({
         };
 
         //Add comment will automatically set comment.posted to the current time.
-       addComment(comment, this);
+       addComment(comment, this._id);
         
         // clear input field
         $('#project-comment').val(function() {

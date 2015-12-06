@@ -37,3 +37,7 @@ Meteor.publish("files", function() {
 Meteor.publish("sites", function() {
     return Sites.find({});
 });
+
+Meteor.publish('notifications', function() {
+return Notifications.find({userId: this.userId});
+});

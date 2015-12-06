@@ -1,0 +1,93 @@
+<template name="home">
+<div class="jumbotron">
+    <div class="container intro">
+        <h1>What is SPLASSH?</h1>
+        <p>SPLASSH is about protecting our most important natural resource - Water. 
+        <!--We invite you to participate by clicking here &#8594; <a class="map" href='/map'>map</a--></p>
+        <br/>
+        <a class="btn btn-primary btn-lg" href="/projectList">Browse the Projects</a>&nbsp;
+        <a class="btn btn-primary btn-lg" href="/map"><span class="glyphicon glyphicon-globe"> </span> Live Map</a>&nbsp;
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addWaterProjectModal"><span class="glyphicon glyphicon-plus"> </span> Add Project</button><br/>
+       <a class="btn btn-primary btn-lg" href="/donate" ><span class="glyphicon glyphicon-gift"> </span> Help support SPLASSH!</a>&nbsp;
+    </div>
+</div>
+
+    <div class="howitworks">
+      <div class="container">
+      <h2>How it Works</h2>
+        <div class="row">
+          <div class="col-md-4 step" align="center">
+            <div class="circle">
+              <div>1</div>
+            </div><br/>
+            <p class="lead text-muted">Students, citizen scientists, and researchers post their water project to increase public awareness</p>
+          </div>
+          <div class="col-md-4 step" align="center">
+            <div class="circle">
+              <div>2</div>
+            </div>
+            <br/>
+            <p class="lead text-muted">People can browse, comment, and discuss the shared water projects</p>
+          </div>
+          <div class="col-md-4 step" align="center">
+            <div class="circle">
+              <div>3</div>
+            </div>
+            <br/>
+            <p class="lead text-muted">People can track, monitor, and subscribe to receive updates for water projects</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#addWaterProjectModal"><span class="glyphicon glyphicon-plus"> </span> Add Water Project</button><br/>
+    </div>
+    <hr/>
+    {{> theripple}}
+    
+    <div class="quotes">
+
+        <div class="container">
+        <h2>What People are Saying</h2><br/>
+<div class ="row">
+<blockquote>
+          <p>"Twenty years ago, my husband and I founded the Chattahoochee Riverkeeper out of a great love for the river, which sustains people and wildlife. And engaging children as environmental stewards has been the foundation of my work as chairperson of Captain Planet Foundation. So Dr. Lisa Adams' SPLASSH program is of great interest to me because it combines two areas about which I am passionately concerned. SPLASSH is a great tool for watershed stewardship and provides the opportunity for volunteer groups and classes to create their own citizen science projects or contribute data to scientific research. It is so empowering for kids to do authentic science and to be part of an effort that is larger than themselves. We all can do so much individually, but together we can even achieve more. That’s one of Captain lanet’s slogans: 'Let our powers combine.' "
+</p>
+          <footer><cite title="Laura Turner Seydel"><strong>Laura Turner Seydel</strong>, Chairperson, Captain Planet Foundation & Co-Founder, Chattahoochee Riverkeeper</cite></footer>
+        </blockquote>
+	</div>
+        <div class="row">
+        <div class="col-md-6">
+        <blockquote>
+          <p>"Leveraging social networks to connect people and their efforts to work on water sustainability projects together is important to shaping our water future. After all, we're all connected by water and downstream from one another. I'm excited that Lisa Adams and SPLASSH are engaging youth on this."</p>
+          <footer><cite title="Alexandra Cousteau"><strong>Alexandra Cousteau</strong>, Founder and President, Blue Legacy International, Washington, DC</cite></footer>
+        </blockquote>
+        </div>
+        <div class="col-md-6">
+        <blockquote class="blockquote">
+          <p>"Valuable water information is often hidden in nooks and crannies in the web or beyond reach in a file cabinet. SPLASSH provides a simple yet powerful tool that frees up that water information so it can be shared, discussed, and leveraged, empowering us to create a more sustainable water future."</p>
+          <footer><cite title="Don McEnhill"><strong>Don McEnhill</strong>, Executive Director, Russian Riverkeeper, Healdsburg, CA</cite></footer>
+        </blockquote>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="stats">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 stat">
+                    <h1>{{usercount}} </h1><span> People</span>
+                 </div>
+                 <div class="col-md-4 stat">
+                    <h1>{{projectcount}}</h1><span> Projects</span>
+                 </div>
+               
+                 <div class="col-md-4 stat">
+                    <h1>{{commentcount}}</h1><span> Discussions</span>
+                 </div>
+            </div> 
+        </div>
+  </div>
+  
+   <!-- {{> inthenews}} -->
+
+</template>

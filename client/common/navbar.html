@@ -37,8 +37,11 @@
         {{/if}}
 <li><a href="/viewData">Datasets</a></li>
  <li><a href="/viewImages">Images</a></li>
+<li class="dropdown">
+{{> notifications}}
+</li>
         </ul>
-        
+       
         <ul class="nav navbar-nav navbar-right">
           {{#if currentPage '/map'}}
             <li><button type="button" class="geolocate btn btn-primary hidden-xs" data-toggle='tooltip' title='Find your current location. Make sure your device has location enabled. It may take a few seconds.' data-placement='bottom'><span class="glyphicon glyphicon-screenshot"> </span> Find Me</button></li>
@@ -51,7 +54,6 @@
 		  </div><!--/.nav-collapse -->
     </div>
   </nav>
-
   {{> addProjectModal }}
   {{> signInModal }}
 </template>

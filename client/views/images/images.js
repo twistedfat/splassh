@@ -1,3 +1,5 @@
+//add handler for cover photo
+//adds _id of inserted photo to project.cover
 function getHandler(dropped) {
   return FS.EventHandlers.insertFiles(Collections.Images, {
     metadata: function (fileObj) {

@@ -1,0 +1,78 @@
+<template name="allProjects">
+<div class="jumbotron">
+    <div class="container intro">
+        <h1>What is SPLASSH?</h1>
+        <p>SPLASSH is about protecting our most important natural resource - Water. 
+        <!--We invite you to participate by clicking here &#8594; <a class="map" href='/map'>map</a--></p>
+        <br/>
+        <a class="btn btn-primary btn-lg" href="/projectList">Newest Projects ( newest date created)</a>&nbsp;
+        <a class="btn btn-primary btn-lg" href="/map"><span class="glyphicon glyphicon-globe"> </span>View Project/Your position on Map</a>&nbsp;
+       <a class="btn btn-primary btn-lg" href="/donate" ><span class="glyphicon glyphicon-gift"> </span>Latest Projects (recently modified) </a>&nbsp;
+		<a class="btn btn-primary btn-lg" href="/donate" ><span class="glyphicon glyphicon-gift"> </span> Tags </a>&nbsp;
+    </div>
+</div>
+<hr>
+
+
+{{#each FishKillsProjects }}
+ <div class="thumbnail project-box item">
+            <div class="caption">
+              <h3><a href="/project/{{_id}}">{{title}}</a><br/><small> by {{owner}} on {{formatDate date_created "short"}}</small></h3>
+              <p>{{truncate description 140}}</p>
+              <p><a href="/project/{{_id}}" class="btn btn-xs btn-primary" role="button">More</a></p>
+            </div>
+          </div>
+{{/each}}
+
+  <div class="howitworks">
+      <div class="container">
+      <h2>How it Works</h2>
+        <div class="row">
+          <div class="col-md-4 step" align="center">
+            <div class="circle">
+              <div>1</div>
+            </div><br/>
+            <p class="lead text-muted">Students, citizen scientists, and researchers post their water project to increase public awareness</p>
+          </div>
+          <div class="col-md-4 step" align="center">
+            <div class="circle">
+              <div>2</div>
+            </div>
+            <br/>
+            <p class="lead text-muted">People can browse, comment, and discuss the shared water projects</p>
+          </div>
+          <div class="col-md-4 step" align="center">
+            <div class="circle">
+              <div>3</div>
+            </div>
+            <br/>
+            <p class="lead text-muted">People can track, monitor, and subscribe to receive updates for water projects</p>
+          </div>
+        </div>
+      </div>
+	 </div>
+
+  <hr/>
+
+    {{> theripple}}
+    
+    <div class="stats">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 stat">
+                    <h1>{{usercount}} </h1><span> People</span>
+                 </div>
+                 <div class="col-md-4 stat">
+                    <h1>{{projectcount}}</h1><span> Projects</span>
+                 </div>
+               
+                 <div class="col-md-4 stat">
+                    <h1>{{commentcount}}</h1><span> Discussions</span>
+                 </div>
+            </div> 
+        </div>
+  </div>
+  
+   <!-- {{> inthenews}} -->
+
+</template>

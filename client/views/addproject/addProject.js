@@ -54,7 +54,7 @@ Template.addProjectModal.events({
       coordinates: coordinates,
       description: t.find('#project-description').value,
       tags: tags,
-      water: water,
+      water: water
     }
     
     //If the user is logged in,
@@ -105,5 +105,9 @@ Template.addProjectModal.events({
     } else {
       toastr.warning('Geolocation is not supported by this browser.', '[warning]');
     }
-  }
+  },
+  'click #map-button': function(e, t) {
+    e.preventDefault();
+	Router.go('/map');
+	}
 });

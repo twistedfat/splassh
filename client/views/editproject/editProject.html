@@ -36,7 +36,7 @@
 
 <template name="editloadTags">
   <select id="project-category" class="form-control input-lg " required placeholder="Select tag">
-  <option value="Select Tag">{{projectTag}}</option>
+  <option value="{{tag}}">{{tag}}</option>
   {{#each tags}}
     <option value="{{name}}">{{name}}</option>
   {{/each}}
@@ -45,7 +45,7 @@
 
 <template name="editloadBodies">
   <select id="project-water" class="form-control input-lg" required placeholder="Select tag">
-  <option value="Select Tag">{{water}}</option>
+  <option value="{{water}}">{{water}}</option>
   {{#each bodies}}
     <option value="{{name}}">{{name}}</option>
   {{/each}}

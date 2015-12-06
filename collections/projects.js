@@ -36,7 +36,7 @@ Meteor.methods({
       description: String,
       coordinates: Object,
       tags: String,
-	water: String
+	  water: String,
     });
     
     var tagArray = [];
@@ -60,7 +60,10 @@ Meteor.methods({
 	  ownerId: Meteor.user()._id,
       avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
       date_created: new Date().getTime(),
-	  authors:SPLASSH.userName(Meteor.user())
+	  modified: new Date().getTime(),
+	  authors:SPLASSH.userName(Meteor.user()),
+	  authorIds:Meteor.user()._id,
+	  cover:"no"
    });
     
   if (id) {
@@ -74,26 +77,51 @@ Meteor.methods({
 
 editProject= function(project) {
     //If no time is associated with the comment, add the current time. 
-        var date = new Date();
-        editTime= date.getTime();
+
+        modifiedTime = new Date().getTime();
     
     //Set the comment's foreign key to project.
   
-    Projects.update( {_id : project._id}, {$set:{title: project.title, coordinates:project.coordinates, description:project.description, tags: 		project.tags, water: project.water, edited:editTime} } );
+    Projects.update( {_id : project._id}, {$set:{title: project.title, coordinates:project.coordinates, description:project.description, tags: 	project.tags, water: project.water, modified:modifiedTime} } );
 
 	//UPDATE THE TAGS COUNT
 }
 
 addAuthor = function(author, project) {
    
-        var date = new Date();
-        editTime= date.getTime();
+        modifiedTime = new Date().getTime();
     
     //Set the comment's foreign key to project.
   
-    Projects.update( {_id: project._id}, {$set:{ edited:editTime} } );
+    Projects.update( {_id: project._id}, {$set:{ modified:modifiedTime} } );
 
     Projects.update( {_id: project._id}, {$push:{ authors:author} } );
+	
+}
+
+
+setCoverId = function(imageId, project) {
+   
+        modifiedTime = new Date().getTime();
+    
+    //Set the comment's foreign key to project.
+  
+    Projects.update( {_id: project._id}, {$set:{ modified:modifiedTime} } );
+
+    Projects.update( {_id: project._id}, {$set:{ cover:imageId} } );
+	
+}
+
+
+setCoverUrl = function(url, project) {
+   
+        modifiedTime = new Date().getTime();
+    
+    //Set the comment's foreign key to project.
+  
+    Projects.update( {_id: project._id}, {$set:{ modified:modifiedTime} } );
+
+    Projects.update( {_id: project._id}, {$set:{ coverUrl: url} } );
 	
 }
 

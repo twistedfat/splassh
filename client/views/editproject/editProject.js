@@ -2,16 +2,23 @@ Template.editloadTags.helpers({
     tags: function() {
         return Tags.find({tier:'tag'}, {sort: {number: 1}});
     },
-	projectTag: function(){
+	tag: function(){
 	var project = Projects.findOne({_id:Session.get("projectId")});
 	return project.tags[0];
-}
+	},
+	water: function(){
+	var project = Projects.findOne({_id:Session.get("projectId")});
+	return project.water;
+	},
 });
 
 Template.editloadBodies.helpers({
     bodies: function() {
         return Tags.find({tier:'body of water'}, {sort: {number: 1}});
-    }
+    },
+	project: function(){
+	return Projects.find({_id: Session.get("projectId")}, {limit:1});
+	},
 });
 
 Template.editProjectModal.helpers({

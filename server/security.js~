@@ -3,10 +3,13 @@ function trueFunc(userId) {
     // must be logged in
     return false;
   }
-
   return true;
 }
 function falseFunc() {return false;}
+
+ownsDocument = function(userId, doc) {
+return doc && doc.userId === userId;
+}
 
 Meteor.users.allow({
   update: function(userId, doc, fieldNames, modifier) {
@@ -32,4 +35,17 @@ Collections.Images.deny({
   download: falseFunc
 });
 
+Collections.Files.allow({
+  insert: trueFunc,
+  update: trueFunc,
+  remove: trueFunc,
+  download: trueFunc
+});
+
+Collections.Files.deny({
+  insert: falseFunc,
+  update: falseFunc,
+  remove: falseFunc,
+  download: falseFunc
+});
 

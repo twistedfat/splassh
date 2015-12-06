@@ -5,13 +5,19 @@ Template.editloadTags.helpers({
 	projectTag: function(){
 	var project = Projects.findOne({_id:Session.get("projectId")});
 	return project.tags[0];
-}
+	},
+	project: function(){
+	return Projects.find({_id: Session.get("projectId")}, {limit:1});
+	},
 });
 
 Template.editloadBodies.helpers({
     bodies: function() {
         return Tags.find({tier:'body of water'}, {sort: {number: 1}});
-    }
+    },
+	project: function(){
+	return Projects.find({_id: Session.get("projectId")}, {limit:1});
+	},
 });
 
 Template.editProjectModal.helpers({
@@ -74,6 +80,8 @@ Template.editProjectModal.events({
       water: water,
     }
 	editProject(project);
+          toastr.success('Project updated!','info');
+          $('#editWaterProjectModal').modal('hide');
 /*    
     //If the user is logged in,
     if (Meteor.user()) {
