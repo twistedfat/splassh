@@ -14,16 +14,20 @@ Notifications.allow({
   }
 });
 
+
 createCommentNotification = function(comment) {
 	var project = Projects.findOne(comment.projectId);
-	if (comment.authorId !== project.ownerId) {
-	Notifications.insert({
-		userId: project.ownerId,
-		projectId: project._id,
-		projectOwner: project.owner,
-		commentId: comment._id,
-		commentAuthor: comment.author,
-		read: false
-	});
-}
+	var followers = project.followerIds;
+	for (var i in followers) {
+		if(comment.authorId != followers[i]){
+			Notifications.insert({
+				userId: followers[i],
+				projectId: project._id,
+				commentId: comment._id,
+				commentAuthor: comment.author,
+				commentAuthorId: comment.authorId,
+				read: false
+			});
+		}
+	}
 };

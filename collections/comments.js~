@@ -26,7 +26,7 @@ Comments.allow({
 
 /**
 * Adds comment to the comments of project and saves it to the Comments collection.
-*
+
 * @method addCommentToProject
 * @param {Object} comment The comment. It must have the fields: author and body.
 * posted field is optional. If it is not included, the current time will be used.
@@ -45,6 +45,9 @@ addComment = function(comment, projectId) {
     comment.projectId = projectId;
 	comment._id = Comments.insert(comment);
 	createCommentNotification(comment);
+	//subscribe commenter to receive future comment notifications
+	addFollower(comment.authorId,projectId);
+	//createComment for comment.projectId.Followers
 }
 
 editComment = function(comment) {

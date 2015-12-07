@@ -26,9 +26,11 @@ addFollow = function(project) {
     //Set the comment's foreign key to project.
    var follow = {
 	userId: Meteor.user()._id,
-          owner:  SPLASSH.userName(Meteor.user()),
-          projectId: project._id,
-	  title: project.title  
+    owner:  SPLASSH.userName(Meteor.user()),
+    projectId: project._id,
+	title: project.title,
+	  
        };
 	Follows.insert(follow);
 }
+//addFollow == receive notifications , for receviing notifictions for a project you commented on

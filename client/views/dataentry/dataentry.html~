@@ -1,5 +1,7 @@
 <template name="dataEntry">
+
 {{#if isProjectOwner}}
+<div class="container">
 <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -86,6 +88,8 @@
 		</div>
   </div> 
 </div>
+</div>
+
 {{/if}}
 
 {{> viewData}}
@@ -124,7 +128,6 @@
 <template name="insertWaterObservations">
   {{> quickForm collection="Waters" id="insertWaterObservations"  type="insert"}}
 </template>
-
 
 
 <template name="insertContaminants">

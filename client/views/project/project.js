@@ -182,8 +182,8 @@ Template.project.events({
         };
 
         //Add comment will automatically set comment.posted to the current time.
-       addComment(comment, this._id);
-        
+        addComment(comment, this._id);
+		
         // clear input field
         $('#project-comment').val(function() {
           return this.defaultValue;

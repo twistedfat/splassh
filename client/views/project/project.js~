@@ -144,7 +144,7 @@ var coverHandler = function(event, template) {
 	  Session.set('coverId', cover._id);
     });
 
-	setCover(coverId,this);
+	setCoverId(coverId,this);
 	console.log("coverId1",coverId);
 
   };
@@ -182,8 +182,7 @@ Template.project.events({
         };
 
         //Add comment will automatically set comment.posted to the current time.
-       addComment(comment, this._id);
-        
+        addComment(comment, this._id);
         // clear input field
         $('#project-comment').val(function() {
           return this.defaultValue;

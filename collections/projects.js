@@ -47,6 +47,9 @@ Meteor.methods({
     if (options.description.length > 1000)
       throw new Meteor.Error(413, "Description too long");
    
+	var userIdArray = [];
+    userIdArray.push(Meteor.user()._id);
+
    var id = Projects.insert({
       coordinates: {
           lat: options.coordinates.lat,
@@ -62,8 +65,9 @@ Meteor.methods({
       date_created: new Date().getTime(),
 	  modified: new Date().getTime(),
 	  authors:SPLASSH.userName(Meteor.user()),
-	  authorIds:Meteor.user()._id,
-	  cover:"no"
+	  authorIds:userIdArray,
+	  cover:"no",
+	  followerIds:userIdArray, 
    });
     
   if (id) {
@@ -99,7 +103,21 @@ addAuthor = function(author, project) {
 	
 }
 
+addFollower = function(followerId, projectId) {
+   
+    modifiedTime = new Date().getTime();
+    
+    //Set the comment's foreign key to project.
+  
+    Projects.update( {_id: projectId}, {$set:{ modified:modifiedTime} } );
 
+	// if (followerId !in project.follower)
+	var project = Projects.findOne(projectId);
+	if (project.followerIds.indexOf(followerId) <0 ){
+    Projects.update( {_id: projectId}, {$push:{ followerIds: followerId} } );
+	}
+	
+} 
 setCoverId = function(imageId, project) {
    
         modifiedTime = new Date().getTime();

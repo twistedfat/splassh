@@ -39,5 +39,6 @@ Meteor.publish("sites", function() {
 });
 
 Meteor.publish('notifications', function() {
-return Notifications.find({userId: this.userId});
+	return Notifications.find({userId: this.userId});
+	//find where commenterId!:this.userId
 });
