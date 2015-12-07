@@ -414,7 +414,7 @@ div.leaflet-top.leaflet-left {
 /************* project page ****************/
 
 /* The small map on a project's page */
-#projectmap { height: 250px; width:95%; margin: 0 auto;  }
+#projectmap { height: 250px; width:95%; margin:3 auto;  }
 
 /* water project page*/
 .comment {

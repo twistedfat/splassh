@@ -1,87 +1,98 @@
 <template name="project">
   <div id="project {{setSessionProjectId}}">
-	<hr>
+
 	<div class="container">
 	 <div class="row">
-        <div class="col-md-5">
-{{#if isFollowed}}
-{{#each follows}}
-<h1>{{title}} <button type="button" class="btn btn-default btn-xs unfollowProject"> Unfollow </button> </h1> 
-{{/each}}
-{{else}}
-<h1>{{title}} <button type="button" class="btn btn-default btn-xs followProject"> Follow </button> </h1> 
-{{/if}}
-				
-{{#if isProjectOwner}}
-<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal" ><span class="glyphicon glyphicon-pencil"> </span></button>
-{{/if}}
-      <p class="lead text-muted">created by {{owner}} on {{formatDate date_created "long"}}</p>
-    {{description}}
-	 <div class="container"><br/>
 
+ <div class="container">
+ <div class="col-md-2">
 	{{#if noCover}}
-					<h2> Cover Photo Missing!</h2>
-					{{#if isProjectOwner}}
-					  <div class="well imageDropArea">
-						<p>Add image here</p>
-						<input type="file" multiple class="images">
-					  </div>
-					{{/if}}
-	{{#else}}
-					{{#each coverImage}}
-						<h2> Project Cover Photo!</h2>
-						{{> theCover}}
-					{{/each}}
-{{/if}}
+		{{#if isProjectOwner}}
+		  <div class="well imageDropArea">
+			<p>Cover Photo Missing <br/> Add here!</p>
+			<input type="file" multiple class="images">
+		  </div>
+		{{/if}}
+	{{else}}
+		{{#each coverImage}}
 			
-</div>
-<br/>
-<br/>
-<br/>
-<br/>
+			{{> theCover}}
+		{{/each}}
+	{{/if}}
+	<p class="lead text-muted"> {{owner}} <br/> {{formatDate date_created "long"}}</p>
+		
+<br/> 
 
-			<div class="col-md-12">	
-			<div class="container">	
-				{{#if isProjectOwner}}
-				
-					<form role="form" class="form-addauthor">
-					<input id="author" type="text" name="author" placeholder="Add Authors here"/><br/>
-					<button class="btn btn-default btn-xs" type="submit">Add author</button>	
-					</form>
-	
-				{{/if}}
-			</div>
-			</div> 
+</div>	
+
+        <div class="col-md-5">
+			{{#if isFollowed}}
+				{{#each follows}}
+				<h1>{{title}} <button type="button" class="btn btn-default btn-xs unfollowProject"> Unfollow </button> </h1> 
+				{{/each}}
+			{{else}}
+				<h1>{{title}} <button type="button" class="btn btn-default btn-xs followProject"> Follow </button> </h1> 
+			{{/if}}
+
+ <div class="col-md-12">
+            <span class="label label-info">Primary Tag</span>
+            <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
+          </div>
+<br/>
+<br/> 
+
+    {{description}}
 
  </div>
 
-	
-      
         <div class="col-md-5">
           <div class="col-md-12">
           {{> projectmap this}}
           </div>
 		
 		<br/>
-		   <div class="col-md-12">
-            <span class="label label-info">Primary Tag</span>
-            <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
-          </div>
+		 <br/><br/><br/><br/>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-5">
+		</div>
+		<div class="col-md-5">
+			{{#if isProjectOwner}}
+					<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal"  ><span class="glyphicon glyphicon-pencil"> </span>Edit Project Info</button>
+				{{/if}}
+		</div>
+	</div>
+
+</div>
 </div>
 </div>
     <hr>
 <div class="row">
+	<div class="col-md-2">	
+			<div class="container">	
+				{{#if isProjectOwner}}
+				<div class="col-md-4">	
+					<form role="form" class="form-addauthor">
+					<input id="author" type="text" name="author" placeholder="Add Authors here"/><br/>
+					<button class="btn btn-default btn-xs" type="submit">Add author</button>	
+					</form>
+	</div>
+				{{/if}}
+			</div>
+			</div> 
+
 		<div class="col-md-5">
-          	<div class="col-md-12">
+          	<div class="col-md-4">
 			<div class="container">
-				 <button type="button" class="btn btn-default btn-xs toImages"> Images</button> 
+				 <button type="button" class="btn btn-default btn-lg toImages"> Images</button> 
          	 </div>
          	 </div>
 	</div>
 	<div class="col-md-5">
-		      	<div class="col-md-12">
+		      	<div class="col-md-4">
 				<div class="container">
-						 <button type="button" class="btn btn-default btn-xs toData"> Data</button> 
+						 <button type="button" class="btn btn-default btn-lg toData"> Data</button> 
 		     	 </div>
 		     	 </div>      
 	</div>

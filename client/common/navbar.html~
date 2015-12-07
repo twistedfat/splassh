@@ -19,25 +19,32 @@
      
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
+ <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Views <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
           <li><a href="/projectList">Projects</a></li>
           <li><a href="/map">Live Map</a></li>
           <li><a href="/tags">Tags</a></li>
+<li><a href="/viewData">Datasets</a></li>
+ <li><a href="/viewImages">Images</a></li>
+<!-- 		 <li><a href="/mailingList">Mailing List</a></li>-->
+              </ul>
+          </li> 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/team">Team</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="/sponsors">Sponsors</a></li>
+<li><a href="/donate">Donate</a></li>
 <!-- 		 <li><a href="/mailingList">Mailing List</a></li>-->
               </ul>
           </li> 
 	<li><a href="/searchf">Search</a></li>
-       
-	   {{#if currentUser}}
+          {{#if currentUser}}
           <li><a href="/mydash"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;My Dash</a></li>
         {{/if}}
-<li><a href="/viewData">Datasets</a></li>
- <li><a href="/viewImages">Images</a></li>
+
 <li class="dropdown">
 {{> notifications}}
 </li>
@@ -47,7 +54,6 @@
           {{#if currentPage '/map'}}
             <li><button type="button" class="geolocate btn btn-primary hidden-xs" data-toggle='tooltip' title='Find your current location. Make sure your device has location enabled. It may take a few seconds.' data-placement='bottom'><span class="glyphicon glyphicon-screenshot"> </span> Find Me</button></li>
           {{/if}}
-	</div>
 <li style="padding-right: 8em;"> {{> loginButtons}}</li>
  {{#if currentUser}}
           <li><button type="button" class="btn btn-default hidden-xs" data-toggle="modal" data-target="#addWaterProjectModal"><span class="glyphicon glyphicon-plus"></span> Project </button></li>
