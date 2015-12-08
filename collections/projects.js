@@ -33,6 +33,7 @@ Meteor.methods({
   createProject: function (options) {
     check(options, {
       title: String,
+	  waterbody: String,
       description: String,
       coordinates: Object,
       tags: String,
@@ -49,13 +50,15 @@ Meteor.methods({
    
 	var userIdArray = [];
     userIdArray.push(Meteor.user()._id);
-
+	var usernameArray = [];
+    userIdArray.push(SPLASSH.userName(Meteor.user()));
    var id = Projects.insert({
       coordinates: {
           lat: options.coordinates.lat,
           lng: options.coordinates.lng
       },
       title: options.title,
+	  waterbody: options.waterbody,
       description: options.description,
       tags: tagArray,
       water: options.water,
@@ -64,7 +67,7 @@ Meteor.methods({
       avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
       date_created: new Date().getTime(),
 	  modified: new Date().getTime(),
-	  authors:SPLASSH.userName(Meteor.user()),
+	  authors:usernameArray,
 	  authorIds:userIdArray,
 	  cover:"no",
 	  followerIds:userIdArray, 

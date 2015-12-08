@@ -5,21 +5,31 @@ Template.viewData.helpers({
 	projectId: function () {
     	return Session.get('currentProjectId');
 },
-	sites: function(){
-		return Sites.find();
+	biologicals: function(){
+		return Biologicals.find( {projectId: Session.get('currentProjectId')} );
 },
-	currentProjectSites: function(){
-		return Sites.find({projectId:  Session.get('currentProjectId')});
+	teams: function(){
+		return Teams.find();
 },
-	monitors: function(){
-		return Monitors.find();
+	teamCount: function() {
+		return Teams.find({}).count;
 },
-	currentProjectMonitors: function(){
-		return Monitors.find({projectId:  Session.get('currentProjectId')});
+	chemicals: function(){
+		return Chemicals.find( {projectId: Session.get('currentProjectId') });
 },
-	weathers:function(){
-		return Weathers.find();
+	physicals: function(){
+		return Physicals.find( {projectId: Session.get('currentProjectId') });
 },
+	waters: function(){
+		return Waters.find({projectId: Session.get('currentProjectId')} );
+},
+	weathers: function(){
+		return Weathers.find({projectId: Session.get('currentProjectId')} );
+},
+	isProjectAuthor: function () {
+		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()));
+	}
+ 
 });
 
 Template.dataEntry.helpers({
@@ -28,6 +38,9 @@ Template.dataEntry.helpers({
 	},
 	isProjectOwner: function () {
 		return Meteor.userId() == Projects.findOne({_id:Session.get('currentProjectId')}).ownerId;
+	},
+	isProjectAuthor: function () {
+		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()));
 	}
 });
 

@@ -10,17 +10,17 @@
             <div class="modal-body">
               <form role="form" class="form-addwaterproject">
                 <input id="project-title" type="text" autofocus="" required placeholder="water project name" class="form-control input-lg"><br/>
+    <input id="project-waterbody" type="text" autofocus="" required placeholder="body of water name" class="form-control input-lg"><br/>
                 <textarea id="project-description" required placeholder="description" class="form-control input-lg"></textarea><br/>
 				
 				<div class="input-group">
+					  <span class="input-group-btn">
+						<button id="map-button" class="btn btn-default btn-lg" data-toggle="tooltip" title="Click to choose location on the map" type="button"><span class="glyphicon glyphicon-globe"></span></button>
+                	</span>
+		            <input id="project-coordinates" type="text" class="form-control input-lg" required placeholder="Latitude, Longitude (e.g. 34.1, 84.5)">
 					<span class="input-group-btn">
 		            	<button id="geolocate-button" class="btn btn-default btn-lg" data-toggle="tooltip" title="Click to use current location." type="button"><span class="glyphicon glyphicon-map-marker"> </span></button>
 					</span>
-
-		            <input id="project-coordinates" type="text" class="form-control input-lg" required placeholder="Latitude, Longitude (e.g. 34.1, 84.5)">
-		            <span class="input-group-btn">
-						<button id="map-button" class="btn btn-default btn-lg" data-toggle="tooltip" title="Click to choose location on the map" type="button"><span class="glyphicon glyphicon-globe"></span></button>
-                	</span>
                 </div><!-- /input-group --><br/>
                
 				{{>loadBodies}}

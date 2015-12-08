@@ -14,6 +14,7 @@
 	   <form role="form" class="form-editwaterproject">
 {{#each project}}
                 <input id="project-title" type="text" autofocus="" required placeholder="water project name" class="form-control input-lg" value="{{title}}"><br/>
+  <input id="project-waterbody" type="text" required placeholder="body of water name" class="form-control input-lg" value="{{waterbody}}"><br/>
                 <div class="input-group">
                 <input id="project-coordinates" type="text" class="form-control input-lg" placeholder="Latitude, Longitude (e.g. 34.1, 84.5)" value="{{getLat}} , {{getLng}}">
                 <span class="input-group-btn">

@@ -51,6 +51,7 @@ Template.addProjectModal.events({
 
     var project = {
       title: t.find('#project-title').value,
+	  waterbody: t.find('#project-waterbody').value,
       coordinates: coordinates,
       description: t.find('#project-description').value,
       tags: tags,
@@ -97,7 +98,7 @@ Template.addProjectModal.events({
     if (navigator.geolocation) {
       var timeout = window.setTimeout(function() {
         toastr.info('Please ensure device has location enabled, or internet is connected.');
-      }, 5000);
+      }, 8000);
       navigator.geolocation.getCurrentPosition(function(position) {
         $('#project-coordinates').val(position.coords.latitude + "," + position.coords.longitude);
         window.clearTimeout(timeout);

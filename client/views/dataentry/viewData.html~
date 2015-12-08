@@ -1,11 +1,95 @@
 <template name="viewData">
 	<div class="container">
-		<h2>View Datasets</h2>
-		{{#each sites}}
-			{{> siteInfo}}
-		{{/each}}
-	</div>
+	<h2>View Datasets</h2>
+		<div class="col-md-6">
+			<div class="panel-group" id="accordion11">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a data-toggle="collapse" data-parent="#accordion11" href="#collapse111"> Team Information</a>
+					</h4>
+				  </div>
+				  <div id="collapse111" class="panel-collapse collapse">
+					<div class="panel-body">
+					{{#each teams}}
+						{{> teamm}}
+					{{/each}}
+					</div>
+				  </div>
+				</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h4 class="panel-title">
+						  <a data-toggle="collapse" data-parent="#accordion11" href="#collapse112">Water Observations</a>
+						</h4>
+					  </div>
+					  <div id="collapse112" class="panel-collapse collapse">
+						<div class="panel-body">
+
+						</div>
+					  </div>
+					</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h4 class="panel-title">
+						  <a data-toggle="collapse" data-parent="#accordion11" href="#collapse113">Weather Conditions</a>
+						</h4>
+					  </div>
+					  <div id="collapse113" class="panel-collapse collapse">
+						<div class="panel-body">
+				
+					  </div>
+					</div>
+			  </div> 
+			</div>
+			</div>
+
+			<div class="col-md-6">
+			<div class="panel-group" id="accordion1111">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a data-toggle="collapse" data-parent="#accordion1111" href="#collapse114">Chemicals</a>
+					</h4>
+				  </div>
+				  <div id="collapse114" class="panel-collapse collapse">
+					<div class="panel-body">
+				
+					</div>
+				  </div>
+				</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h4 class="panel-title">
+						  <a data-toggle="collapse" data-parent="#accordion1111" href="#collapse115">Biological</a>
+						</h4>
+					  </div>
+					  <div id="collapse115" class="panel-collapse collapse">
+						<div class="panel-body">
+					
+						</div>
+					  </div>
+					</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h4 class="panel-title">
+						  <a data-toggle="collapse" data-parent="#accordion1111" href="#collapse116">Physical</a>
+						</h4>
+					  </div>
+					  <div id="collapse116" class="panel-collapse collapse">
+						<div class="panel-body">
+						
+					  </div>
+					</div>
+			  </div> 
+			</div>
+		</div>
+
+</div>
+
 </template>
+
+
 
 <template name="siteInfo">
 	<div class="container">
@@ -28,3 +112,48 @@
 		</table>
 	</div>
 </template>
+
+
+<template name="teamm">
+	
+		<h2>Team Info</h2>
+		
+		<table class="table table-bordered table-condensed ">
+			<thead>
+				<tr>
+					<td>Group Name</td>
+					<td>Leader Name</td>
+					<td>Leader Profession</td>
+					<td>Project</td>
+				  </tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{this.Name}}</td>
+					<td>{{this.LeaderName}}</td>
+					<td>{{this.LeaderProfession}}</td>
+					<td><a href="/project/{{this.projectId}}">{{projectName this.projectId}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+<table class="table table-bordered table-condensed" id="members">
+			<thead>
+				<tr>
+					<td>Member Name</td>
+					<td>Member Profession</td>
+				  </tr>
+			</thead>
+<tbody>
+				
+			{{#each this.Members}}		
+<tr>		
+					<td>{{name}}</td>
+					<td>{{profession}}</td>
+</tr>
+			{{/each}}
+				
+			</tbody>
+		</table>
+</template>
+
+

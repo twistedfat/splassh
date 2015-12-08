@@ -49,7 +49,8 @@ Meteor.methods({
    
 	var userIdArray = [];
     userIdArray.push(Meteor.user()._id);
-
+	var usernameArray = [];
+    userIdArray.push(SPLASSH.userName(Meteor.user()));
    var id = Projects.insert({
       coordinates: {
           lat: options.coordinates.lat,
@@ -64,7 +65,7 @@ Meteor.methods({
       avatarUrl: Gravatar.imageUrl(SPLASSH.userEmail(Meteor.user())),
       date_created: new Date().getTime(),
 	  modified: new Date().getTime(),
-	  authors:SPLASSH.userName(Meteor.user()),
+	  authors:usernameArray,
 	  authorIds:userIdArray,
 	  cover:"no",
 	  followerIds:userIdArray, 
@@ -113,7 +114,7 @@ addFollower = function(followerId, projectId) {
 
 	// if (followerId !in project.follower)
 	var project = Projects.findOne(projectId);
-	if (project.followerIds.indexOf(followerId) <=0 ){
+	if (project.followerIds.indexOf(followerId) <0 ){
     Projects.update( {_id: projectId}, {$push:{ followerIds: followerId} } );
 	}
 	

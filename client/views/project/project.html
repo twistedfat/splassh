@@ -19,7 +19,7 @@
 			{{> theCover}}
 		{{/each}}
 	{{/if}}
-	<p class="lead text-muted"> {{owner}} <br/> {{formatDate date_created "long"}}</p>
+	<p class="lead text-muted">started by: <br/> {{owner}} <br/> {{formatDate date_created "long"}}</p>
 		
 <br/> 
 
@@ -33,45 +33,22 @@
 			{{else}}
 				<h1>{{title}} <button type="button" class="btn btn-default btn-xs followProject"> Follow </button> </h1> 
 			{{/if}}
-
+<br/> 
+<h3>{{waterbody}}</h3> 
  <div class="col-md-12">
             <span class="label label-info">Primary Tag</span>
             <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
           </div>
 <br/>
+<br/>
+<br/> 
 <br/> 
 
     {{description}}
-
- </div>
-
-        <div class="col-md-5">
-          <div class="col-md-12">
-          {{> projectmap this}}
-          </div>
-		
-		<br/>
-		 <br/><br/><br/><br/>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-5">
-		</div>
-		<div class="col-md-5">
-			{{#if isProjectOwner}}
-					<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal"  ><span class="glyphicon glyphicon-pencil"> </span>Edit Project Info</button>
-				{{/if}}
-		</div>
-	</div>
-
-</div>
-</div>
-</div>
-    <hr>
 <div class="row">
 	<div class="col-md-2">	
 			<div class="container">	
-				{{#if isProjectOwner}}
+				{{#if 0}}
 				<div class="col-md-4">	
 					<form role="form" class="form-addauthor">
 					<input id="author" type="text-sm" name="author" placeholder="Add Authors here"/><br/>
@@ -97,6 +74,32 @@
 		     	 </div>      
 	</div>
 </div>
+ </div>
+
+        <div class="col-md-5">
+          <div class="col-md-12">
+          {{> projectmap this}}
+          </div>
+		
+		<br/>
+		 <br/><br/><br/><br/>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-5">
+		</div>
+		<div class="col-md-5">
+			{{#if isProjectOwner}}
+					<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal"  ><span class="glyphicon glyphicon-pencil"> </span>Edit Project Info</button>
+				{{/if}}
+		</div>
+	</div>
+
+</div>
+</div>
+</div>
+    <hr>
+
 	<hr>
 	 </div>
 	 <div class="container">	

@@ -42,3 +42,10 @@ Meteor.publish('notifications', function() {
 	return Notifications.find({userId: this.userId});
 	//find where commenterId!:this.userId
 });
+
+
+
+Meteor.publish('teams', function() {
+	return Teams.find({});
+	//find where commenterId!:this.userId
+});

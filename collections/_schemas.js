@@ -2,6 +2,78 @@ Schemas = {};
 
 Meteor.isClient && Template.registerHelper("Schemas", Schemas);
 
+Schemas.Team = new SimpleSchema({
+	Name:{
+		type:String, 
+		label:"Name of Organization",
+		max:50
+	},
+	LeaderName:{
+		type:String,
+		label:"Project Leader Name",
+		max:30,
+	},
+	LeaderProfession:{
+		type:String,
+		label:"Project Leader Profession",
+		max:30,
+	},
+	Members: {
+      type: Array,
+      optional: true
+   },
+   "Members.$": {
+      type: Object
+   },
+   "Members.$.name": {
+      type: String
+   }, 
+  "Members.$.profession": {
+      type: String,
+	  autoform: {
+      type: "select",
+      options: function () {
+        return [
+          {label: "professional", value: "professional"},
+          {label: "graduate student", value: "graduate"},
+          {label: "high school student", value: "high"},
+		  {label: "middle school student", value: "middle"},
+          {label: "elementary school student", value: "elementary"}
+        ];
+      }
+    }
+	},
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return new Date;
+		  } else if (this.isUpsert) {
+		    return {$setOnInsert: new Date};
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	ownerId:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return this.userId;
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
+}
+	
+   
+});
 Schemas.Site = new SimpleSchema({
 /*
 	EventDate:{
@@ -12,7 +84,7 @@ Schemas.Site = new SimpleSchema({
 		  }
 		}
 }
-*/
+*/	
 	GroupName:{
 		type: String, 
 		label: "Group name",
@@ -208,25 +280,25 @@ Schemas.Chemicals = new SimpleSchema({
 		max:10
 },
 //TODO: ADD Chemical.DATE
-	SampleMetadata:{
+	CollectionTechnique:{
 		type: Array,
 		optional:true
 	},
-	'SampleMetadata.$':{
+	'CollectionTechnique.$':{
 		type:Object
 },
-	'SampleMetadata.$.Instrument':{
+	'CollectionTechnique.$.Instrument':{
 		type:String,
 },
-	'SampleMetadata.$.Technique':{
+	'CollectionTechnique.$.Technique':{
 		type:String,
 		max:500
 },
-	'SampleMetadata.$.Calibration':{
+	'CollectionTechnique.$.Calibration':{
 		type:String,
 		max:100
 },
-	'SampleMetadata.$.Information':{
+	'CollectionTechnique.$.Information':{
 		type:String,
 		label:"Additional Info",
 		max:100,
@@ -301,25 +373,25 @@ Schemas.Biologicals = new SimpleSchema({
 	optional: true
   },
 //TODO: ADD Chemical.DATE
-	SampleMetadata:{
+	CollectionTechnique:{
 		type: Array,
 		optional:true
 	},
-	'SampleMetadata.$':{
+	'CollectionTechnique.$':{
 		type:Object
 },
-	'SampleMetadata.$.Instrument':{
+	'CollectionTechnique.$.Instrument':{
 		type:String,
 },
-	'SampleMetadata.$.Technique':{
+	'CollectionTechnique.$.Technique':{
 		type:String,
 		max:500
 },
-	'SampleMetadata.$.Calibration':{
+	'CollectionTechnique.$.Calibration':{
 		type:String,
 		max:100
 },
-	'SampleMetadata.$.Information':{
+	'CollectionTechnique.$.Information':{
 		type:String,
 		label:"Additional Info",
 		max:100,
@@ -389,25 +461,25 @@ Schemas.Physical = new SimpleSchema({
 	optional: true
   },
 //TODO: ADD Chemical.DATE
-	SampleMetadata:{
+	CollectionTechnique:{
 		type: Array,
 		optional:true
 	},
-	'SampleMetadata.$':{
+	'CollectionTechnique.$':{
 		type:Object
 },
-	'SampleMetadata.$.Instrument':{
+	'CollectionTechnique.$.Instrument':{
 		type:String,
 },
-	'SampleMetadata.$.Technique':{
+	'CollectionTechnique.$.Technique':{
 		type:String,
 		max:500
 },
-	'SampleMetadata.$.Calibration':{
+	'CollectionTechnique.$.Calibration':{
 		type:String,
 		max:100
 },
-	'SampleMetadata.$.Information':{
+	'CollectionTechnique.$.Information':{
 		type:String,
 		label:"Additional Info",
 		max:100,
@@ -445,7 +517,7 @@ Schemas.Physical = new SimpleSchema({
 
 Schemas.WaterObservations = new SimpleSchema({
    FlowOrWaterLevel: {
-    type: [String],
+ type: String,
 	optional:true,
     autoform: {
     type: "select",
@@ -462,7 +534,7 @@ Schemas.WaterObservations = new SimpleSchema({
     }
   },
 Clarity: {
-    type: [String],
+ type: String,
 	optional:true,
     autoform: {
     type: "select",
@@ -495,7 +567,7 @@ Color: {
     }
   },
 Surface: {
-    type: [String],
+  type: String,
 	optional:true,
     autoform: {
     type: "select",
@@ -511,7 +583,7 @@ Surface: {
     }
   },
 Odor: {
-    type: [String],
+    type: String,
 	optional:true,
     autoform: {
     type: "select",
@@ -541,6 +613,14 @@ Trash: {
         ];
       }
     }
+  },
+Other: {
+    type: String,
+	optional:true,
+    autoform: {
+		rows:2
+    },
+	max:500
   },
 	createdAt: {
 		type: Date,

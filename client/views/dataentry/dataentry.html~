@@ -1,96 +1,89 @@
 <template name="dataEntry">
-
-{{#if isProjectOwner}}
-<div class="container">
-<div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Add Site Information</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-        <div class="panel-body">
-		{{> insertSite}}
-		</div>
-      </div>
-    </div>
-	<div class="panel panel-default">
-		  <div class="panel-heading">
-			<h4 class="panel-title">
-			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Monitors/Probes/Sensors</a>
-			</h4>
-		  </div>
-		  <div id="collapse2" class="panel-collapse collapse">
-			<div class="panel-body">
-			{{> insertMonitors}}
+	<div class="container">
+	{{#if isProjectAuthor}}
+		<div class="col-md-6">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Add Team Information</a>
+					</h4>
+				  </div>
+				  <div id="collapse1" class="panel-collapse collapse">
+					<div class="panel-body">
+					{{> insertTeam}}
+					</div>
+				  </div>
+				</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h4 class="panel-title">
+						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Water Observations</a>
+						</h4>
+					  </div>
+					  <div id="collapse2" class="panel-collapse collapse">
+						<div class="panel-body">
+						{{> insertWaterObservations}}
+						</div>
+					  </div>
+					</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h4 class="panel-title">
+						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Weather Conditions</a>
+						</h4>
+					  </div>
+					  <div id="collapse3" class="panel-collapse collapse">
+						<div class="panel-body">
+						{{> insertWeather}}
+					  </div>
+					</div>
+			  </div> 
 			</div>
-		  </div>
-		</div>
-	<div class="panel panel-default">
-		  <div class="panel-heading">
-			<h4 class="panel-title">
-			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Weather Conditions</a>
-			</h4>
-		  </div>
-		  <div id="collapse3" class="panel-collapse collapse">
-			<div class="panel-body">
-			{{> insertWeather}}
-		  </div>
-		</div>
-  </div> 
-<div class="panel panel-default">
-		  <div class="panel-heading">
-			<h4 class="panel-title">
-			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Chemicals</a>
-			</h4>
-		  </div>
-		  <div id="collapse4" class="panel-collapse collapse">
-			<div class="panel-body">
-			{{> insertChemicals}}
-		  </div>
-		</div>
-  </div> 
-<div class="panel panel-default">
-		  <div class="panel-heading">
-			<h4 class="panel-title">
-			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Biological</a>
-			</h4>
-		  </div>
-		  <div id="collapse5" class="panel-collapse collapse">
-			<div class="panel-body">
-			{{> insertBiologicals}}
-		  </div>
-		</div>
-  </div> 
-<div class="panel panel-default">
-		  <div class="panel-heading">
-			<h4 class="panel-title">
-			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Physical</a>
-			</h4>
-		  </div>
-		  <div id="collapse6" class="panel-collapse collapse">
-			<div class="panel-body">
-			{{> insertPhysicals}}
-		  </div>
-		</div>
-  </div> 
-<div class="panel panel-default">
-		  <div class="panel-heading">
-			<h4 class="panel-title">
-			  <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">Water Observations</a>
-			</h4>
-		  </div>
-		  <div id="collapse7" class="panel-collapse collapse">
-			<div class="panel-body">
-			{{> insertWaterObservations}}
-		  </div>
-		</div>
-  </div> 
-</div>
-</div>
+			</div>
 
-{{/if}}
+			<div class="col-md-6">
+			<div class="panel-group" id="accordion1">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a data-toggle="collapse" data-parent="#accordion1" href="#collapse4">Chemicals</a>
+					</h4>
+				  </div>
+				  <div id="collapse4" class="panel-collapse collapse">
+					<div class="panel-body">
+					{{> insertChemicals}}
+					</div>
+				  </div>
+				</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h4 class="panel-title">
+						  <a data-toggle="collapse" data-parent="#accordion1" href="#collapse5">Biological</a>
+						</h4>
+					  </div>
+					  <div id="collapse5" class="panel-collapse collapse">
+						<div class="panel-body">
+						{{> insertBiologicals}}
+						</div>
+					  </div>
+					</div>
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h4 class="panel-title">
+						  <a data-toggle="collapse" data-parent="#accordion1" href="#collapse6">Physical</a>
+						</h4>
+					  </div>
+					  <div id="collapse6" class="panel-collapse collapse">
+						<div class="panel-body">
+						{{> insertPhysicals}}
+					  </div>
+					</div>
+			  </div> 
+			</div>
+		</div>
+	{{/if}}
+</div>
 
 {{> viewData}}
 
@@ -107,6 +100,9 @@
 	{{> quickForm collection="Sites" id="insertSite" type="insert"}}
 </template>
 
+<template name="insertTeam">
+	{{> quickForm collection="Teams" id="insertTeam" type="insert"}}
+</template>
 <template name="insertMonitors">
 	{{> quickForm collection="Monitors" id="insertMonitor" type="insert"}}
 </template>
