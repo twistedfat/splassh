@@ -1,8 +1,12 @@
 <template name="dataEntry">
+
+
 	<div class="container">
+
+	<h1>Data Entry</h1>
 	{{#if isProjectAuthor}}
-		<div class="col-md-6">
-			<div class="panel-group" id="accordion">
+		<div class="panel-group" id="accordion">
+			<div class="col-md-6">
 				<div class="panel panel-default">
 				  <div class="panel-heading">
 					<h4 class="panel-title">
@@ -39,15 +43,15 @@
 					  </div>
 					</div>
 			  </div> 
-			</div>
-			</div>
 
+
+			</div>
 			<div class="col-md-6">
-			<div class="panel-group" id="accordion1">
+		
 				<div class="panel panel-default">
 				  <div class="panel-heading">
 					<h4 class="panel-title">
-					  <a data-toggle="collapse" data-parent="#accordion1" href="#collapse4">Chemicals</a>
+					  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Chemicals</a>
 					</h4>
 				  </div>
 				  <div id="collapse4" class="panel-collapse collapse">
@@ -59,7 +63,7 @@
 				<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion1" href="#collapse5">Biological</a>
+						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Biological</a>
 						</h4>
 					  </div>
 					  <div id="collapse5" class="panel-collapse collapse">
@@ -80,8 +84,11 @@
 					  </div>
 					</div>
 			  </div> 
-			</div>
+	
 		</div>
+
+			</div>
+
 	{{/if}}
 </div>
 

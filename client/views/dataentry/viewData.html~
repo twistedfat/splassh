@@ -1,7 +1,7 @@
 <template name="viewData">
 	<div class="container">
 	<h2>View Datasets</h2>
-		<div class="col-md-6">
+		<div class="container">
 			<div class="panel-group" id="accordion11">
 				<div class="panel panel-default">
 				  <div class="panel-heading">
@@ -25,7 +25,9 @@
 					  </div>
 					  <div id="collapse112" class="panel-collapse collapse">
 						<div class="panel-body">
-
+					{{#each waters}}
+						{{> water}}
+					{{/each}}					
 						</div>
 					  </div>
 					</div>
@@ -37,94 +39,276 @@
 					  </div>
 					  <div id="collapse113" class="panel-collapse collapse">
 						<div class="panel-body">
-				
+				{{#each weathers}}
+						{{> weather}}
+					{{/each}}
 					  </div>
 					</div>
-			  </div> 
-			</div>
-			</div>
-
-			<div class="col-md-6">
-			<div class="panel-group" id="accordion1111">
-				<div class="panel panel-default">
-				  <div class="panel-heading">
-					<h4 class="panel-title">
-					  <a data-toggle="collapse" data-parent="#accordion1111" href="#collapse114">Chemicals</a>
-					</h4>
-				  </div>
-				  <div id="collapse114" class="panel-collapse collapse">
-					<div class="panel-body">
-				
-					</div>
-				  </div>
-				</div>
-				<div class="panel panel-default">
+				  </div> 
+					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion1111" href="#collapse115">Biological</a>
+						  <a data-toggle="collapse" data-parent="#accordion11" href="#collapse114">Chemicals</a>
 						</h4>
 					  </div>
-					  <div id="collapse115" class="panel-collapse collapse">
+					  <div id="collapse114" class="panel-collapse collapse">
 						<div class="panel-body">
-					
+					{{#each chemicals}}
+							{{> chemical}}
+						{{/each}}
 						</div>
 					  </div>
 					</div>
-				<div class="panel panel-default">
-					  <div class="panel-heading">
-						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion1111" href="#collapse116">Physical</a>
-						</h4>
-					  </div>
-					  <div id="collapse116" class="panel-collapse collapse">
-						<div class="panel-body">
-						
-					  </div>
-					</div>
-			  </div> 
+					<div class="panel panel-default">
+						  <div class="panel-heading">
+							<h4 class="panel-title">
+							  <a data-toggle="collapse" data-parent="#accordion11" href="#collapse115">Biological</a>
+							</h4>
+						  </div>
+						  <div id="collapse115" class="panel-collapse collapse">
+							<div class="panel-body">
+					{{#each biologicals}}
+							{{> biological}}
+						{{/each}}
+							</div>
+						  </div>
+						</div>
+					<div class="panel panel-default">
+						  <div class="panel-heading">
+							<h4 class="panel-title">
+							  <a data-toggle="collapse" data-parent="#accordion11" href="#collapse116">Physical</a>
+							</h4>
+						  </div>
+						  <div id="collapse116" class="panel-collapse collapse">
+							<div class="panel-body">
+						{{#each physicals}}
+							{{> physical}}
+						{{/each}}
+						  </div>
+						</div>
+				</div>
 			</div>
-		</div>
-
+		
 </div>
-
+</div>
 </template>
 
 
+<template name="physical">
+	
+		<h2>Physical Info</h2>
+				<h4> for project <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
 
-<template name="siteInfo">
-	<div class="container">
-		<h2>Site Info</h2>
-		<table class="table table-bordered table-condensed">
+
+		<table class="table table-bordered table-condensed" >
+			<thead>
+				<h5>Attribute</h5>
+				<tr>
+					<td>Name</td>
+					<td>Value</td>
+					<td>Unit</td>
+				</tr>
+			</thead>
+			<tbody>			
+			{{#each this.attribute}}		
+				<tr>		
+					<td>{{name}}</td>
+					<td>{{value}}</td>
+					<td>{{unit}}</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+		<table class="table table-bordered table-condensed" >
+			<thead>
+				<h5>Collection Technique</h5>
+				<tr>
+					<td>Instrument</td>
+					<td>Technique</td>
+					<td>Calibration</td>
+					<td>Information</td>
+				</tr>
+			</thead>
+			<tbody>			
+			{{#each this.CollectionTechnique}}
+				<tr>		
+					<td>{{Instrument}}</td>
+					<td>{{Technique}}</td>
+					<td>{{Calibration}}</td>
+					<td>{{Information}}</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+
+</template>
+<template name="biological">
+	
+		<h2>Biological Info</h2>
+				<h4> for project <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
+
+
+		<table class="table table-bordered table-condensed" >
+			<thead>
+				<h5>Organism</h5>
+				<tr>
+					<td>Name</td>
+					<td>Value</td>
+					<td>Unit</td>
+				</tr>
+			</thead>
+			<tbody>			
+			{{#each this.organism}}		
+				<tr>		
+					<td>{{name}}</td>
+					<td>{{value}}</td>
+					<td>{{unit}}</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+		<table class="table table-bordered table-condensed" >
+			<thead>
+				<h5>Collection Technique</h5>
+				<tr>
+					<td>Instrument</td>
+					<td>Technique</td>
+					<td>Calibration</td>
+					<td>Information</td>
+				</tr>
+			</thead>
+			<tbody>			
+			{{#each this.CollectionTechnique}}
+				<tr>		
+					<td>{{Instrument}}</td>
+					<td>{{Technique}}</td>
+					<td>{{Calibration}}</td>
+					<td>{{Information}}</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+
+</template>
+<template name="chemical">
+	
+		<h2>Chemical Info</h2>
+				<h4> for project <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
+
+
+		<table class="table table-bordered table-condensed" >
+			<thead>
+				<h5>Chemical</h5>
+				<tr>
+					<td>Name</td>
+					<td>Value</td>
+					<td>Unit</td>
+				</tr>
+			</thead>
+			<tbody>			
+			{{#each this.chemical}}		
+				<tr>		
+					<td>{{name}}</td>
+					<td>{{value}}</td>
+					<td>{{unit}}</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+		<table class="table table-bordered table-condensed" >
+			<thead>
+				<h5>Collection Technique</h5>
+				<tr>
+					<td>Instrument</td>
+					<td>Technique</td>
+					<td>Calibration</td>
+					<td>Information</td>
+				</tr>
+			</thead>
+			<tbody>			
+			{{#each this.CollectionTechnique}}
+				<tr>		
+					<td>{{Instrument}}</td>
+					<td>{{Technique}}</td>
+					<td>{{Calibration}}</td>
+					<td>{{Information}}</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+
+</template>
+
+<template name="weather">
+	
+		<h2>Weather Info</h2>
+				<h4> for <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
+		
+		<table class="table table-bordered table-condensed ">
 			<thead>
 				<tr>
-					<td>Group Name</td>
-					<td>Name Of Body Of Water</td>
-					<td>Project</td>
+					<td>Conditions</td>
+					<td>rain</td>
+					<td>duration</td>
+					<td>ambientTemperature</td>
 				  </tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>{{this.GroupName}}</td>
-					<td>{{this.NameOfBodyOfWater}}</td>
-					<td><a href="/project/{{this.projectId}}">{{projectName this.projectId}}</a></td>
+					<td>{{this.Conditions}}</td>
+					<td>{{this.rain}}</td>
+					<td>{{this.duration}}</td>
+					<td>{{ambientTemperature}}</td>
+					
 				</tr>
 			</tbody>
 		</table>
-	</div>
+</template>
+
+<template name="water">
+	
+		<h2>Water Info</h2>
+		<h4> for <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
+		
+		<table class="table table-bordered table-condensed ">
+			<thead>
+				<tr>
+					<td>FlowOrWaterLevel</td>
+					<td>Clarity</td>
+					<td>Color</td>
+					<td>Surface</td>
+					<td>Odor</td>
+					<td>Trash</td>
+					<td>Other</td>
+				  </tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{this.FlowOrWaterLevel}}</td>
+					<td>{{this.Clarity}}</td>
+					<td>{{this.Color}}</td>
+					<td>{{this.Surface}}</td>
+					<td>{{this.Odor}}</td>
+					<td>{{this.Trash}}</td>
+					<td>{{this.Other}}</td>
+				</tr>
+			</tbody>
+		</table>
 </template>
 
 
 <template name="teamm">
 	
 		<h2>Team Info</h2>
-		
+				<h3> submitted by {{owner}} <br> to <a href="/project/{{this.projectId}}">{{projectName this.projectId}}</a></h3>
+
 		<table class="table table-bordered table-condensed ">
 			<thead>
 				<tr>
 					<td>Group Name</td>
 					<td>Leader Name</td>
 					<td>Leader Profession</td>
-					<td>Project</td>
+		
 				  </tr>
 			</thead>
 			<tbody>
@@ -132,26 +316,24 @@
 					<td>{{this.Name}}</td>
 					<td>{{this.LeaderName}}</td>
 					<td>{{this.LeaderProfession}}</td>
-					<td><a href="/project/{{this.projectId}}">{{projectName this.projectId}}</a></td>
+				
 				</tr>
 			</tbody>
 		</table>
-<table class="table table-bordered table-condensed" id="members">
+<table class="table table-bordered table-condensed" >
 			<thead>
 				<tr>
 					<td>Member Name</td>
 					<td>Member Profession</td>
-				  </tr>
+				</tr>
 			</thead>
-<tbody>
-				
+			<tbody>			
 			{{#each this.Members}}		
-<tr>		
+				<tr>		
 					<td>{{name}}</td>
 					<td>{{profession}}</td>
-</tr>
+				</tr>
 			{{/each}}
-				
 			</tbody>
 		</table>
 </template>

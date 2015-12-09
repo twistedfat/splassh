@@ -138,10 +138,12 @@ var coverHandler = function(event, template) {
 		}
       });
 		//remove the following line and replace with error handling in case cover is bad data ^
-	  coverId = cover._id;
+	  if(cover){
+		coverId = cover._id;
 
 	  console.log("coverId",cover._id);
 	  Session.set('coverId', cover._id);
+		}
     });
 
 	setCoverId(coverId,this);

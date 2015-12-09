@@ -9,10 +9,7 @@ Template.viewData.helpers({
 		return Biologicals.find( {projectId: Session.get('currentProjectId')} );
 },
 	teams: function(){
-		return Teams.find();
-},
-	teamCount: function() {
-		return Teams.find({}).count;
+		return Teams.find({projectId: Session.get('currentProjectId') });
 },
 	chemicals: function(){
 		return Chemicals.find( {projectId: Session.get('currentProjectId') });

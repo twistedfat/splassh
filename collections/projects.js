@@ -38,6 +38,7 @@ Meteor.methods({
       coordinates: Object,
       tags: String,
 	  water: String,
+	  cover:String
     });
     
     var tagArray = [];
@@ -51,7 +52,7 @@ Meteor.methods({
 	var userIdArray = [];
     userIdArray.push(Meteor.user()._id);
 	var usernameArray = [];
-    userIdArray.push(SPLASSH.userName(Meteor.user()));
+    usernameArray.push(SPLASSH.userName(Meteor.user()));
    var id = Projects.insert({
       coordinates: {
           lat: options.coordinates.lat,
@@ -69,13 +70,16 @@ Meteor.methods({
 	  modified: new Date().getTime(),
 	  authors:usernameArray,
 	  authorIds:userIdArray,
-	  cover:"no",
+	  cover: options.cover,
 	  followerIds:userIdArray, 
    });
-    
+    //updates tags and water bodies and cover image
+	
   if (id) {
-    //Update the tag's uses in the database
-    Tags.update({ name: tagArray[0] }, { $inc: { count: 1} });
+    //WHAT ARE THESE LINES DOING?
+    Tags.update({ name: tagArray[0] }, { $inc: { count: 1} });	
+    Tags.update({ name: options.water }, { $inc: { count: 1} });
+	Collections.Images.update({_id: options.cover}, {$set:{projectId:id}});
   }
     
   return id;

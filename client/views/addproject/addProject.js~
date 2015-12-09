@@ -14,10 +14,41 @@ Template.addProjectModal.helpers({
 	rendered: function() {
   	$('[data-toggle="tooltip"]').tooltip();
    	// GAnalytics.pageview();
-	}
+	},
+	clearCover: function() {
+	 Session.set('coverId', "no");
+}
 });
 
+var coverHandler = function(event, template) {
+    
+	
+	FS.Utility.eachFile(event, function(file) {
+      var newFile = new FS.File(file);
+
+		newFile.ownerId= Meteor.userId();
+
+
+      cover = Collections.Images.insert(newFile, function (err, fileObj) {
+        //If !err, we have inserted new doc with ID fileObj._id, and
+        //kicked off the data upload using HTTP
+		 if(!err){
+			console.log("Inserted",cover);
+		}
+      });
+		//remove the following line and replace with error handling in case cover is bad data ^
+
+	  Session.set('coverId', cover._id);
+    });
+
+  };
+
 Template.addProjectModal.events({
+
+  'dropped .imageArea':coverHandler,
+    'dropped .imageDropArea': coverHandler,
+    'change input.images': coverHandler,
+
   'submit form': function(e,t) {
     e.preventDefault();
 
@@ -55,7 +86,8 @@ Template.addProjectModal.events({
       coordinates: coordinates,
       description: t.find('#project-description').value,
       tags: tags,
-      water: water
+      water: water,
+	  cover: Session.get('coverId')
     }
     
     //If the user is logged in,

@@ -15,8 +15,6 @@
 		{{/if}}
 	{{else}}
 		{{#each coverImage}}
-			
-			{{> theCover}}
 		{{/each}}
 	{{/if}}
 	<p class="lead text-muted">started by: <br/> {{owner}} <br/> {{formatDate date_created "long"}}</p>

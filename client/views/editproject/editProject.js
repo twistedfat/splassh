@@ -81,45 +81,10 @@ Template.editProjectModal.events({
       water: water,
     }
 	editProject(project);
-          toastr.success('Project updated!','info');
-          $('#editWaterProjectModal').modal('hide');
-/*    
-    //If the user is logged in,
-    if (Meteor.user()) {
-      //Insert the project to the database and update the tags database
-      project._id = Meteor.call("createProject", project, function(error, result) {
-        if (error) {
-          toastr.error('ERROR CREATING PROJECT: ' + error);
-          return;
-        }
-        toastr.success('Project added!','info');
-        $('#editWaterProjectModal').modal('hide');
-        // force routing to map here
-        Router.go('project', {'_id': result});
-        //map.panTo(project.coordinates);
-      });
-    } else {
-      $('#editWaterProjectModal').modal('hide');
-      showSignInPrompt(function(err) {
-        if (err) {
-          toastr.error('[SE02] ' + err);
-          return;
-        }
+    toastr.success('Project updated!','info');
+    $('#editWaterProjectModal').modal('hide');
 
-        //Insert the project to the database and update the tags database
-        project._id = Meteor.call("createProject", project, function(error, result) {
-          if (error) {
-            toastr.error('[SE03]: ' + error);
-            return;
-          }
 
-          toastr.success('Project added!','info');
-          $('#editWaterProjectModal').modal('hide');
-        });
-        
-      });
-    }
-*/
   },
   'click #geolocate-button': function(e, t) {
     if (navigator.geolocation) {

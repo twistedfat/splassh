@@ -10,9 +10,10 @@
             <div class="modal-body">
               <form role="form" class="form-addwaterproject">
                 <input id="project-title" type="text" autofocus="" required placeholder="water project name" class="form-control input-lg"><br/>
-    <input id="project-waterbody" type="text" autofocus="" required placeholder="body of water name" class="form-control input-lg"><br/>
+    <input id="project-waterbody" type="text" required placeholder="body of water name" class="form-control input-lg"><br/>
                 <textarea id="project-description" required placeholder="description" class="form-control input-lg"></textarea><br/>
-				
+							{{>loadBodies}}
+                {{> loadTags}}
 				<div class="input-group">
 					  <span class="input-group-btn">
 						<button id="map-button" class="btn btn-default btn-lg" data-toggle="tooltip" title="Click to choose location on the map" type="button"><span class="glyphicon glyphicon-globe"></span></button>
@@ -21,10 +22,13 @@
 					<span class="input-group-btn">
 		            	<button id="geolocate-button" class="btn btn-default btn-lg" data-toggle="tooltip" title="Click to use current location." type="button"><span class="glyphicon glyphicon-map-marker"> </span></button>
 					</span>
+
                 </div><!-- /input-group --><br/>
-               
-				{{>loadBodies}}
-                {{> loadTags}}
+           <div class="well imageDropArea">
+			<p>Cover Photo {{clearCover}}</p>
+			<input type="file" multiple class="images">
+		  </div>
+	
                 <button type="submit" class="btn btn-default btn-lg btn-block">submit</button>
               </form>
             </div>

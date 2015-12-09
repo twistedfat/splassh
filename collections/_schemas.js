@@ -67,6 +67,17 @@ Schemas.Team = new SimpleSchema({
 		},
 		autoform:{ omit:true}
 },
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
 	projectId:{
 		type:String, 
 		autoform:{ omit:true}
@@ -130,6 +141,17 @@ Schemas.Site = new SimpleSchema({
 	projectId:{
 		type:String, 
 		autoform:{ omit:true}
+},
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
 }
 	
 });
@@ -176,6 +198,17 @@ Schemas.Monitors = new SimpleSchema({
 },
 	projectId:{
 		type:String, 
+		autoform:{ omit:true}
+},
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
 		autoform:{ omit:true}
 }
 });
@@ -240,17 +273,28 @@ Schemas.Weather  = new SimpleSchema({
 	projectId:{
 		type:String, 
 		autoform:{ omit:true}
+},
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
 }
 });
 
 Schemas.Chemicals = new SimpleSchema({
-	Chemical:{
+	chemical:{
 		type: Array
 	},
-	'Chemical.$':{
+	'chemical.$':{
 		type:Object
 },
-	'Chemical.$.Name':{
+	'chemical.$.name':{
 		type:String,
 		autoform: {
 		  options: {
@@ -271,11 +315,11 @@ Schemas.Chemicals = new SimpleSchema({
 		  }
     }
 },
-	'Chemical.$.Value':{
+	'chemical.$.value':{
 		type:String,
 		max:50
 },
-	'Chemical.$.Unit':{
+	'chemical.$.unit':{
 		type:String,
 		max:10
 },
@@ -331,18 +375,29 @@ Schemas.Chemicals = new SimpleSchema({
 	projectId:{
 		type:String, 
 		autoform:{ omit:true}
+},
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
 }
 });
 
 
 Schemas.Biologicals = new SimpleSchema({
-  data: {
+  organism: {
     type: Array,
   },
-  'data.$': {
+  'organism.$': {
     type: Object
   },
-	'data.$.organism': {
+	'organism.$.name': {
     type: String,
 	autoform: {
       type: "select",
@@ -365,10 +420,10 @@ Schemas.Biologicals = new SimpleSchema({
       }
     }
   },
-  'data.$.value': {
+  'organism.$.value': {
     type: String
   },
-  'data.$.units': {
+  'organism.$.units': {
     type: String,
 	optional: true
   },
@@ -424,18 +479,29 @@ Schemas.Biologicals = new SimpleSchema({
 	projectId:{
 		type:String, 
 		autoform:{ omit:true}
+},
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
 }
 });
 
 
 Schemas.Physical = new SimpleSchema({
-  data: {
+  attribute: {
     type: Array,
   },
-  'data.$': {
+  'attribute.$': {
     type: Object
   },
-	'data.$.attribute': {
+	'attribute.$.name': {
     type: String,
 	autoform: {
       type: "select",
@@ -453,10 +519,10 @@ Schemas.Physical = new SimpleSchema({
       }
     }
   },
-  'data.$.value': {
+  'attribute.$.value': {
     type: String
   },
-  'data.$.units': {
+  'attribute.$.units': {
     type: String,
 	optional: true
   },
@@ -511,6 +577,17 @@ Schemas.Physical = new SimpleSchema({
 },
 	projectId:{
 		type:String, 
+		autoform:{ omit:true}
+},
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
 		autoform:{ omit:true}
 }
 });
@@ -648,6 +725,17 @@ Other: {
 },
 	projectId:{
 		type:String, 
+		autoform:{ omit:true}
+},
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
 		autoform:{ omit:true}
 }
 });

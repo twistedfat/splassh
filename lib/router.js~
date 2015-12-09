@@ -8,7 +8,7 @@ Router.configure({
     'loginbar': { to : 'loginbar' },
     'footer': { to : 'footer' }
   },
-  waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('sites');Meteor.subscribe("images"); Meteor.subscribe("files");Meteor.subscribe('notifications');}
+  waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('sites');Meteor.subscribe("images"); Meteor.subscribe("files");Meteor.subscribe('notifications');Meteor.subscribe('teams');Meteor.subscribe('waters');Meteor.subscribe('weathers');Meteor.subscribe('chemicals');}
 //per all route?
 });
 
@@ -79,7 +79,7 @@ this.route('dataEntry', {
   });
 this.route('viewData', {
     path: '/viewData',
-	waitOn: function() {Meteor.subscribe('teams');},
+	waitOn: function() {},
   });
 this.route('donate', {
     path: '/donate'

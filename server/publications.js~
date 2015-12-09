@@ -42,3 +42,23 @@ Meteor.publish('notifications', function() {
 	return Notifications.find({userId: this.userId});
 	//find where commenterId!:this.userId
 });
+
+Meteor.publish('teams', function() {
+	return Teams.find({});
+	//find where commenterId!:this.userId
+});
+
+Meteor.publish('waters', function() {
+	return Waters.find({});
+	//find where commenterId!:this.userId
+});
+
+Meteor.publish('weathers', function() {
+	return Weathers.find({});
+	//find where commenterId!:this.userId
+});
+
+Meteor.publish('chemicals', function() {
+	return Chemicals.find({});
+	//find where commenterId!:this.userId
+});
