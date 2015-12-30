@@ -20,6 +20,9 @@ Template.project.helpers({
   isProjectAuthor: function(){
 	return this.authors.indexOf(SPLASSH.userName(Meteor.user()))>-1 ;
    },
+isProjectAuthorId: function(){
+	return this.authorIds.indexOf((Meteor.user()._id))>-1 ;
+   },
 maintag : function() {
   return (typeof this.tags !== 'undefined') ? this.tags[0] : 'none';
 },
@@ -138,10 +141,12 @@ var coverHandler = function(event, template) {
 		}
       });
 		//remove the following line and replace with error handling in case cover is bad data ^
-	  coverId = cover._id;
+	  if(cover){
+		coverId = cover._id;
 
 	  console.log("coverId",cover._id);
 	  Session.set('coverId', cover._id);
+		}
     });
 
 	setCoverId(coverId,this);

@@ -20,6 +20,9 @@ Template.project.helpers({
   isProjectAuthor: function(){
 	return this.authors.indexOf(SPLASSH.userName(Meteor.user()))>-1 ;
    },
+isProjectAuthorId: function(){
+	return this.authorIds.indexOf((Meteor.user()._id))>-1 ;
+   },
 maintag : function() {
   return (typeof this.tags !== 'undefined') ? this.tags[0] : 'none';
 },

@@ -22,11 +22,7 @@ Template.viewData.helpers({
 },
 	weathers: function(){
 		return Weathers.find({projectId: Session.get('currentProjectId')} );
-},
-	isProjectAuthor: function () {
-		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()));
-	}
- 
+}
 });
 
 Template.dataEntry.helpers({
@@ -37,7 +33,10 @@ Template.dataEntry.helpers({
 		return Meteor.userId() == Projects.findOne({_id:Session.get('currentProjectId')}).ownerId;
 	},
 	isProjectAuthor: function () {
-		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()));
+		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()))>-1; 
+	},
+isProjectAuthorId: function () {
+		return Projects.findOne({_id:Session.get('currentProjectId')}).authorIds.indexOf((Meteor.user()._id))>-1 ;
 	}
 });
 

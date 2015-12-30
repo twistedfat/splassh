@@ -1,0 +1,11 @@
+<template name="tag">
+  <div class="col-xs-4 col-xs-6 col-xs-6 tag-cell">
+    <h4>
+      <a href='/projects/tag/{{name}}' class='btn btn-default btn-xs'>{{number}}</a>
+      <a href='/projects/tag/{{name}}' class='btn btn-default btn-xs'>{{name}}</a>
+	   <img alt="180x180" data-src="holder.js/180x180" class="img-circle" style="width: 180px; height: 180px;" src="images/tags/ {{name}} .jpg">
+      &nbsp;<small>x&nbsp;{{count}}</small>
+    </h4>
+    <div class="excerpt">{{excerpt}}</div>
+  </div>
+</template>

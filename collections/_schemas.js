@@ -214,16 +214,13 @@ Schemas.Monitors = new SimpleSchema({
 });
 
 Schemas.Weather  = new SimpleSchema({
-  Conditions: {
+  sky: {
     type: [String],
 	optional:true,
     autoform: {
-    type: "select-checkbox",
+    type: "select",
       options: function () {
         return [
-          {label: "Heavy Rain", value: "Heavy Rain"},
-          {label: "Steady Rain", value: "Steady Rain"},
-          {label: "Intermittent Rain", value: "Intermittent Rain"},
           {label: "Overcast", value: "Overcast"},
           {label: "Partly Cloudy", value: "Partly Cloudy"},
           {label: "Clear/Sunny", value: "Clear/Sunny"}
@@ -231,7 +228,21 @@ Schemas.Weather  = new SimpleSchema({
       }
     }
   },
-  rain: {
+	rain: {
+    type: [String],
+	optional:true,
+    autoform: {
+    type: "select",
+      options: function () {
+        return [
+          {label: "Heavy Rain", value: "Heavy Rain"},
+          {label: "Steady Rain", value: "Steady Rain"},
+          {label: "Intermittent Rain", value: "Intermittent Rain"}
+        ];
+      }
+    }
+  },
+  inches: {
     type: Number,
     label: "Amount (in inches)",
 	optional:true
@@ -243,7 +254,7 @@ Schemas.Weather  = new SimpleSchema({
   },
 	ambientTemperature:{
 		type:Number, 
-		label: "Ambient Temperature (in F)",
+		label: "Ambient Temperature (in Farenheit)",
 		optional:true
 },
 	createdAt: {
@@ -321,7 +332,20 @@ Schemas.Chemicals = new SimpleSchema({
 },
 	'chemical.$.unit':{
 		type:String,
-		max:10
+		autoform: {
+      	type: "select",
+      	options: function () {
+        return [
+          {label: "pH", value: "pH"},
+          {label: "% saturation", value: "% saturation"},
+          {label: "ppt", value: "ppt"},
+          {label: "mS/cm", value: "mS/cm"},
+          {label: "µS/cm", value: "µS/cm"},
+          {label: "mg/L", value: "mg/L"},
+          {label: "µg/L", value: "µg/L"}
+        ];
+      }
+    }
 },
 //TODO: ADD Chemical.DATE
 	CollectionTechnique:{
@@ -424,8 +448,18 @@ Schemas.Biologicals = new SimpleSchema({
     type: String
   },
   'organism.$.units': {
-    type: String,
-	optional: true
+		type:String,
+		autoform: {
+      	type: "select",
+      	options: function () {
+        return [
+          {label: "colonies per liter", value: "colonies/L"},
+          {label: "colonies per milliliter", value: "colonies/mL"},
+          {label: "harmful algal blooms (HAB)", value: "HAB"},
+		  {label: "organism(s)", value: "organism(s)"}
+        ];
+      }
+    }
   },
 //TODO: ADD Chemical.DATE
 	CollectionTechnique:{
@@ -523,8 +557,21 @@ Schemas.Physical = new SimpleSchema({
     type: String
   },
   'attribute.$.units': {
-    type: String,
-	optional: true
+		type:String,
+		autoform: {
+      	type: "select",
+      	options: function () {
+        return [
+          {label: "Celsius", value: "C"},
+          {label: "meters", value: "m"},
+          {label: "centimeters", value: "cm"},
+          {label: "hectares", value: "hectares"},
+          {label: "meters per second", value: "m/s"},
+		  {label: "NTUs", value: "NTUs"},
+		  {label: "TSS", value: "TSS"}
+        ];
+      }
+    }
   },
 //TODO: ADD Chemical.DATE
 	CollectionTechnique:{

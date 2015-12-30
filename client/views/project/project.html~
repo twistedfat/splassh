@@ -15,6 +15,7 @@
 		{{/if}}
 	{{else}}
 		{{#each coverImage}}
+			{{> theCover}}
 		{{/each}}
 	{{/if}}
 	<p class="lead text-muted">started by: <br/> {{owner}} <br/> {{formatDate date_created "long"}}</p>
@@ -41,7 +42,9 @@
 <br/>
 <br/> 
 <br/> 
-
+{{#if isProjectAuthorId}}
+<h1>YEAHHHHHHHHHH</h1> 
+{{/if}}
     {{description}}
 <div class="row">
 	<div class="col-md-2">	
@@ -103,7 +106,7 @@
 	 <div class="container">	
       <div class="col-md-12">
         <form role="form" class="form-addcomment">
-        	<input id="project-comment" type="text" autofocus="" required placeholder="Enter your comment" class="form-control input-lg input-block"/><br/>
+        	<input id="project-comment" type="text" required placeholder="Enter your comment" class="form-control input-lg input-block"/><br/>
          	<button type="submit" class="btn btn-default btn-md btn-block">submit</button>
         </form><br/>
         {{#each comments}}
