@@ -215,7 +215,7 @@ Schemas.Monitors = new SimpleSchema({
 
 Schemas.Weather  = new SimpleSchema({
   sky: {
-    type: [String],
+    type: String,
 	optional:true,
     autoform: {
     type: "select",
@@ -229,7 +229,7 @@ Schemas.Weather  = new SimpleSchema({
     }
   },
 	rain: {
-    type: [String],
+    type: String,
 	optional:true,
     autoform: {
     type: "select",
