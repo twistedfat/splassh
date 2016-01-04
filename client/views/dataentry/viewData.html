@@ -11,9 +11,13 @@
 				  </div>
 				  <div id="collapse111" class="panel-collapse collapse">
 					<div class="panel-body">
-					{{#each teams}}
-						{{> teamm}}
-					{{/each}}
+						{{#if teams.count}}
+							{{#each teams.items}}
+								{{> teamm}}
+							{{/each}}
+						{{else}}
+							There is no team information.
+						{{/if}}
 					</div>
 				  </div>
 				</div>
@@ -25,9 +29,13 @@
 					  </div>
 					  <div id="collapse112" class="panel-collapse collapse">
 						<div class="panel-body">
-					{{#each waters}}
-						{{> water}}
-					{{/each}}					
+							{{#if waters.count}}
+								{{#each waters.items}}
+									{{> water}}
+								{{/each}}	
+							{{else}}
+								There are no water observations.
+							{{/if}}
 						</div>
 					  </div>
 					</div>
@@ -39,9 +47,13 @@
 					  </div>
 					  <div id="collapse113" class="panel-collapse collapse">
 						<div class="panel-body">
-				{{#each weathers}}
-						{{> weather}}
-					{{/each}}
+							{{#if weathers.count}}
+								{{#each weathers.items}}
+									{{> weather}}
+								{{/each}}
+							{{else}}
+								There are no weather conditions recorded.
+							{{/if}}
 					  </div>
 					</div>
 				  </div> 
@@ -53,9 +65,13 @@
 					  </div>
 					  <div id="collapse114" class="panel-collapse collapse">
 						<div class="panel-body">
-					{{#each chemicals}}
-							{{> chemical}}
-						{{/each}}
+							{{#if chemicals.count}}
+								{{#each chemicals.items}}
+									{{> chemical}}
+								{{/each}}
+							{{else}}
+								There are no chemicals recorded.
+							{{/if}}
 						</div>
 					  </div>
 					</div>
@@ -67,9 +83,13 @@
 						  </div>
 						  <div id="collapse115" class="panel-collapse collapse">
 							<div class="panel-body">
-					{{#each biologicals}}
-							{{> biological}}
-						{{/each}}
+								{{#if biologicals.count}}
+									{{#each biologicals.items}}
+										{{> biological}}
+									{{/each}}
+								{{else}}
+									There are no biologicals recorded.
+								{{/if}}
 							</div>
 						  </div>
 						</div>
@@ -81,9 +101,13 @@
 						  </div>
 						  <div id="collapse116" class="panel-collapse collapse">
 							<div class="panel-body">
-						{{#each physicals}}
-							{{> physical}}
-						{{/each}}
+								{{#if physicals.count}}
+									{{#each physicals.items}}
+										{{> physical}}
+									{{/each}}
+								{{else}}
+									There is no physical data recorded.
+								{{/if}}
 						  </div>
 						</div>
 				</div>

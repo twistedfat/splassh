@@ -6,22 +6,46 @@ Template.viewData.helpers({
     	return Session.get('currentProjectId');
 },
 	biologicals: function(){
-		return Biologicals.find( {projectId: Session.get('currentProjectId')} );
+		var cursor = Biologicals.find( {projectId: Session.get('currentProjectId')} );
+		return {
+			count: cursor.count(),
+			items: cursor
+		};
 },
 	teams: function(){
-		return Teams.find({projectId: Session.get('currentProjectId') });
+		var cursor = Teams.find({projectId: Session.get('currentProjectId') });
+		return {
+			count: cursor.count(),
+			items: cursor
+		};
 },
 	chemicals: function(){
-		return Chemicals.find( {projectId: Session.get('currentProjectId') });
+		var cursor = Chemicals.find( {projectId: Session.get('currentProjectId') });
+		return {
+			count: cursor.count(),
+			items: cursor
+		};
 },
 	physicals: function(){
-		return Physicals.find( {projectId: Session.get('currentProjectId') });
+		var cursor = Physicals.find( {projectId: Session.get('currentProjectId') });
+		return {
+			count: cursor.count(),
+			items: cursor
+		};
 },
 	waters: function(){
-		return Waters.find({projectId: Session.get('currentProjectId')} );
+		var cursor = Waters.find({projectId: Session.get('currentProjectId')} );
+		return {
+			count: cursor.count(),
+			items: cursor
+		};
 },
 	weathers: function(){
-		return Weathers.find({projectId: Session.get('currentProjectId')} );
+		var cursor = Weathers.find({projectId: Session.get('currentProjectId')} );
+		return {
+			count: cursor.count(),
+			items: cursor
+		};
 }
 });
 
