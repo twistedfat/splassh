@@ -14,3 +14,16 @@
   background-color: orange;
 }
 
+.project-page-thumbnail {
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+.project-page-thumbnail img {
+	width: 60px;
+	height: 70px;
+}
+
+.project-page-title {
+	margin-bottom: 0px;
+}

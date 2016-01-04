@@ -9,7 +9,8 @@ Template.project.helpers({
 	return this.author === SPLASSH.userName(Meteor.user()) ;
 	},
   isProjectOwner: function(){
-	return this.ownerId === Meteor.user()._id ;
+    // this.userId is hack to get when this is the follow document instead of project document
+	 return this.ownerId === Meteor.user()._id || this.userId === Meteor.user()._id;
 	},
   datasets: function() {
        return Datasets.find({projectId: this._id, type:"text"});
