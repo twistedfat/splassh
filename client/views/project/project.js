@@ -252,6 +252,11 @@ Follows.remove(this._id);
 	Session.setAuth( 'currentProjectId', this._id); 
 	Router.go('/dataentry');
 },
+'click .toAttachments': function (e,t ) {
+    e.preventDefault();
+  Session.setAuth( 'currentProjectId', this._id); 
+  Router.go('/attachments');
+},
  'submit form.form-editcomment': function(e, t) {
         e.preventDefault();
         var content = $('#project-edit').val();

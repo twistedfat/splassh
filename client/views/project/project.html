@@ -41,13 +41,16 @@
 			<div class="row">
 				<div class="col-md-5">
 					{{> projectmap this}}
-					<h3>{{waterbody}}</h3>
           <span class="label label-info">Primary Tag</span>
           <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
+          <div class="project-extras">
+	          <button type="button" class="btn btn-default toImages">Images</button>
+						<button type="button" class="btn btn-default toData">Data</button>
+						<button type="button" class="btn btn-default toAttachments">Attachments</button>
+					</div>
 				</div>
 				<div class="col-md-7">
-					<button type="button" class="btn btn-default btn-lg toImages">Images</button>
-					<button type="button" class="btn btn-default btn-lg toData"> Data</button>
+					<h3>{{waterbody}}</h3>
 					<p>{{description}}</p>
 
 					<div class="row">
