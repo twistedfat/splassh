@@ -81,7 +81,10 @@ Meteor.methods({
     //WHAT ARE THESE LINES DOING?
     Tags.update({ name: tagArray[0] }, { $inc: { count: 1} });	
     Tags.update({ name: options.water }, { $inc: { count: 1} });
-	Collections.Images.update({_id: options.cover}, {$set:{projectId:id}});
+	  Collections.Images.update({_id: options.cover}, {$set:{projectId:id}});
+    _.forEach(options.attachments, function(attachmentId) {
+      Collections.Files.update({_id: attachmentId}, {$set:{projectId:id}});
+    });
   }
     
   return id;
