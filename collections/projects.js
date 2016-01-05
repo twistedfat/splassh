@@ -38,7 +38,8 @@ Meteor.methods({
       coordinates: Object,
       tags: String,
 	  water: String,
-	  cover:String
+	  cover:String,
+    attachments: [String]
     });
     
     var tagArray = [];
@@ -71,7 +72,8 @@ Meteor.methods({
 	  authors:usernameArray,
 	  authorIds:userIdArray,
 	  cover: options.cover,
-	  followerIds:userIdArray, 
+	  followerIds:userIdArray,
+    attachments: options.attachments
    });
     //updates tags and water bodies and cover image
 	

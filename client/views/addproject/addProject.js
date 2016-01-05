@@ -80,6 +80,14 @@ Template.addProjectModal.events({
           return;
         }
 
+    // Upload attachments
+    var attachmentFiles = $('.form-addwaterproject').find('input[name=attachments]').get(0).files;
+    var attachments = _.map(attachmentFiles, function(file) {
+      var newFile = new FS.File(file);
+      newFile.ownerId= Meteor.userId();
+      return Collections.Files.insert(newFile);
+    });
+
     var project = {
       title: t.find('#project-title').value,
 	  waterbody: t.find('#project-waterbody').value,
@@ -87,8 +95,10 @@ Template.addProjectModal.events({
       description: t.find('#project-description').value,
       tags: tags,
       water: water,
-	  cover: Session.get('coverId')
-    }
+	    cover: Session.get('coverId'),
+      attachments: _.pluck(attachments, '_id') // Array of id's
+    };
+    console.log(project);
     
     //If the user is logged in,
     if (Meteor.user()) {
