@@ -254,7 +254,7 @@ Schemas.Weather  = new SimpleSchema({
   },
 	ambientTemperature:{
 		type:Number, 
-		label: "Ambient Temperature (in Farenheit)",
+		label: "Ambient Temperature (in Celsius)",
 		optional:true
 },
 	createdAt: {
