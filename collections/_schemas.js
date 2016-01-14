@@ -244,7 +244,7 @@ Schemas.Weather  = new SimpleSchema({
   },
   inches: {
     type: Number,
-    label: "Amount (in inches)",
+    label: "Amount (in centimeters)",
 	optional:true
   },
   duration: {
