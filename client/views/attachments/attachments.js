@@ -42,6 +42,6 @@ Template.attachments.helpers({
 		return Meteor.userId() == Projects.findOne({_id:Session.get('currentProjectId')}).ownerId;
 	},
 	isProjectAuthor: function () {
-		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()));
+		return Meteor.userId() == Projects.findOne({_id:Session.get('currentProjectId')}).ownerId || Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()));
 	}
 });
