@@ -342,7 +342,8 @@ Schemas.Chemicals = new SimpleSchema({
           {label: "mS/cm", value: "mS/cm"},
           {label: "µS/cm", value: "µS/cm"},
           {label: "mg/L", value: "mg/L"},
-          {label: "µg/L", value: "µg/L"}
+          {label: "µg/L", value: "µg/L"},
+          {label: "ppb or ppm", value: "ppb or ppm"}
         ];
       }
     }
