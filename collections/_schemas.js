@@ -36,6 +36,7 @@ Schemas.Team = new SimpleSchema({
         return [
           {label: "professional", value: "professional"},
           {label: "graduate student", value: "graduate"},
+          {label: "undergraduate student", value: "undergraduate"},
           {label: "high school student", value: "high"},
 		  {label: "middle school student", value: "middle"},
           {label: "elementary school student", value: "elementary"}
