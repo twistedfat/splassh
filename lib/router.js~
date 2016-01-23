@@ -8,7 +8,8 @@ Router.configure({
     'loginbar': { to : 'loginbar' },
     'footer': { to : 'footer' }
   },
-  waitOn: function() { Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('sites');Meteor.subscribe("images"); Meteor.subscribe("files");Meteor.subscribe('notifications');Meteor.subscribe('teams');Meteor.subscribe('waters');Meteor.subscribe('weathers');Meteor.subscribe('chemicals');}
+  trackPageView: true,  // Google Analytics
+  waitOn: function() { Meteor.subscribe('users');Meteor.subscribe('projects'); Meteor.subscribe('tags'); Meteor.subscribe('follows'); Meteor.subscribe('comments');Meteor.subscribe('sites');Meteor.subscribe("images"); Meteor.subscribe("files");Meteor.subscribe('notifications');Meteor.subscribe('teams');Meteor.subscribe('waters');Meteor.subscribe('weathers');Meteor.subscribe('chemicals');Meteor.subscribe('physicals');Meteor.subscribe('biologicals');}
 //per all route?
 });
 
@@ -81,6 +82,10 @@ this.route('viewData', {
     path: '/viewData',
 	waitOn: function() {},
   });
+this.route('attachments', {
+  path: '/attachments',
+  waitOn: function() { Meteor.subscribe('files');}
+});
 this.route('donate', {
     path: '/donate'
   });
