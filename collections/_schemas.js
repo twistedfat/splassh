@@ -14,9 +14,22 @@ Schemas.Team = new SimpleSchema({
 		max:30,
 	},
 	LeaderProfession:{
-		type:String,
+		type: String,
 		label:"Project Leader Profession",
-		max:30,
+		autoform: {
+			type: "select",
+			options: function() {
+				return [
+					{label: "professor", value: "professor"},
+	          		{label: "high school teacher", value: "high"},
+	          		{label: "middle school teacher", value: "middle"},
+	          		{label: "elementary school teacher", value: "elementary"},
+	          		{label: "water professional", value: "professional"},
+	          		{label: "informal science educator", value: "informal educator"},
+	          		{label: "citizen scientist", value: "citizen"}
+				];
+			}
+		}
 	},
 	Members: {
       type: Array,
