@@ -469,9 +469,7 @@ Schemas.Biologicals = new SimpleSchema({
       	options: function () {
         return [
           {label: "colonies per liter", value: "colonies/L"},
-          {label: "colonies per milliliter", value: "colonies/mL"},
-          {label: "harmful algal blooms (HAB)", value: "HAB"},
-		  {label: "organism(s)", value: "organism(s)"}
+          {label: "colonies per milliliter", value: "colonies/mL"}
         ];
       }
     }
