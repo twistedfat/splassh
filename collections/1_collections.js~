@@ -7,7 +7,7 @@ Collections.Files = new FS.Collection("files", {
   chunkSize: 4 * 1024 * 1024
 });
 
-Collections.Images = new FS.Collection("images", {
+Collections.Images = new FS.Collection("image", {
   stores: [
     Stores.images, Stores.thumbnails
   ],

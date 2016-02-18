@@ -34,6 +34,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/team">Team</a></li>
+                <li><a href="/About-Us.pdf">About</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="/sponsors">Sponsors</a></li>
 <li><a href="/donate">Donate</a></li>
@@ -42,7 +43,7 @@
           </li> 
 	<li><a href="/searchf">Search</a></li>
           {{#if currentUser}}
-          <li><a href="/mydash"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;My Dash</a></li>
+          <li><a href="/mydash"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;My Dashboard</a></li>
         {{/if}}
 
 <li class="dropdown">

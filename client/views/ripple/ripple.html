@@ -6,8 +6,10 @@
       {{#each projects}}
         <div class="col-sm-6 col-md-3 observation">
           <div class="thumbnail">
-            {{#if isSusProject}}
-			<img src="susfish.jpg" alt="{{comment}}">
+			{{#if cover}}
+				{{#each coverImage}}
+					 <a href="{{this.url}}" target="_blank"><img src="{{this.url  store='thumbnails'}}" alt="" ></a>
+				{{/each}}
 			{{else}}
 			<img src="https://s3.amazonaws.com/salim.meteor.com/site/beach1.jpg" alt="{{comment}}">
 			{{/if}}
@@ -23,3 +25,4 @@
   </div>
 </div>
 </template>
+

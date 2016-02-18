@@ -19,13 +19,15 @@ createCommentNotification = function(comment) {
 	var project = Projects.findOne(comment.projectId);
 	var followers = project.followerIds;
 	for (var i in followers) {
-		Notifications.insert({
-			userId: followers[i],
-			projectId: project._id,
-			commentId: comment._id,
-			commentAuthor: comment.author,
-			commentAuthorId: comment.authorId,
-			read: false
-		});
+		if(comment.authorId != followers[i]){
+			Notifications.insert({
+				userId: followers[i],
+				projectId: project._id,
+				commentId: comment._id,
+				commentAuthor: comment.author,
+				commentAuthorId: comment.authorId,
+				read: false
+			});
+		}
 	}
 };

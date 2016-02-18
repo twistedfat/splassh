@@ -9,7 +9,7 @@ Collections.Files = new FS.Collection("files", {
 
 Collections.Images = new FS.Collection("images", {
   stores: [
-    Stores.images//, Stores.thumbnails
+    Stores.images, Stores.thumbnails
   ],
   filter: {	
     maxSize: 20 * 1024 * 1024, //in bytes

@@ -3,7 +3,7 @@ Stores = {};
   Stores.files = new FS.Store.S3("files", {
     accessKeyId: Meteor.settings.accessKeyId, //required
     secretAccessKey: Meteor.settings.secretAccessKey, //required
-    bucket: Meteor.settings.bucket //required
+    bucket: Meteor.settings.bucket, //required
   });
 
  Stores.images  = new FS.Store.S3("images", {
@@ -19,6 +19,19 @@ Stores = {};
 	}
  });
 
+ Stores.siteImages  = new FS.Store.S3("site", {
+   accessKeyId: Meteor.settings.accessKeyId, //required
+   secretAccessKey: Meteor.settings.secretAccessKey, //required
+   bucket: Meteor.settings.bucket, //required
+folder:"site",
+	beforeWrite: function(fileObj) {
+    // We return an object, which will change the
+    // filename extension and type for this store only.
+    return {
+      //name: 'png',
+    };
+	}
+ });
 Stores.any = new FS.Store.GridFS("any");
 
 
@@ -27,7 +40,12 @@ var createSquareThumb = function(fileObj, readStream, writeStream) {
   gm(readStream).autoOrient().resize(size, size + '^').gravity('Center').extent(size, size).stream('PNG').pipe(writeStream);
 };
 
-Stores.thumbnails = new FS.Store.FileSystem("thumbnails", { 
+var createThumb = function(fileObj, readStream, writeStream) {
+  // Transform the image into a 10x10px thumbnail
+  gm(readStream, fileObj.name()).resize('10', '10').stream().pipe(writeStream);
+};
+
+ Stores.thumbnails = new FS.Store.GridFS("thumbnails", {
 	transformWrite: createSquareThumb , 
 	 beforeWrite: function(fileObj) {
     // We return an object, which will change the
@@ -36,5 +54,5 @@ Stores.thumbnails = new FS.Store.FileSystem("thumbnails", {
       extension: 'png',
       type: 'image/png'
     };
-  }
+}
 });

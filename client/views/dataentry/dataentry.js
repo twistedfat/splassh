@@ -81,7 +81,10 @@ var hooksObject = {
       //this.result(doc); (asynchronous)
       //this.result(false); (asynchronous, cancel)
     }
-  }
+  },
+	after: {
+
+	}
 };
 //AutoForm.hooks({  insertSiteInfo: projectIdHook });
 // Or pass `null` to run the hook for all forms in the app (global hook)

@@ -1,150 +1,117 @@
 <template name="project">
-  <div id="project {{setSessionProjectId}}">
+	<div id="project {{setSessionProjectId}}">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					{{#if noCover}}
+						{{#if isProjectOwner}}
+						  <div class="well imageDropArea">
+								<p>Cover Photo Missing <br/> Add here!</p>
+								<input type="file" multiple class="images" />
+						  </div>
+						{{/if}}
+					{{else}}
+						{{#each coverImage}}
+							{{> theCover}}
+						{{/each}}
+					{{/if}}
 
-	<div class="container">
-	 <div class="row">
+					<div>
+						{{#if isFollowed}}
+							{{#each follows}}
+							<h1 class="project-page-title">{{title}}
+								<button type="button" class="btn btn-default btn-xs unfollowProject"> Unfollow </button>
+								{{#if isProjectOwner}}
+									<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal"  ><span class="glyphicon glyphicon-pencil"> </span>Edit Project Info</button>
+								{{/if}}
+							</h1> 
+							{{/each}}
+						{{else}}
+							<h1 class="project-page-title">{{title}}
+								<button type="button" class="btn btn-default btn-xs followProject"> Follow </button>
+								{{#if isProjectOwner}}
+									<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal"  ><span class="glyphicon glyphicon-pencil"> </span>Edit Project Info</button>
+								{{/if}}
+							</h1> 
+						{{/if}}
+						<p class="lead text-muted">started by: {{owner}} on {{formatDate date_created "long"}}</p>
+					</div>
+				</div>
+    	</div>
+			<div class="row">
+				<div class="col-md-5">
+					{{> projectmap this}}
+          <span class="label label-info">Primary Tag</span>
+          <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
+          <div class="project-extras">
+	          <button type="button" class="btn btn-default toImages">Images</button>
+						<button type="button" class="btn btn-default toData">Data</button>
+						<button type="button" class="btn btn-default toAttachments">Attachments</button>
+					</div>
+				</div>
+				<div class="col-md-7">
+					<h3>{{waterbody}}</h3>
+					<p>{{description}}</p>
 
- <div class="container">
- <div class="col-md-2">
-	{{#if noCover}}
-		{{#if isProjectOwner}}
-		  <div class="well imageDropArea">
-			<p>Cover Photo Missing <br/> Add here!</p>
-			<input type="file" multiple class="images">
-		  </div>
-		{{/if}}
-	{{else}}
-		{{#each coverImage}}
-			{{> theCover}}
-		{{/each}}
-	{{/if}}
-	<p class="lead text-muted">started by: <br/> {{owner}} <br/> {{formatDate date_created "long"}}</p>
-		
-<br/> 
-
-</div>	
-
-        <div class="col-md-5">
-			{{#if isFollowed}}
-				{{#each follows}}
-				<h1>{{title}} <button type="button" class="btn btn-default btn-xs unfollowProject"> Unfollow </button> </h1> 
-				{{/each}}
-			{{else}}
-				<h1>{{title}} <button type="button" class="btn btn-default btn-xs followProject"> Follow </button> </h1> 
-			{{/if}}
-<br/> 
-<h3>{{waterbody}}</h3> 
- <div class="col-md-12">
-            <span class="label label-info">Primary Tag</span>
-            <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
-          </div>
-<br/>
-<br/>
-<br/> 
-<br/> 
-{{#if isProjectAuthorId}}
-<h1>YEAHHHHHHHHHH</h1> 
-{{/if}}
-    {{description}}
-<div class="row">
-	<div class="col-md-2">	
-			<div class="container">	
-				{{#if 0}}
-				<div class="col-md-4">	
-					<form role="form" class="form-addauthor">
-					<input id="author" type="text-sm" name="author" placeholder="Add Authors here"/><br/>
-					<button class="btn btn-default btn-xs" type="submit">Add author</button>	
-					</form>
-	</div>
-				{{/if}}
+					<div class="row">
+						<div class="col-md-2">	
+							<div class="container">	
+								{{#if 0}}
+									<div class="col-md-4">	
+										<form role="form" class="form-addauthor">
+											<input id="author" type="text-sm" name="author" placeholder="Add Authors here"/><br/>
+											<button class="btn btn-default btn-xs" type="submit">Add author</button>	
+										</form>
+									</div>
+								{{/if}}
+							</div>
+						</div>
+					</div>
+				</div>
+        <div class="col-md-2">
+				</div>
 			</div>
-			</div> 
-
-		<div class="col-md-5">
-          	<div class="col-md-4">
-			<div class="container">
-				 <button type="button" class="btn btn-default btn-lg toImages"> Images</button> 
-         	 </div>
-         	 </div>
-	</div>
-	<div class="col-md-5">
-		      	<div class="col-md-4">
-				<div class="container">
-						 <button type="button" class="btn btn-default btn-lg toData"> Data</button> 
-		     	 </div>
-		     	 </div>      
-	</div>
-</div>
- </div>
-
-        <div class="col-md-5">
-          <div class="col-md-12">
-          {{> projectmap this}}
-          </div>
-		
-		<br/>
-		 <br/><br/><br/><br/>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-5">
-		</div>
-		<div class="col-md-5">
-			{{#if isProjectOwner}}
-					<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal"  ><span class="glyphicon glyphicon-pencil"> </span>Edit Project Info</button>
-				{{/if}}
-		</div>
-	</div>
-
-</div>
-</div>
-</div>
-    <hr>
-
-	<hr>
-	 </div>
-	 <div class="container">	
-      <div class="col-md-12">
-        <form role="form" class="form-addcomment">
-        	<input id="project-comment" type="text" required placeholder="Enter your comment" class="form-control input-lg input-block"/><br/>
-         	<button type="submit" class="btn btn-default btn-md btn-block">submit</button>
-        </form><br/>
-        {{#each comments}}
-            <div class="well well-xs comment">
-                <div class="row">
-                    <div class="col-md-2"><img src="{{avatarUrl}}" class="img-circle" alt="Avatar"/>
-<br/>
-               	    <span class="comment-author">{{author}}<br/><small> posted {{posted_timeago}}</small></span>
-</div>
-               	    <div class="col-md-10 comment-data">
-		    <span class="comment-body"><h3>{{body}}</h3></span>
-			{{#if isCommentOwner}}
-
-<!--remove-->
-<!-- edit-->
-<div  class="btn-group">
-                  <button class="btn btn-default btn-xs edit" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
-<div id = editCommentform style="display: none">
-<br/><br/>
-     <form role="form" class="form-editcomment">
-        	<input id="project-edit" type="text" required placeholder="Edit your comment" class="form-control input-sm input-block" value="{{body}}"/>
-<button class="btn btn-default btn-sm btn-block" type="submit">submit edit</button>		
-        </form>         
-</div>
-<!--remove-->
- <br/> 
-	<button class="btn btn-danger btn-xs remove" type="button"><span class="glyphicon glyphicon-remove"></span></button>
-		<br/>
-                </div>
-			{{/if}}
-	
-               	    
-               	    </div>
-               	</div>
-     	    </div>
-     	{{/each}}
-      </div> <!-- /row-->
-    </div> <!-- /container -->
+    	<hr>
+    	<div class="row">	
+	      <div class="col-md-12">
+	        <form role="form" class="form-addcomment">
+	        	<input id="project-comment" type="text" required placeholder="Enter your comment" class="form-control input-lg input-block"/><br/>
+	         	<button type="submit" class="btn btn-default btn-md btn-block">submit</button>
+	        </form><br/>
+	        {{#each comments}}
+	          <div class="well well-xs comment">
+	            <div class="row">
+	              <div class="col-md-2"><img src="{{avatarUrl}}" class="img-circle" alt="Avatar"/>
+									<br/>
+	         	    	<span class="comment-author">{{author}}<br/><small> posted {{posted_timeago}}</small></span>
+								</div>
+	         	    <div class="col-md-10 comment-data">
+			    				<span class="comment-body"><h3>{{body}}</h3></span>
+									{{#if isCommentOwner}}
+										<!--remove-->
+										<!-- edit-->
+										<div  class="btn-group">
+	                  	<button class="btn btn-default btn-xs edit" type="button"><span class="glyphicon glyphicon-pencil"></span></button>
+											<div id = editCommentform style="display: none">
+												<br/><br/>
+		     								<form role="form" class="form-editcomment">
+		        							<input id="project-edit" type="text" required placeholder="Edit your comment" class="form-control input-sm input-block" value="{{body}}"/>
+													<button class="btn btn-default btn-sm btn-block" type="submit">submit edit</button>		
+		        						</form>         
+											</div>
+											<!--remove-->
+	 										<br/> 
+											<button class="btn btn-danger btn-xs remove" type="button"><span class="glyphicon glyphicon-remove"></span></button>
+											<br/>
+	                	</div>
+									{{/if}}
+								</div>
+	         		</div>
+	     	    </div>
+	     		{{/each}}
+	      </div>
+	    </div> <!-- /row -->
+	  </div>
   </div><!-- /project -->
  {{> editProjectModal }}
 </template>
@@ -164,8 +131,8 @@
 
 
 <template name="theCover">
-  <div class="media well pull-left">
-    <a href="{{this.url}}" target="_blank" class="pull-left"><img src="{{this.url store='thumbnails'}}" alt="" class="img-rounded"></a>
+  <div class="pull-left project-page-thumbnail">
+    <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="img-rounded"></a>
   </div>
 </template>
 
