@@ -93,8 +93,9 @@
 	{{/if}}
 </div>
 
+<div class="row">
 {{> viewData}}
-
+</div>
 </template>
 
 <template name="insertComment">

@@ -4,21 +4,21 @@
 
 {{#if isProjectAuthorId}}
 <div class="row">
-<div class="col-md 4">
-  <div class="well imageDropArea">
+  <div class="well imageDropArea pull-left">
 	<p>Add more images here</p>
     <input type="file" multiple class="images">
-  </div>
  </div>
 </div>
 {{/if}}
-
+<div class="row">
   <div class="imageArea clearfix">
 	<p>More images from this project..</p>
     {{#each imagesByProject}}
     {{> uploadedImage}}
     {{/each}}
   </div>
+</div>
+
 </div>
 </template>
 
