@@ -6,7 +6,7 @@ function trueFunc(userId) {
   return true;
 }
 function falseFunc() {return false;}
-
+function basicTrueFunc() {return true;}
 Meteor.users.allow({
   update: function(userId, doc, fieldNames, modifier) {
     if (userId === doc._id && !doc.username && fieldNames.length === 1 && fieldNames[0] === 'username') {
@@ -21,7 +21,7 @@ Collections.Images.allow({
   insert: trueFunc,
   update: trueFunc,
   remove: trueFunc,
-  download: trueFunc
+  download: basicTrueFunc
 });
 
 Collections.Images.deny({

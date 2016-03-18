@@ -132,7 +132,7 @@
 
 <template name="theCover">
   <div class="pull-left project-page-thumbnail">
-    <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="img-rounded"></a>
+    <a href="{{this.url}}" target="_blank"><img src="{{this.url  store='thumbnails'}}" alt="" class="img-rounded"></a>
   </div>
 </template>
 
