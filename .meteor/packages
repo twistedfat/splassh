@@ -35,7 +35,6 @@ matteodem:easy-search
 u2622:persistent-session
 cfs:standard-packages
 cfs:s3
-standard-minifiers
 cfs:gridfs
 cfs:filesystem
 cfs:ui
@@ -47,3 +46,5 @@ aldeed:autoform-bs-datetimepicker
 aldeed:autoform-bs-datepicker
 reywood:iron-router-ga
 cfs:graphicsmagick
+standard-minifier-css
+standard-minifier-js
