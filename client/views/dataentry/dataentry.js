@@ -46,6 +46,13 @@ Template.viewData.helpers({
 			count: cursor.count(),
 			items: cursor
 		};
+},
+	links: function(){
+		var cursor = Links.find({projectId: Session.get('currentProjectId')} );
+		return {
+			count: cursor.count(),
+			items: cursor
+		};
 }
 });
 

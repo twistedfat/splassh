@@ -72,3 +72,8 @@ Meteor.publish('physicals', function() {
 	return Physicals.find({});
 	//find where commenterId!:this.userId
 });
+
+Meteor.publish('links', function() {
+	return Links.find({});
+	//find where commenterId!:this.userId
+});

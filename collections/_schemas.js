@@ -2,6 +2,89 @@ Schemas = {};
 
 Meteor.isClient && Template.registerHelper("Schemas", Schemas);
 
+Schemas.Link = new SimpleSchema({
+	Title:{
+		type:String, 
+		label:"Document Title",
+		max:30
+	},
+  	Type: {
+      type: String,
+	  autoform: {
+      type: "select",
+      options: function () {
+        return [
+          {label: "Word Document", value: "word"},
+          {label: "Spreadsheet", value: "sheet"},
+	  {label: "Presentation", value: "presentation"},
+          {label: "Article", value: "article"},
+          {label: "Blog", value: "blog"},
+          {label: "Video", value: "video"}
+        ];
+      }
+    }
+	},
+	Description:{
+		type:String,
+		label:"Description",
+		max:50
+	},
+	URL:{
+		type:String,
+		label:"URL",
+		max:100,
+		regEx: SimpleSchema.RegEx.Url
+	},
+	Source:{
+		type:String,
+		label:"Embed Source",
+		max:100,
+		regEx: SimpleSchema.RegEx.Url,
+		optional: true
+	},	
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return new Date;
+		  } else if (this.isUpsert) {
+		    return {$setOnInsert: new Date};
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	ownerId:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return this.userId;
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	owner:{
+		type: String, 
+		autoValue: function() {
+		  if (this.isInsert) {
+		    return SPLASSH.userName(Meteor.user());
+		  } else {
+		    this.unset();  // Prevent user from supplying their own value
+		  }
+		},
+		autoform:{ omit:true}
+},
+	projectId:{
+		type:String, 
+		autoform:{ omit:true}
+}
+	
+   
+});
+
 Schemas.Team = new SimpleSchema({
 	Name:{
 		type:String, 

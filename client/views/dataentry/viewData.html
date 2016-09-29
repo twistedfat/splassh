@@ -6,6 +6,25 @@
 				<div class="panel panel-default">
 				  <div class="panel-heading">
 					<h4 class="panel-title">
+					  <a data-toggle="collapse" data-parent="#accordion11" href="#collapse222"> Links </a>
+					</h4>
+				  </div>
+				  <div id="collapse222" class="panel-collapse collapse">
+					<div class="panel-body">
+						{{#if links.count}}
+							{{#each links.items}}
+								{{> link}}
+							{{/each}}
+						{{else}}
+							No documents have been submitted.
+						{{/if}}
+					</div>
+				  </div>
+				</div>
+<div class="panel-group" id="accordion11">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
 					  <a data-toggle="collapse" data-parent="#accordion11" href="#collapse111"> Team Information</a>
 					</h4>
 				  </div>
@@ -115,8 +134,39 @@
 		
 </div>
 </div>
+</div>
 </template>
+<template name="link">
+	
+		<h2>Link</h2>
+				<h4> for project <a href="/project/{{projectId}}">{{projectName projectId}}  </a> <br> submitted by {{owner}}</h4>
 
+
+		<table class="table table-bordered table-condensed" >
+			<thead>
+				<h5>Link</h5>
+				<tr>
+					
+					<td>Title</td>
+					<td>Type</td>
+					<td>Description</td>
+					
+				</tr>
+			</thead>
+			<tbody>			
+				
+				<tr>		
+					<td> <a target="_blank" href={{URL}}>{{Title}}</a></td>
+					<td>{{Type}}</td>
+					<td>{{Description}}</td>
+					
+					
+				</tr>
+			
+			</tbody>
+		</table>
+		
+</template>
 
 <template name="physical">
 	
