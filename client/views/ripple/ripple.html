@@ -8,7 +8,7 @@
           <div class="thumbnail">
 			{{#if cover}}
 				{{#each coverImage}}
-					 <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" ></a>
+					 <a href="{{this.url}}" target="_blank"><img src="{{this.url  store='thumbnails'}}" alt="" ></a>
 				{{/each}}
 			{{else}}
 			<img src="https://s3.amazonaws.com/salim.meteor.com/site/beach1.jpg" alt="{{comment}}">

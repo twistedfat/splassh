@@ -2,22 +2,19 @@
  <div class="container"><br/>
   <h2>Attachments</h2>
 
-{{#if isProjectAuthorId}}
-<div class="row">
-  <div class="well attachmentDropArea pull-left">
+{{#if isProjectAuthor}}
+  <div class="well attachmentDropArea">
 	<p>Add more attachments here</p>
     <input type="file" multiple class="attachments">
   </div>
-</div>
 {{/if}}
-<div class="row">
+
   <div class="attachmentArea clearfix">
 	<p>More attachments from this project..</p>
     {{#each attachmentsByProject}}
     {{> uploadedAttachment}}
     {{/each}}
   </div>
-</div>
 </div>
 </template>
 

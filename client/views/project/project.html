@@ -24,7 +24,7 @@
 								{{#if isProjectOwner}}
 									<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal"  ><span class="glyphicon glyphicon-pencil"> </span>Edit Project Info</button>
 								{{/if}}
-							</h1> 
+							</h1>
 							{{/each}}
 						{{else}}
 							<h1 class="project-page-title">{{title}}
@@ -32,7 +32,7 @@
 								{{#if isProjectOwner}}
 									<button type="button" class="btn btn-default btn-xs editProject" data-toggle="modal" data-target="#editWaterProjectModal"  ><span class="glyphicon glyphicon-pencil"> </span>Edit Project Info</button>
 								{{/if}}
-							</h1> 
+							</h1>
 						{{/if}}
 						<p class="lead text-muted">started by: {{owner}} on {{formatDate date_created "long"}}</p>
 					</div>
@@ -44,8 +44,9 @@
           <span class="label label-info">Primary Tag</span>
           <button type="button" class="btn btn-default btn-xs primary-tag" data-toggle="tooltip" title="Main Classification. Visit /tags for more information on this tag.">{{maintag}}</button>
           <div class="project-extras">
-	          <button type="button" class="btn btn-default toImages">Images</button>
-						<button type="button" class="btn btn-default toData">Data</button>
+						<button type="button" class="btn btn-default toImages">Images</button>
+						<button type="button" class="btn btn-default toData">Data Entry</button>
+						<button type="button" class="btn btn-default toViewData">View Datasets</button>
 						<button type="button" class="btn btn-default toAttachments">Attachments</button>
 					</div>
 				</div>
@@ -54,13 +55,13 @@
 					<p>{{description}}</p>
 
 					<div class="row">
-						<div class="col-md-2">	
-							<div class="container">	
+						<div class="col-md-2">
+							<div class="container">
 								{{#if 0}}
-									<div class="col-md-4">	
+									<div class="col-md-4">
 										<form role="form" class="form-addauthor">
 											<input id="author" type="text-sm" name="author" placeholder="Add Authors here"/><br/>
-											<button class="btn btn-default btn-xs" type="submit">Add author</button>	
+											<button class="btn btn-default btn-xs" type="submit">Add author</button>
 										</form>
 									</div>
 								{{/if}}
@@ -72,7 +73,8 @@
 				</div>
 			</div>
     	<hr>
-    	<div class="row">	
+
+			<div class="row">
 	      <div class="col-md-12">
 	        <form role="form" class="form-addcomment">
 	        	<input id="project-comment" type="text" required placeholder="Enter your comment" class="form-control input-lg input-block"/><br/>
@@ -96,11 +98,11 @@
 												<br/><br/>
 		     								<form role="form" class="form-editcomment">
 		        							<input id="project-edit" type="text" required placeholder="Edit your comment" class="form-control input-sm input-block" value="{{body}}"/>
-													<button class="btn btn-default btn-sm btn-block" type="submit">submit edit</button>		
-		        						</form>         
+													<button class="btn btn-default btn-sm btn-block" type="submit">submit edit</button>
+		        						</form>
 											</div>
 											<!--remove-->
-	 										<br/> 
+	 										<br/>
 											<button class="btn btn-danger btn-xs remove" type="button"><span class="glyphicon glyphicon-remove"></span></button>
 											<br/>
 	                	</div>
@@ -113,27 +115,4 @@
 	    </div> <!-- /row -->
 	  </div>
   </div><!-- /project -->
- {{> editProjectModal }}
-</template>
-
-<template name="projectTags">
-  <div class="project-tags">
-  <span class="label label-info">More Tags</span>
-    {{#each tags}}
-      {{#if tagSelected}}
-        <button type="button" class="btn btn-default btn-xs tag-name btn-success" data-tier="{{tier}}" data-toggle="tooltip" title="{{excerpt}}">{{name}}</button>
-      {{else}}
-        <button type="button" class="btn btn-default btn-xs tag-name" data-tier="{{tier}}" data-toggle="tooltip" title="{{excerpt}}">{{name}}</button>
-      {{/if}}
-    {{/each}}
-  </div> <!-- button group -->
-</template> 
-
-
-<template name="theCover">
-  <div class="pull-left project-page-thumbnail">
-    <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="img-rounded"></a>
-  </div>
-</template>
-
-
+	</template>

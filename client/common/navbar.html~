@@ -34,7 +34,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/team">Team</a></li>
-                <li><a href="https://s3.amazonaws.com/salim.meteor.com/site/About-Us.pdf">About</a></li>
+                <li><a href="/About-Us.pdf">About</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="/sponsors">Sponsors</a></li>
 <li><a href="/donate">Donate</a></li>

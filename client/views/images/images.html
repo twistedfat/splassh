@@ -2,22 +2,19 @@
  <div class="container"><br/>
   <h2>Image Files</h2>
 
-{{#if isProjectAuthorId}}
-<div class="row">
-  <div class="well imageDropArea pull-left">
+{{#if isProjectAuthor}}
+  <div class="well imageDropArea">
 	<p>Add more images here</p>
     <input type="file" multiple class="images">
- </div>
-</div>
+  </div>
 {{/if}}
-<div class="row">
+
   <div class="imageArea clearfix">
 	<p>More images from this project..</p>
     {{#each imagesByProject}}
     {{> uploadedImage}}
     {{/each}}
   </div>
-</div>
 </div>
 </template>
 
