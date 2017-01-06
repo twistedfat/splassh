@@ -55,9 +55,5 @@ Template.images.helpers({
 	},
 	isProjectAuthor: function () {
 		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()));
-	},
-
-isProjectAuthorId: function () {
-		return Projects.findOne({_id:Session.get('currentProjectId')}).authorIds.indexOf((Meteor.user()._id))>-1 ;
 	}
 });

@@ -1,26 +1,49 @@
 <template name="footer">
- <div id="footer">
-    <div class="container">
-        <div class="row">
-        <div class="col-md-8">
-    	<h3>About SPLASSH<br/><br/>
-    	<small>We are building a site for the social good about water to crowdsource the condition of our waterways. As a social network, SPLASSH will engage users to share, discuss and visually consume information about water. Our mission is to inspire water conservation through awareness in hopes of tackling one of the biggest global challenges that we face as a society, the sustainable use of water.</small></h3><br/>
-    	</div>
-    	<div class="col-md-4">
-    	    <h3>Contact Us<br/><br/>
-    	    <small>Follow our progress on Twitter, Facebook and Instagram or ask us a question! </small><br><br/>
-	    <small> Use the following links to contact us <br> <br/>
-    	    <a href="https://www.facebook.com/SPLASSHdata"><img class="img-circle" src="https://s3.amazonaws.com/salim.meteor.com/site/facebook.png" alt=""></a>
-             <a href="https://twitter.com/SPLASSHdata"><img class="img-circle" src="https://s3.amazonaws.com/salim.meteor.com/site/twitter.png" alt=""></a>
-             <a href="http://instagram.com/splasshData"><img class="img-circle" src="https://s3.amazonaws.com/salim.meteor.com/site/instagram.png" alt=""></a>
-             </small></h3><br/>
-    	</div>
-    	</div>
-	  </div>
-	  <div id="footer-bottom">
-    	  <div class="container">
-    	    &copy; SPLASSH 2014
-    	  </div>
-	  </div>
+  <footer id="myFooter">
+  <div class="container">
+  <div class="row">
+     <div class="col-sm-3">
+         <h2 class="logo"><a href="/"> SPLASSH </a></h2>
+     </div>
+     <div class="col-sm-2">
+         <h5>Start Here</h5>
+         <ul>
+             <li><a href="/">Home</a></li>
+             <!-- Pages for login and signup needed-->
+             <li><a href="#">Login</a></li>
+             <li><a href="#">Sign Up</a></li>
+         </ul>
+     </div>
+     <div class="col-sm-2">
+         <h5>About us</h5>
+         <ul>
+             <li><a href="/team">Team</a></li>
+             <li><a href="/about">About Us</a></li>
+             <li><a href="/sponsors">Sponsors</a></li>
+         </ul>
+     </div>
+     <div class="col-sm-2">
+         <h5>Support</h5>
+         <ul>
+             <li><a href="#">FAQ</a></li>
+         </ul>
+     </div>
+     <div class="col-smj-3">
+         <div class="social-networks">
+             <a href="https://twitter.com/SPLASSHdata" class="twitter"><i class="fa fa-twitter"></i></a>
+             <a href="https://www.facebook.com/SPLASSHdata" class="facebook"><i class="fa fa-facebook"></i></a>
+             <!-- I don't have instagram link - John -->
+             <!-- <a href="#" class="instagram"><i class="fa fa-instagram"></i></a> -->
+         </div>
+        <!-- Use form to link to page, so button preserves style -->
+        <form action="/contact">
+          <button type="submit" class="btn btn-default">Contact us</button>
+        </form>
+     </div>
   </div>
+</div>
+<div class="footer-copyright">
+   <p>© 2016 SPLASSH </p>
+</div>
+</footer>
 </template>

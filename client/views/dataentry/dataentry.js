@@ -46,13 +46,6 @@ Template.viewData.helpers({
 			count: cursor.count(),
 			items: cursor
 		};
-},
-	links: function(){
-		var cursor = Links.find({projectId: Session.get('currentProjectId')} );
-		return {
-			count: cursor.count(),
-			items: cursor
-		};
 }
 });
 
@@ -64,12 +57,27 @@ Template.dataEntry.helpers({
 		return Meteor.userId() == Projects.findOne({_id:Session.get('currentProjectId')}).ownerId;
 	},
 	isProjectAuthor: function () {
-		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()))>-1; 
+		return Projects.findOne({_id:Session.get('currentProjectId')}).authors.indexOf(SPLASSH.userName(Meteor.user()))>-1;
 	},
 isProjectAuthorId: function () {
 		return Projects.findOne({_id:Session.get('currentProjectId')}).authorIds.indexOf((Meteor.user()._id))>-1 ;
+	},
+	// === newly added -- john -- needs documentation
+	isNotProjectOwner: function () {
+	 return !(Meteor.userId() == Projects.findOne({_id:Session.get('currentProjectId')}).ownerId);
+	}  // == end of newly added in this block
+	});
+
+	// == newly added -- john -- need refactoring
+	Template.dataEntry.events ({
+	'click .toViewData': function (e,t ) {
+		 e.preventDefault();
+	 Session.setAuth( 'currentProjectId', Session.get('currentProjectId'));
+	 Router.go('/viewdata');
 	}
 });
+
+	// === end of newly added code -- john
 
 Template.registerHelper("projectName", function(param1){
 	return (Projects.findOne({_id: param1})).title;
@@ -88,10 +96,7 @@ var hooksObject = {
       //this.result(doc); (asynchronous)
       //this.result(false); (asynchronous, cancel)
     }
-  },
-	after: {
-
-	}
+  }
 };
 //AutoForm.hooks({  insertSiteInfo: projectIdHook });
 // Or pass `null` to run the hook for all forms in the app (global hook)

@@ -1,32 +1,27 @@
 <template name="dataEntry">
-
-
 	<div class="container">
+	<h1>Data Entry
+	<span class="pull-right">
+		<button type="button" class="btn btn-default toViewData">View Datasets</button>
+	</span></h1>
+	{{#if isNotProjectOwner}}
+  <p class="bg-danger">
+		Sorry, you can only enter data on projects you own or are a member of. However, you can view datasets
+		for this project by clicking view datasets above.
+	</p>
+	{{/if}}
 
-	<h1>Data Entry</h1>
-	<p>Need help with selecting units? Read the <a href="https://s3.amazonaws.com/salim.meteor.com/site/NewHelpUnitsPage.pdf">units guide</a>.</p>
 	{{#if isProjectAuthorId}}
+	<p>Need help with selecting units? Read the <a href="https://s3.amazonaws.com/salim.meteor.com/site/NewHelpUnitsPage.pdf">units guide</a>.</p>
 		<div class="panel-group" id="accordion">
 			<div class="col-md-6">
 				<div class="panel panel-default">
-					  <div class="panel-heading">
-						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Add Link</a>
-						</h4>
-					  </div>
-					  <div id="collapse1" class="panel-collapse collapse">
-						<div class="panel-body">
-						{{> insertLink}}
-						</div>
-					  </div>
-					</div>
-<div class="panel panel-default">
 				  <div class="panel-heading">
 					<h4 class="panel-title">
-					  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Add Team Information</a>
+					  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Add Team Information</a>
 					</h4>
-				  </div>
-				  <div id="collapse2" class="panel-collapse collapse">
+				</div>
+				  <div id="collapse1" class="panel-collapse collapse">
 					<div class="panel-body">
 					{{> insertTeam}}
 					</div>
@@ -35,10 +30,10 @@
 				<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Water Observations</a>
+						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Water Observations</a>
 						</h4>
 					  </div>
-					  <div id="collapse3" class="panel-collapse collapse">
+					  <div id="collapse2" class="panel-collapse collapse">
 						<div class="panel-body">
 						{{> insertWaterObservations}}
 						</div>
@@ -47,27 +42,27 @@
 				<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Weather Conditions</a>
+						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Weather Conditions</a>
 						</h4>
 					  </div>
-					  <div id="collapse4" class="panel-collapse collapse">
+					  <div id="collapse3" class="panel-collapse collapse">
 						<div class="panel-body">
 						{{> insertWeather}}
 					  </div>
 					</div>
-			  </div> 
+			  </div>
 
 
 			</div>
 			<div class="col-md-6">
-		
+
 				<div class="panel panel-default">
 				  <div class="panel-heading">
 					<h4 class="panel-title">
-					  <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Chemical</a>
+					  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Chemical</a>
 					</h4>
 				  </div>
-				  <div id="collapse5" class="panel-collapse collapse">
+				  <div id="collapse4" class="panel-collapse collapse">
 					<div class="panel-body">
 					{{> insertChemicals}}
 					</div>
@@ -76,10 +71,10 @@
 				<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Biological</a>
+						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Biological</a>
 						</h4>
 					  </div>
-					  <div id="collapse6" class="panel-collapse collapse">
+					  <div id="collapse5" class="panel-collapse collapse">
 						<div class="panel-body">
 						{{> insertBiologicals}}
 						</div>
@@ -88,16 +83,16 @@
 				<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion1" href="#collapse7">Physical</a>
+						  <a data-toggle="collapse" data-parent="#accordion1" href="#collapse6">Physical</a>
 						</h4>
 					  </div>
-					  <div id="collapse7" class="panel-collapse collapse">
+					  <div id="collapse6" class="panel-collapse collapse">
 						<div class="panel-body">
 						{{> insertPhysicals}}
 					  </div>
 					</div>
-			  </div> 
-	
+			  </div>
+
 		</div>
 
 			</div>
@@ -105,13 +100,15 @@
 	{{/if}}
 </div>
 
-<div class="row">
-{{> viewData}}
-</div>
+<div class="clearfix" style="margin-top: 2.5%"> </div>
+
 </template>
 
-<template name="insertLink">
-  {{> quickForm collection="Links" id="insertLink" type="insert"}}
+<template name="insertComment">
+  {{> quickForm collection="Comments" id="insertComment" schema=Schemas.Comments type="insert"}}
+</template>
+<template name="insertProject">
+  {{> quickForm collection="Projects" id="insertProject" schema=Schemas.Projects type="insert"}}
 </template>
 
 <template name="insertSite">
@@ -262,7 +259,7 @@
       </div>
       <div id="collapse8" class="panel-collapse collapse">
         <div class="panel-body">
-		
+
 		{{> insertProject}}
 		</div>
       </div>
@@ -275,7 +272,7 @@
       </div>
       <div id="collapse9" class="panel-collapse collapse">
         <div class="panel-body">
-		
+
 		{{> insertComment}}
 		</div>
       </div>
@@ -292,6 +289,6 @@
 		</div>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
 </template>

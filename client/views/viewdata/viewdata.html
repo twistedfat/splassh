@@ -1,6 +1,7 @@
 <template name="viewData">
 	<div class="container">
-	<h2>View Datasets</h2>
+	<h2>Project Datasets</h2>
+
 		<div class="container">
 			<div class="panel-group" id="accordion11">
 				<div class="panel panel-default">
@@ -32,7 +33,7 @@
 							{{#if waters.count}}
 								{{#each waters.items}}
 									{{> water}}
-								{{/each}}	
+								{{/each}}
 							{{else}}
 								There are no water observations.
 							{{/if}}
@@ -56,7 +57,7 @@
 							{{/if}}
 					  </div>
 					</div>
-				  </div> 
+				  </div>
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
@@ -112,14 +113,14 @@
 						</div>
 				</div>
 			</div>
-		
+
 </div>
 </div>
 </template>
 
 
 <template name="physical">
-	
+
 		<h2>Physical Info</h2>
 				<h4> for project <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
 
@@ -133,9 +134,9 @@
 					<td>Unit</td>
 				</tr>
 			</thead>
-			<tbody>			
-			{{#each this.attribute}}		
-				<tr>		
+			<tbody>
+			{{#each this.attribute}}
+				<tr>
 					<td>{{name}}</td>
 					<td>{{value}}</td>
 					<td>{{units}}</td>
@@ -153,9 +154,9 @@
 					<td>Information</td>
 				</tr>
 			</thead>
-			<tbody>			
+			<tbody>
 			{{#each this.CollectionTechnique}}
-				<tr>		
+				<tr>
 					<td>{{Instrument}}</td>
 					<td>{{Technique}}</td>
 					<td>{{Calibration}}</td>
@@ -167,7 +168,7 @@
 
 </template>
 <template name="biological">
-	
+
 		<h2>Biological Info</h2>
 				<h4> for project <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
 
@@ -181,9 +182,9 @@
 					<td>Unit</td>
 				</tr>
 			</thead>
-			<tbody>			
-			{{#each this.organism}}		
-				<tr>		
+			<tbody>
+			{{#each this.organism}}
+				<tr>
 					<td>{{name}}</td>
 					<td>{{value}}</td>
 					<td>{{units}}</td>
@@ -201,9 +202,9 @@
 					<td>Information</td>
 				</tr>
 			</thead>
-			<tbody>			
+			<tbody>
 			{{#each this.CollectionTechnique}}
-				<tr>		
+				<tr>
 					<td>{{Instrument}}</td>
 					<td>{{Technique}}</td>
 					<td>{{Calibration}}</td>
@@ -215,7 +216,7 @@
 
 </template>
 <template name="chemical">
-	
+
 		<h2>Chemical Info</h2>
 				<h4> for project <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
 
@@ -229,9 +230,9 @@
 					<td>Unit</td>
 				</tr>
 			</thead>
-			<tbody>			
-			{{#each this.chemical}}		
-				<tr>		
+			<tbody>
+			{{#each this.chemical}}
+				<tr>
 					<td>{{name}}</td>
 					<td>{{value}}</td>
 					<td>{{unit}}</td>
@@ -249,9 +250,9 @@
 					<td>Information</td>
 				</tr>
 			</thead>
-			<tbody>			
+			<tbody>
 			{{#each this.CollectionTechnique}}
-				<tr>		
+				<tr>
 					<td>{{Instrument}}</td>
 					<td>{{Technique}}</td>
 					<td>{{Calibration}}</td>
@@ -264,10 +265,10 @@
 </template>
 
 <template name="weather">
-	
+
 		<h2>Weather Info</h2>
 				<h4> for <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
-		
+
 		<table class="table table-bordered table-condensed ">
 			<thead>
 				<tr>
@@ -283,17 +284,17 @@
 					<td>{{this.rain}}</td>
 					<td>{{this.duration}}</td>
 					<td>{{ambientTemperature}}</td>
-					
+
 				</tr>
 			</tbody>
 		</table>
 </template>
 
 <template name="water">
-	
+
 		<h2>Water Info</h2>
 		<h4> for <a href="/project/{{this.projectId}}">{{projectName this.projectId}}  </a> <br> submitted by {{this.owner}}</h4>
-		
+
 		<table class="table table-bordered table-condensed ">
 			<thead>
 				<tr>
@@ -322,7 +323,7 @@
 
 
 <template name="teamm">
-	
+
 		<h2>Team Info</h2>
 				<h3> submitted by {{owner}} <br> to <a href="/project/{{this.projectId}}">{{projectName this.projectId}}</a></h3>
 
@@ -332,7 +333,7 @@
 					<td>Group Name</td>
 					<td>Leader Name</td>
 					<td>Leader Profession</td>
-		
+
 				  </tr>
 			</thead>
 			<tbody>
@@ -340,7 +341,7 @@
 					<td>{{this.Name}}</td>
 					<td>{{this.LeaderName}}</td>
 					<td>{{this.LeaderProfession}}</td>
-				
+
 				</tr>
 			</tbody>
 		</table>
@@ -351,9 +352,9 @@
 					<td>Member Profession</td>
 				</tr>
 			</thead>
-			<tbody>			
-			{{#each this.Members}}		
-				<tr>		
+			<tbody>
+			{{#each this.Members}}
+				<tr>
 					<td>{{name}}</td>
 					<td>{{profession}}</td>
 				</tr>
@@ -361,5 +362,3 @@
 			</tbody>
 		</table>
 </template>
-
-

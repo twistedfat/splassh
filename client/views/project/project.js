@@ -46,6 +46,9 @@ setSessionProjectId: function(){
 },
 	coverImage:function(){
 	return Collections.Images.find({_id:this.cover});
+},
+sessionProjectId: function () {
+    return Session.get('projectId');
 }
 });
 
@@ -84,7 +87,6 @@ Template.projectList.helpers({
 });
 
 Template.projectList.rendered = function() {
-  
   var container = document.querySelector('#masonry-container');
   var msnry = new Masonry( container, {
     // options
@@ -93,7 +95,6 @@ Template.projectList.rendered = function() {
     itemSelector: ".item",
     isFitWidth: true
   });
-  
   /* todo: allows for https:// - make changes on dev here
   var $container = $('#masonry-container');
   // initialize
@@ -108,7 +109,6 @@ Template.projectList.rendered = function() {
 Template.project.created = function() {
     // Sort comments in descending order by date posted. It also convert posted
     // to a string so that it will look write in the template.
- 
     this.comments = _.sortBy(this.comments, function(comment) {
         return -1*comment.posted;
     });
@@ -125,7 +125,6 @@ Template.project.rendered = function() {
 }
 
 var coverHandler = function(event, template) {
-    
 	var coverId = "no";
 	FS.Utility.eachFile(event, function(file) {
       var newFile = new FS.File(file);
@@ -170,7 +169,6 @@ Template.project.events({
         e.preventDefault();
         var content = $('#project-comment').val();
         content = content.trim();
-      
         if (!Meteor.user()){
           toastr.warning("Please sign in to leave a comment.");
           return;
@@ -189,7 +187,6 @@ Template.project.events({
 
         //Add comment will automatically set comment.posted to the current time.
         addComment(comment, this._id);
-		
         // clear input field
         $('#project-comment').val(function() {
           return this.defaultValue;
@@ -199,7 +196,6 @@ Template.project.events({
         e.preventDefault();
         var content = $('#author').val();
         content = content.trim();
-      
         if (!Meteor.user()){
           toastr.warning("Please sign in to leave a comment.");
           return;
@@ -212,7 +208,6 @@ Template.project.events({
 
         //Add comment will automatically set comment.posted to the current time.
         addAuthor(content, this);
-        
         // clear input field
         $('#author').val(function() {
           return this.defaultValue;
@@ -234,34 +229,38 @@ Follows.remove(this._id);
   'click .edit': function (e,t ) {
     e.preventDefault();
     var ele = document.getElementById("editCommentform");
-	var text = document.getElementById("edit");	
+	var text = document.getElementById("edit");
         if(ele.style.display == "block") {
-    		ele.style.display = "none";		
+    		ele.style.display = "none";
   	}
 	else {
-		ele.style.display = "block";		
+		ele.style.display = "block";
 	}
   },
 'click .toImages': function (e,t ) {
     e.preventDefault();
-	Session.setAuth( 'currentProjectId', this._id); 
+	Session.setAuth( 'currentProjectId', this._id);
 	Router.go('/images');
 },
 'click .toData': function (e,t ) {
     e.preventDefault();
-	Session.setAuth( 'currentProjectId', this._id); 
+	Session.setAuth( 'currentProjectId', this._id);
 	Router.go('/dataentry');
 },
 'click .toAttachments': function (e,t ) {
     e.preventDefault();
-  Session.setAuth( 'currentProjectId', this._id); 
+  Session.setAuth( 'currentProjectId', this._id);
   Router.go('/attachments');
+},
+'click .toViewData': function (e,t ) {
+    e.preventDefault();
+  Session.setAuth( 'currentProjectId', this._id);
+  Router.go('/viewdata');
 },
  'submit form.form-editcomment': function(e, t) {
         e.preventDefault();
         var content = $('#project-edit').val();
         content = content.trim();
-      
         if (!Meteor.user()){
           toastr.warning("Please sign in to leave a comment.");
           return;
@@ -281,7 +280,6 @@ Follows.remove(this._id);
 
         //Add comment will automatically set comment.posted to the current time.
         editComment(comment);
-        
         // clear input field
         $('#project-edit').val(function() {
           return this.defaultValue;
@@ -309,14 +307,12 @@ tagSelected : function() {
   var projectId = AmplifiedSession.get('currentProjectId') || null;
   var project = Projects.findOne({ _id: projectId });
   var tags = project.tags;
-  
   return ( _.indexOf(tags, me.name) !== -1);
 }
 });
 Template.projectTags.events({
   'click button': function(e) {
     e.preventDefault();
-    
     // check permissions
     var pid = Router.current().params._id;
     var proj = Projects.findOne({ _id: pid});
@@ -326,12 +322,13 @@ Template.projectTags.events({
       var elem = $(e.target);
       elem.toggleClass('btn-success');
       if (elem.hasClass('btn-success')) {
-        Projects.update( AmplifiedSession.get('currentProjectId'), { $push : { tags : this.name } } ); 
+        Projects.update( AmplifiedSession.get('currentProjectId'), { $push : { tags : this.name } } );
       } else {
-        Projects.update( AmplifiedSession.get('currentProjectId'), { $pull : { tags : this.name } } );   
+        Projects.update( AmplifiedSession.get('currentProjectId'), { $pull : { tags : this.name } } );
       }
     } else {
       toastr.info('This action limited to project owner, and logged in.');
     }
   }
 });
+// disqus comments -test
